@@ -2,12 +2,17 @@
   "name": "doki-theme-hyper",
   "version": "1.0.0",
   "description": "The Doki Theme for Hyper",
-  "main": "src/index.ts",
+  "main": "build/index.js",
   "repository": "https://github.com/Unthrottled/doki-theme-hyper.git",
   "author": "Alex Simons <alex@unthrottled.io>",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
   "devDependencies": {
+    "@types/electron": "^1.6.10",
     "@types/node": "^13.7.7",
     "typescript": "^3.8.3"
   }
