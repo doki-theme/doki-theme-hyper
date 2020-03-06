@@ -7,5 +7,5 @@ node_modules
 src/DokiThemeDefinitions.ts
 src/ChangelogHtml.ts
 generatedThemes/*.json
-build/
+/build
 /masterThemes
