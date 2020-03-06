@@ -1,5 +1,9 @@
 import { DokiTheme } from "./themeTemp";
+import path from 'path';
 
+const filepaths = {
+  backgrounds: path.resolve(__dirname, 'backgrounds'),
+};
 
 export const constructCSS = (dokiTheme: DokiTheme): string => {
   const background ='';
@@ -7,15 +11,15 @@ export const constructCSS = (dokiTheme: DokiTheme): string => {
   const activeTab ='';
   const tab ='';
   const secondary = '';
-  
-  const tabContent = '';
-  const imagePath = '';
 
+  const tabContent = '';
+  const imagePath = dokiTheme.stickers.default;
 
   return `
   .terms_terms {
-    background: url("file://${imagePath}") center;
-    background-size: cover;
+    background: url("${imagePath}");
+    background-position:97% 97%;
+    background-repeat:no-repeat;
   }
   .header_shape, .header_appTitle {
     color: ${header};
