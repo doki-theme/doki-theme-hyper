@@ -19,7 +19,7 @@ export const getThemeByName = (themeName: string | undefined): DokiTheme => {
       default: 'https://doki.assets.acari.io/stickers/vscode/killLaKill/ryuko/ryuko.png',
     },
     colors: {
-
+      baseBackground: '#2f363c',
     }  
   }
 }

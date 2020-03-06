@@ -6,7 +6,7 @@ const filepaths = {
 };
 
 export const constructCSS = (dokiTheme: DokiTheme): string => {
-  const background ='';
+  const background =dokiTheme.colors.baseBackground;
   const header ='';
   const activeTab ='';
   const tab ='';
@@ -16,8 +16,12 @@ export const constructCSS = (dokiTheme: DokiTheme): string => {
   const imagePath = dokiTheme.stickers.default;
 
   return `
+  .header_header {
+    background: ${background}
+  }
+  
   .terms_terms {
-    background: url("${imagePath}");
+    background: url("${imagePath}") ${background};
     background-position:97% 97%;
     background-repeat:no-repeat;
   }
@@ -41,7 +45,7 @@ export const constructCSS = (dokiTheme: DokiTheme): string => {
   }
   .tabs_nav .tabs_title,
   .tabs_nav .tabs_list .tab_tab {
-    color: ${secondary};
+    background: ${background}
     border: 0;
   }
   .tab_icon {
