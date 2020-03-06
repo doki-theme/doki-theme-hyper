@@ -9,5 +9,10 @@ export const decorateConfig = (config: any) => {
 
   const syntax = constructSyntax(dokiTheme);
   const css = constructCSS(dokiTheme);
-  return Object.assign({}, config, syntax, css);
+  return Object.assign({}, config, syntax, {
+    termCSS: config.termCSS || '',
+    css: `${config.css || ''}
+    ${css}
+    `
+  });
 }
