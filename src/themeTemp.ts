@@ -1,4 +1,5 @@
 import { DEFAULT_CONFIGURATION } from "./config";
+import DokiThemeDefinitions from './DokiThemeDefinitions';
 
 export interface StringDictonary<T> {
   [key: string]: T;
@@ -12,17 +13,12 @@ export interface Stickers {
 
 export interface DokiTheme {
   colors: StringDictonary<string>;
-  stickers: Stickers;
+  sticker: string;
 }
 
 export const getThemeByName = (themeName: string | undefined): DokiTheme => {
   const definedThemeName = themeName || DEFAULT_CONFIGURATION.theme;
-  return {
-    stickers: {
-      default: 'https://doki.assets.acari.io/stickers/vscode/killLaKill/ryuko/ryuko.png',
-    },
-    colors: {
-      baseBackground: '#2f363c',
-    }  
-  }
+  // @ts-ignore
+  const maybeDokiTheme = DokiThemeDefinitions[definedThemeName.toLowerCase()];
+  return maybeDokiTheme || DokiThemeDefinitions.ryuko;
 }

@@ -229,8 +229,12 @@ function readSticker(
   themeDefinitonPath: string,
   themeDefinition: DokiThemeTemplateDefinition,
 ) {
-  const stickerDefinition = themeDefinition.stickers.normal || themeDefinition.stickers.default;
-  return `http://doki.assets.acari.io/stickers/vscode/${stickerDefinition}`;
+  const stickerPath = path.resolve(
+    path.resolve(themeDefinitonPath, '..'),
+    themeDefinition.stickers.normal || themeDefinition.stickers.default
+    ); 
+    const stickerDefinition = stickerPath.substr(masterThemeDefinitionDirectoryPath.length);
+  return `http://doki.assets.acari.io/stickers/vscode${stickerDefinition}`;
 }
 
 

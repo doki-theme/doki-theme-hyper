@@ -13,7 +13,7 @@ export const constructCSS = (dokiTheme: DokiTheme): string => {
   const secondary = '';
 
   const tabContent = '';
-  const imagePath = dokiTheme.stickers.default;
+  const imagePath = dokiTheme.sticker;
 
   return `
   .header_header {
