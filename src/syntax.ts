@@ -49,9 +49,10 @@ export const constructSyntax = (dokiTheme: DokiTheme) => {
   const colors = buildColors(dokiTheme);
   return {
     colors,
+    foregroundColor: dokiTheme.colors.foregroundColor,
     backgroundColor: '#00000000',
     borderColor: dokiTheme.colors.borderColor,
     cursorColor: dokiTheme.colors.caretColor,
-    selectionColor: dokiTheme.colors.selectionBackground,
+    selectionColor: `${dokiTheme.colors.selectionBackground}55`,
   };
 }

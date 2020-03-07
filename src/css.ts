@@ -7,15 +7,19 @@ const filepaths = {
 
 export const constructCSS = (dokiTheme: DokiTheme): string => {
   const background =dokiTheme.colors.baseBackground;
+  const foreground = dokiTheme.colors.foregroundColor;
   const header ='';
   const activeTab ='';
   const tab ='';
-  const secondary = '';
 
   const tabContent = '';
   const imagePath = dokiTheme.sticker;
 
   return `
+  #hyper {
+    color: ${foreground} !important;
+  }
+
   .header_header {
     background: ${background}
   }
@@ -25,20 +29,19 @@ export const constructCSS = (dokiTheme: DokiTheme): string => {
     background-position:97% 97%;
     background-repeat:no-repeat;
   }
+  .header_header, .header_shape {
+    color: ${foreground}
+  }
+
   .header_shape, .header_appTitle {
     color: ${header};
   }
   .header_header, .header_windowHeader {
     background-color: ${background} !important;
+    color: ${foreground}
   }
   .hyper_main {
     background-color: ${background};
-  }
-  .tab_textActive .tab_textInner::before {
-    content: url("file://${tabContent}");
-    position: absolute;
-    right: 0;
-    top: -4px;
   }
   .tabs_nav .tabs_list {
     border-bottom: 0;
@@ -57,12 +60,12 @@ export const constructCSS = (dokiTheme: DokiTheme): string => {
     background-color: ${background};
   }
   .tab_shape {
-    color: ${secondary};
+    color: ${foreground};
     width: 7px;
     height: 7px;
   }
   .tab_shape:hover {
-    color: ${secondary};
+    color: ${foreground};
   }
   .tab_active {
     background-color: ${activeTab};
@@ -80,7 +83,7 @@ export const constructCSS = (dokiTheme: DokiTheme): string => {
     left: 0;
     right: 0;
     height: 4px;
-    background-color: ${secondary};
+    background-color: ${foreground};
     transform: scaleX(0);
     transition: none;
   }
@@ -89,7 +92,7 @@ export const constructCSS = (dokiTheme: DokiTheme): string => {
     transition: all 400ms cubic-bezier(0.0, 0.0, 0.2, 1)
   }
   .terms_terms .terms_termGroup .splitpane_panes .splitpane_divider {
-    background-color: ${secondary} !important;
+    background-color: ${foreground} !important;
   }
   `
 }
