@@ -126,10 +126,10 @@ function buildLAFColors(
       (dokiThemeTemplateJson.dark ?
         lafTemplates.dark : lafTemplates.light);
 
-  const resolvedLafTemplate =
+  const resolvedColorTemplate =
     resolveTemplate(
       lafTemplate, lafTemplates,
-      template => template.ui,
+      template => template.colors,
       template => template.extends
     );
 
@@ -137,11 +137,16 @@ function buildLAFColors(
     dokiTemplateDefinitions,
     dokiThemeTemplateJson
   );
-
-  return applyNamedColors(
-    resolvedLafTemplate,
-    resolvedNameColors
-  );
+  
+  // do not really need to resolve, as there are no
+  // &someName& colors, but what ever.
+  const resolvedColors = 
+  applyNamedColors(resolvedColorTemplate, resolvedNameColors);
+  return {
+    ...resolvedColors,
+    ...resolvedNameColors,
+    ...resolvedColorTemplate,
+  };
 }
 
 function resolveNamedColors(
@@ -261,20 +266,22 @@ walkDir(masterThemeDefinitionDirectoryPath)
     const dokiThemeDefinitions = dokiThemes.map(dokiTheme => {
       const dokiDefinition = dokiTheme.definition;
       return {
-        themeDefinition: {
           information: omit(dokiDefinition, [
-            // 'colors',
+            'colors',
             'overrides',
             'ui',
             'icons'
           ]),
+          colors: dokiTheme.theme.colors,
           sticker: readSticker(
             dokiTheme.path,
             dokiDefinition
           ),
-        }
       };
-    });
+    }).reduce((accum: StringDictonary<any>, definition)=> {
+      accum[definition.information.name.toLowerCase()] = definition;
+      return accum;
+    }, {});
     const finalDokiDefinitions = JSON.stringify(dokiThemeDefinitions, null, 2);
     fs.writeFileSync(
       path.resolve(repoDirectory, 'src', 'DokiThemeDefinitions.ts'),
