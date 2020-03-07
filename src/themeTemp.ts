@@ -1,5 +1,8 @@
 import { DEFAULT_CONFIGURATION } from "./config";
-import {  StringDictonary } from "./themes";
+
+export interface StringDictonary<T> {
+  [key: string]: T;
+}
 
 export interface Stickers {
   default: string;

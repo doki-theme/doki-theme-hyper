@@ -9,12 +9,14 @@
   "private": false,
   "scripts": {
     "build": "tsc",
+    "buildThemes": "ts-node ./buildSrc/BuildThemes.ts",
     "dev": "tsc -w"
   },
   "devDependencies": {
     "@types/electron": "^1.6.10",
     "@types/lodash": "^4.14.149",
     "@types/node": "^13.7.7",
+    "ts-node": "^8.6.2",
     "typescript": "^3.8.3"
   },
   "dependencies": {

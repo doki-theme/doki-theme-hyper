@@ -1,7 +1,6 @@
-import { DokiTheme } from "./themeTemp";
+import { DokiTheme, StringDictonary } from "./themeTemp";
 import startsWith from 'lodash/startsWith'
 import toPairs from 'lodash/toPairs'
-import { StringDictonary } from "./themes";
 
 const DOKI_TO_HYPER_COLOR_MAPPINGS: any = {
   'red': 'terminal.ansiRed',
