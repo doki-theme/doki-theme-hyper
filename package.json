@@ -10,6 +10,7 @@
   "scripts": {
     "build": "tsc",
     "buildThemes": "ts-node ./buildSrc/BuildThemes.ts",
+    "buildUltimate": "PRODUCT=ultimate ts-node ./buildSrc/BuildThemes.ts",
     "dev": "tsc -w"
   },
   "devDependencies": {

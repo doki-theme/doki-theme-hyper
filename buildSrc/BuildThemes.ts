@@ -123,8 +123,8 @@ function buildLAFColors(
 ) {
   const lafTemplates = dokiTemplateDefinitions[NAMED_COLOR_TYPE];
   const lafTemplate =
-      (dokiThemeTemplateJson.dark ?
-        lafTemplates.dark : lafTemplates.light);
+    (dokiThemeTemplateJson.dark ?
+      lafTemplates.dark : lafTemplates.light);
 
   const resolvedColorTemplate =
     resolveTemplate(
@@ -137,11 +137,11 @@ function buildLAFColors(
     dokiTemplateDefinitions,
     dokiThemeTemplateJson
   );
-  
+
   // do not really need to resolve, as there are no
   // &someName& colors, but what ever.
-  const resolvedColors = 
-  applyNamedColors(resolvedColorTemplate, resolvedNameColors);
+  const resolvedColors =
+    applyNamedColors(resolvedColorTemplate, resolvedNameColors);
   return {
     ...resolvedColors,
     ...resolvedNameColors,
@@ -177,14 +177,13 @@ function buildHyperTheme(
 }
 
 function createDokiTheme(
-  dokiFileDefinitonPath: string,
+  dokiFileDefinitionPath: string,
+  dokiThemeDefinition: DokiThemeTemplateDefinition,
   dokiTemplateDefinitions: DokiThemeDefinitions
 ) {
-  const dokiThemeDefinition =
-    readJson(dokiFileDefinitonPath);
   try {
     return {
-      path: dokiFileDefinitonPath,
+      path: dokiFileDefinitionPath,
       definition: dokiThemeDefinition,
       theme: buildHyperTheme(
         dokiThemeDefinition,
@@ -196,7 +195,7 @@ function createDokiTheme(
   }
 }
 
-const readJson = (jsonPath: string) =>
+const readJson = <T>(jsonPath: string): T =>
   JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 
 type TemplateTypes = StringDictonary<StringDictonary<string>>;
@@ -210,7 +209,7 @@ const readTemplates = (templatePaths: string[]): TemplateTypes => {
     .map(templatePath => {
       return {
         type: getTemplateType(templatePath)!!,
-        template: readJson(templatePath)
+        template: readJson<any>(templatePath)
       };
     })
     .reduce((accum: TemplateTypes, templateRepresentation) => {
@@ -232,8 +231,8 @@ function readSticker(
   const stickerPath = path.resolve(
     path.resolve(themeDefinitonPath, '..'),
     themeDefinition.stickers.normal || themeDefinition.stickers.default
-    ); 
-    const stickerDefinition = stickerPath.substr(masterThemeDefinitionDirectoryPath.length);
+  );
+  const stickerDefinition = stickerPath.substr(masterThemeDefinitionDirectoryPath.length);
   return `http://doki.assets.acari.io/stickers/vscode${stickerDefinition}`;
 }
 
@@ -258,31 +257,44 @@ walkDir(masterThemeDefinitionDirectoryPath)
       dokiTemplateDefinitions,
       dokiFileDefinitionPaths
     } = templatesAndDefinitions;
-    return dokiFileDefinitionPaths.map(
-      dokiFileDefinitonPath =>
+    return dokiFileDefinitionPaths
+      .map(dokiFileDefinitionPath => ({
+        dokiFileDefinitionPath,
+        dokiThemeDefinition: readJson<DokiThemeTemplateDefinition>(dokiFileDefinitionPath),
+      }))
+      .filter(pathAndDefinition =>
+        (pathAndDefinition.dokiThemeDefinition.product === 'ultimate' &&
+          process.env.PRODUCT === 'ultimate') ||
+        pathAndDefinition.dokiThemeDefinition.product !== 'ultimate'
+      )
+      .map(({
+        dokiFileDefinitionPath,
+        dokiThemeDefinition,
+      }) =>
         createDokiTheme(
-          dokiFileDefinitonPath,
+          dokiFileDefinitionPath,
+          dokiThemeDefinition,
           dokiTemplateDefinitions
         )
-    );
+      );
   }).then(dokiThemes => {
     // write things for extension
     const dokiThemeDefinitions = dokiThemes.map(dokiTheme => {
       const dokiDefinition = dokiTheme.definition;
       return {
-          information: omit(dokiDefinition, [
-            'colors',
-            'overrides',
-            'ui',
-            'icons'
-          ]),
-          colors: dokiTheme.theme.colors,
-          sticker: readSticker(
-            dokiTheme.path,
-            dokiDefinition
-          ),
+        information: omit(dokiDefinition, [
+          'colors',
+          'overrides',
+          'ui',
+          'icons'
+        ]),
+        colors: dokiTheme.theme.colors,
+        sticker: readSticker(
+          dokiTheme.path,
+          dokiDefinition
+        ),
       };
-    }).reduce((accum: StringDictonary<any>, definition)=> {
+    }).reduce((accum: StringDictonary<any>, definition) => {
       accum[definition.information.name.toLowerCase()] = definition;
       return accum;
     }, {});

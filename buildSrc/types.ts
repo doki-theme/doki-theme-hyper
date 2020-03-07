@@ -9,6 +9,7 @@ export interface DokiThemeTemplateDefinition {
   dark: boolean;
   author: string;
   group: string;
+  product?: 'community' | 'ultimate';
   editorScheme: EditorScheme;
   stickers: Stickers;
   overrides: Overrides;
