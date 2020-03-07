@@ -10,20 +10,6 @@ const fs = require('fs');
 
 const masterThemeDefinitionDirectoryPath =
   path.resolve(repoDirectory, 'masterThemes');
-const vsCodeDefinitionDirectoryPath =
-  path.resolve(repoDirectory, 'themes', 'definitions');
-const templateDirectoryPath =
-  path.resolve(repoDirectory, 'themes', 'templates');
-
-
-  const swapMasterThemeForLocalTheme = 
-  (masterDokiThemeDefinitionPath: string): string => {
-    const masterThemeFilePath = 
-      masterDokiThemeDefinitionPath.substring(
-        masterThemeDefinitionDirectoryPath.toString().length
-        );
-    return `${vsCodeDefinitionDirectoryPath}${masterThemeFilePath}`;
-  };
 
 function walkDir(dir: string): Promise<string[]> {
   const values: Promise<string[]>[] = fs.readdirSync(dir)
@@ -53,7 +39,7 @@ function getTemplateType(templatePath: string) {
   } else if (templatePath.endsWith('colors.template.json')) {
     return NAMED_COLOR_TYPE;
   }
-  throw new Error(`I do not know what template ${templatePath} is!`);
+  return undefined;
 }
 
 
@@ -135,7 +121,7 @@ function buildLAFColors(
   dokiThemeTemplateJson: DokiThemeTemplateDefinition,
   dokiTemplateDefinitions: DokiThemeDefinitions
 ) {
-  const lafTemplates = dokiTemplateDefinitions[LAF_TYPE];
+  const lafTemplates = dokiTemplateDefinitions[NAMED_COLOR_TYPE];
   const lafTemplate =
       (dokiThemeTemplateJson.dark ?
         lafTemplates.dark : lafTemplates.light);
@@ -173,21 +159,6 @@ function resolveNamedColors(
         'dark' : 'light'));
 }
 
-function getSyntaxColor(
-  syntaxSettingsValue: string,
-  resolvedNamedColors: StringDictonary<string>
-) {
-  if (syntaxSettingsValue.indexOf('&') > -1) {
-    return resolveColor(
-      syntaxSettingsValue,
-      resolvedNamedColors
-    );
-  } else {
-    return syntaxSettingsValue;
-  }
-}
-
-
 function buildHyperTheme(
   dokiThemeDefinition: DokiThemeTemplateDefinition,
   dokiTemplateDefinitions: DokiThemeDefinitions
@@ -208,7 +179,7 @@ function createDokiTheme(
     readJson(dokiFileDefinitonPath);
   try {
     return {
-      path: swapMasterThemeForLocalTheme(dokiFileDefinitonPath),
+      path: dokiFileDefinitonPath,
       definition: dokiThemeDefinition,
       theme: buildHyperTheme(
         dokiThemeDefinition,
@@ -225,11 +196,15 @@ const readJson = (jsonPath: string) =>
 
 type TemplateTypes = StringDictonary<StringDictonary<string>>;
 
+const isTemplate = (filePath: string): boolean =>
+  !!getTemplateType(filePath);
+
 const readTemplates = (templatePaths: string[]): TemplateTypes => {
   return templatePaths
+    .filter(isTemplate)
     .map(templatePath => {
       return {
-        type: getTemplateType(templatePath),
+        type: getTemplateType(templatePath)!!,
         template: readJson(templatePath)
       };
     })
@@ -244,24 +219,20 @@ const readTemplates = (templatePaths: string[]): TemplateTypes => {
     });
 };
 
-const base64Img = require('base64-img');
 
 function readSticker(
   themeDefinitonPath: string,
   themeDefinition: DokiThemeTemplateDefinition,
 ) {
-  const stickerPath = path.resolve(
-    path.resolve(themeDefinitonPath, '..'),
-    themeDefinition.stickers.normal || themeDefinition.stickers.default
-  );
-  return base64Img.base64Sync(stickerPath);
+  const stickerDefinition = themeDefinition.stickers.normal || themeDefinition.stickers.default;
+  return `http://doki.assets.acari.io/stickers/vscode/${stickerDefinition}`;
 }
 
 
 const omit = require('lodash/omit');
 
 console.log('Preparing to generate themes.');
-walkDir(templateDirectoryPath)
+walkDir(masterThemeDefinitionDirectoryPath)
   .then(readTemplates)
   .then(dokiTemplateDefinitions => {
     return walkDir(masterThemeDefinitionDirectoryPath)
@@ -292,7 +263,7 @@ walkDir(templateDirectoryPath)
       return {
         themeDefinition: {
           information: omit(dokiDefinition, [
-            'colors',
+            // 'colors',
             'overrides',
             'ui',
             'icons'
@@ -304,25 +275,11 @@ walkDir(templateDirectoryPath)
         }
       };
     });
-    const finalDokiDefinitions = JSON.stringify(dokiThemeDefinitions);
+    const finalDokiDefinitions = JSON.stringify(dokiThemeDefinitions, null, 2);
     fs.writeFileSync(
       path.resolve(repoDirectory, 'src', 'DokiThemeDefinitions.ts'),
       `export default ${finalDokiDefinitions};`);
-
-    // copy to out directory
-    const themeOutputDirectory = 'generatedThemes';
-    const themePostfix = '.theme.json';
-    dokiThemes.forEach(dokiTheme => {
-      const hyperTheme = dokiTheme.theme;
-      fs.writeFileSync(
-        path.resolve(repoDirectory,
-          themeOutputDirectory,
-          `${dokiTheme.definition.name}${themePostfix}`),
-        JSON.stringify(hyperTheme, null, 2)
-      );
-    });
   })
   .then(() => {
     console.log('Theme Generation Complete!');
   });
-
