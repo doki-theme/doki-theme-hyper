@@ -1,4 +1,5 @@
 import { DokiTheme } from "./themeTemp";
+import {DokiThemeConfig} from "./config";
 
 
 export const constructCSS = (dokiTheme: DokiTheme, hyperDokiConfig: DokiThemeConfig): string => {
@@ -6,7 +7,6 @@ export const constructCSS = (dokiTheme: DokiTheme, hyperDokiConfig: DokiThemeCon
   const foreground = dokiTheme.colors.foregroundColor;
   const header = dokiTheme.colors.headerColor;
   const activeTab = dokiTheme.colors.highlightColor;
-  const tab ='';
   const accentColor = dokiTheme.colors.accentColor;
 
   const imagePath = hyperDokiConfig.showSticker ? dokiTheme.sticker : '';
@@ -16,11 +16,11 @@ export const constructCSS = (dokiTheme: DokiTheme, hyperDokiConfig: DokiThemeCon
     color: ${foreground} !important;
   }
 
-  .header_header {
-    background: ${background}
+  #hyper .header_header, #hyper .header_windowHeader {
+    background: ${header} !important;
   }
   
-  .terms_terms {
+  .hyper_main {
     background: url("${imagePath}") ${background};
     background-position:97% 97%;
     background-repeat:no-repeat;
@@ -69,9 +69,6 @@ export const constructCSS = (dokiTheme: DokiTheme, hyperDokiConfig: DokiThemeCon
   }
   .tab_tab {
     color: ${foreground}
-  }
-  .tabs_nav .tabs_list .tab_tab:not(.tab_active) {
-    background-color: ${tab};
   }
   .tabs_nav .tabs_list {
     color: ${background};

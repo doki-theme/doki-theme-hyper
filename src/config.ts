@@ -1,4 +1,4 @@
-interface DokiThemeConfig {
+export interface DokiThemeConfig {
   theme: string;
   showSticker: boolean;
 }

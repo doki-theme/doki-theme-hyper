@@ -1,6 +1,5 @@
 // @ts-ignore
-import GroupToNameMapping from "./GroupMappings";
-import { DokiThemeTemplateDefinition, StringDictonary, DokiThemeDefinitions } from "./types";
+import {DokiThemeDefinitions, DokiThemeTemplateDefinition, StringDictonary} from './types';
 
 const path = require('path');
 
@@ -268,9 +267,9 @@ walkDir(masterThemeDefinitionDirectoryPath)
         pathAndDefinition.dokiThemeDefinition.product !== 'ultimate'
       )
       .map(({
-        dokiFileDefinitionPath,
-        dokiThemeDefinition,
-      }) =>
+              dokiFileDefinitionPath,
+              dokiThemeDefinition,
+            }) =>
         createDokiTheme(
           dokiFileDefinitionPath,
           dokiThemeDefinition,
@@ -278,31 +277,31 @@ walkDir(masterThemeDefinitionDirectoryPath)
         )
       );
   }).then(dokiThemes => {
-    // write things for extension
-    const dokiThemeDefinitions = dokiThemes.map(dokiTheme => {
-      const dokiDefinition = dokiTheme.definition;
-      return {
-        information: omit(dokiDefinition, [
-          'colors',
-          'overrides',
-          'ui',
-          'icons'
-        ]),
-        colors: dokiTheme.theme.colors,
-        sticker: readSticker(
-          dokiTheme.path,
-          dokiDefinition
-        ),
-      };
-    }).reduce((accum: StringDictonary<any>, definition) => {
-      accum[definition.information.name.toLowerCase()] = definition;
-      return accum;
-    }, {});
-    const finalDokiDefinitions = JSON.stringify(dokiThemeDefinitions, null, 2);
-    fs.writeFileSync(
-      path.resolve(repoDirectory, 'src', 'DokiThemeDefinitions.ts'),
-      `export default ${finalDokiDefinitions};`);
-  })
+  // write things for extension
+  const dokiThemeDefinitions = dokiThemes.map(dokiTheme => {
+    const dokiDefinition = dokiTheme.definition;
+    return {
+      information: omit(dokiDefinition, [
+        'colors',
+        'overrides',
+        'ui',
+        'icons'
+      ]),
+      colors: dokiTheme.theme.colors,
+      sticker: readSticker(
+        dokiTheme.path,
+        dokiDefinition
+      ),
+    };
+  }).reduce((accum: StringDictonary<any>, definition) => {
+    accum[definition.information.name.toLowerCase()] = definition;
+    return accum;
+  }, {});
+  const finalDokiDefinitions = JSON.stringify(dokiThemeDefinitions, null, 2);
+  fs.writeFileSync(
+    path.resolve(repoDirectory, 'src', 'DokiThemeDefinitions.ts'),
+    `export default ${finalDokiDefinitions};`);
+})
   .then(() => {
     console.log('Theme Generation Complete!');
   });
