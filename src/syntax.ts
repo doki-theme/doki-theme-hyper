@@ -49,10 +49,12 @@ export const constructSyntax = (dokiTheme: DokiTheme) => {
   const colors = buildColors(dokiTheme);
   return {
     colors,
+    cursorColor: dokiTheme.colors.accentColor,
+    cursorAccentColor: dokiTheme.colors.caretForeground,
     foregroundColor: dokiTheme.colors.foregroundColor,
     backgroundColor: '#00000000',
     borderColor: dokiTheme.colors.borderColor,
-    cursorColor: dokiTheme.colors.caretColor,
     selectionColor: `${dokiTheme.colors.selectionBackground}55`,
+    fontFamily: '"Victor Mono", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
   };
 }

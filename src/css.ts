@@ -1,18 +1,14 @@
 import { DokiTheme } from "./themeTemp";
-import path from 'path';
 
-const filepaths = {
-  backgrounds: path.resolve(__dirname, 'backgrounds'),
-};
 
 export const constructCSS = (dokiTheme: DokiTheme): string => {
   const background =dokiTheme.colors.baseBackground;
   const foreground = dokiTheme.colors.foregroundColor;
-  const header ='';
-  const activeTab ='';
+  const header = dokiTheme.colors.headerColor;
+  const activeTab = dokiTheme.colors.highlightColor;
   const tab ='';
+  const accentColor = dokiTheme.colors.accentColor;
 
-  const tabContent = '';
   const imagePath = dokiTheme.sticker;
 
   return `
@@ -34,7 +30,7 @@ export const constructCSS = (dokiTheme: DokiTheme): string => {
   }
 
   .header_shape, .header_appTitle {
-    color: ${header};
+    color: ${foreground};
   }
   .header_header, .header_windowHeader {
     background-color: ${background} !important;
@@ -68,7 +64,7 @@ export const constructCSS = (dokiTheme: DokiTheme): string => {
     color: ${foreground};
   }
   .tab_active {
-    background-color: ${activeTab};
+    background-color: ${activeTab} !important;
   }
   .tabs_nav .tabs_list .tab_tab:not(.tab_active) {
     background-color: ${tab};
@@ -82,8 +78,8 @@ export const constructCSS = (dokiTheme: DokiTheme): string => {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background-color: ${foreground};
+    height: 3px;
+    background-color: ${accentColor};
     transform: scaleX(0);
     transition: none;
   }
