@@ -8,7 +8,7 @@ export const decorateConfig = (config: any) => {
   const dokiTheme = getThemeByName(hyperDokiConfig.theme);
 
   const syntax = constructSyntax(dokiTheme);
-  const css = constructCSS(dokiTheme);
+  const css = constructCSS(dokiTheme, hyperDokiConfig);
   return Object.assign({}, config, syntax, {
     termCSS: config.termCSS || '',
     css: `${config.css || ''}
