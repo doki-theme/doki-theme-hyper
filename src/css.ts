@@ -9,7 +9,8 @@ export const constructCSS = (dokiTheme: DokiTheme, hyperDokiConfig: DokiThemeCon
   const activeTab = dokiTheme.colors.highlightColor;
   const accentColor = dokiTheme.colors.accentColor;
 
-  const imagePath = hyperDokiConfig.showSticker ? dokiTheme.sticker : '';
+  const imagePath = hyperDokiConfig.showSticker === undefined || 
+  hyperDokiConfig.showSticker ? dokiTheme.sticker : '';
 
   return `
   #hyper {
