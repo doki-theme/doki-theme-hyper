@@ -1,5 +1,5 @@
 // @ts-ignore
-import {DokiThemeDefinitions, DokiThemeTemplateDefinition, StringDictonary} from './types';
+import {DokiThemeDefinitions, MasterDokiThemeDefinition, StringDictonary} from './types';
 
 const path = require('path');
 
@@ -117,7 +117,7 @@ function applyNamedColors(
 }
 
 function buildLAFColors(
-  dokiThemeTemplateJson: DokiThemeTemplateDefinition,
+  dokiThemeTemplateJson: MasterDokiThemeDefinition,
   dokiTemplateDefinitions: DokiThemeDefinitions
 ) {
   const lafTemplates = dokiTemplateDefinitions[NAMED_COLOR_TYPE];
@@ -150,7 +150,7 @@ function buildLAFColors(
 
 function resolveNamedColors(
   dokiTemplateDefinitions: DokiThemeDefinitions,
-  dokiThemeTemplateJson: DokiThemeTemplateDefinition
+  dokiThemeTemplateJson: MasterDokiThemeDefinition
 ) {
   const colorTemplates = dokiTemplateDefinitions[NAMED_COLOR_TYPE];
   return resolveTemplate(
@@ -164,7 +164,7 @@ function resolveNamedColors(
 }
 
 function buildHyperTheme(
-  dokiThemeDefinition: DokiThemeTemplateDefinition,
+  dokiThemeDefinition: MasterDokiThemeDefinition,
   dokiTemplateDefinitions: DokiThemeDefinitions
 ) {
   return {
@@ -177,7 +177,7 @@ function buildHyperTheme(
 
 function createDokiTheme(
   dokiFileDefinitionPath: string,
-  dokiThemeDefinition: DokiThemeTemplateDefinition,
+  dokiThemeDefinition: MasterDokiThemeDefinition,
   dokiTemplateDefinitions: DokiThemeDefinitions
 ) {
   try {
@@ -225,13 +225,13 @@ const readTemplates = (templatePaths: string[]): TemplateTypes => {
 
 function readSticker(
   themeDefinitonPath: string,
-  themeDefinition: DokiThemeTemplateDefinition,
+  themeDefinition: MasterDokiThemeDefinition,
 ) {
   const stickerPath = path.resolve(
     path.resolve(themeDefinitonPath, '..'),
     themeDefinition.stickers.normal || themeDefinition.stickers.default
   );
-  const stickerDefinition = stickerPath.substr(masterThemeDefinitionDirectoryPath.length);
+  const stickerDefinition = stickerPath.substr(masterThemeDefinitionDirectoryPath.length + '/definitions'.length);
   return `http://doki.assets.acari.io/stickers/vscode${stickerDefinition}`;
 }
 
@@ -239,11 +239,11 @@ function readSticker(
 const omit = require('lodash/omit');
 
 console.log('Preparing to generate themes.');
-walkDir(masterThemeDefinitionDirectoryPath)
+walkDir(path.resolve(masterThemeDefinitionDirectoryPath, 'templates'))
   .then(readTemplates)
   .then(dokiTemplateDefinitions => {
-    return walkDir(masterThemeDefinitionDirectoryPath)
-      .then(files => files.filter(file => file.endsWith('doki.json')))
+    return walkDir(path.resolve(masterThemeDefinitionDirectoryPath, 'definitions'))
+      .then(files => files.filter(file => file.endsWith('master.definition.json')))
       .then(dokiFileDefinitionPaths => {
         return {
           dokiTemplateDefinitions,
@@ -259,7 +259,7 @@ walkDir(masterThemeDefinitionDirectoryPath)
     return dokiFileDefinitionPaths
       .map(dokiFileDefinitionPath => ({
         dokiFileDefinitionPath,
-        dokiThemeDefinition: readJson<DokiThemeTemplateDefinition>(dokiFileDefinitionPath),
+        dokiThemeDefinition: readJson<MasterDokiThemeDefinition>(dokiFileDefinitionPath),
       }))
       .filter(pathAndDefinition =>
         (pathAndDefinition.dokiThemeDefinition.product === 'ultimate' &&
