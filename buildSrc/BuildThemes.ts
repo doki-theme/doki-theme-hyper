@@ -232,7 +232,7 @@ function readSticker(
     themeDefinition.stickers.normal || themeDefinition.stickers.default
   );
   const stickerDefinition = stickerPath.substr(masterThemeDefinitionDirectoryPath.length + '/definitions'.length);
-  return `http://doki.assets.acari.io/stickers/vscode${stickerDefinition}`;
+  return `https://doki.assets.acari.io/stickers/vscode${stickerDefinition}`;
 }
 
 
