@@ -7,7 +7,7 @@ interface HasData<T> {
 type DataAction<T, U> = Action<T> & HasData<U>
 
 const isDokiHelpCommandOutput = (commandOutput: string) =>
-  commandOutput.indexOf('doki-themes')
+  commandOutput.indexOf('doki-themes') > -1
 
 export const TOGGLE_THEME_LIST = 'TOGGLE_THEME_LIST';
 
@@ -20,7 +20,7 @@ const middleware =
           if(isDokiHelpCommandOutput(commandOutput)){
             store.dispatch({
               type: TOGGLE_THEME_LIST
-            })
+            });
           }
         }
       

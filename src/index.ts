@@ -3,7 +3,9 @@ import { constructCSS } from "./css";
 import { constructSyntax } from "./syntax";
 import { getThemeByName } from "./themeTemp";
 
-export {default as middleware} from './middleware'
+export {default as middleware} from './middleware';
+
+export {default as reduceUI} from './reducer';
 
 export const decorateConfig = (config: any) => {
   const hyperDokiConfig = extractConfig(config);
