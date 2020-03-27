@@ -7,7 +7,14 @@ export {default as middleware} from './middleware';
 
 export {default as reduceUI} from './reducer';
 
-export {decorateHyper, decorateTerm} from './decorator';
+export {
+  decorateHyper, 
+  decorateTerm, 
+  mapHyperTermState,
+  mapTermsState, 
+  getTermGroupProps,
+  getTermProps
+} from './decorator';
 
 export const decorateConfig = (config: any) => {
   const hyperDokiConfig = extractConfig(config);

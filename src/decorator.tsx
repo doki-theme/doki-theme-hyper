@@ -1,14 +1,29 @@
 import React, { FC } from 'react';
 import { Component } from 'react';
+import { THEME_STATE } from './reducer';
 
+const passProps = (uid: any, parentProps: any, props: any) => Object.assign(props, {
+  [THEME_STATE]: parentProps[THEME_STATE],
+});
+
+export const mapTermsState = (state: any, map: any) => Object.assign(map, {
+  [THEME_STATE]: state.ui[THEME_STATE],
+});
+
+export const mapHyperTermState = mapTermsState
+export const getTermGroupProps = passProps;
+export const getTermProps = passProps;
 
 export const decorateHyper = (Hyper: any) =>
-  class HyperDecorator extends Component {
+  class HyperDecorator extends Component<any> {
 
     render() {
-      console.log('yeeett!!!!');
-
-      return <Hyper {...this.props} customChildren={<div>yeet</div>} />;
+      return <Hyper {...this.props} customChildren={<div style={{
+        position: 'fixed',
+        top: 0,
+        right: 0,
+        color: 'red',
+      }}>yeet</div>} />;
     }
   };
 
