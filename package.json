@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsc",
     "build:ultimate": "PRODUCT=ultimate yarn build",
-    "prebuild":"yarn buildThemes",
+    "prebuild": "yarn buildThemes",
     "buildThemes": "ts-node ./buildSrc/BuildThemes.ts",
     "buildThemes:ultimate": "PRODUCT=ultimate ts-node ./buildSrc/BuildThemes.ts",
     "dev": "tsc -w"
@@ -19,6 +19,7 @@
     "@types/electron": "^1.6.10",
     "@types/lodash": "^4.14.149",
     "@types/node": "^13.7.7",
+    "@types/redux": "^3.6.0",
     "base64-img": "^1.0.4",
     "ts-node": "^8.6.2",
     "typescript": "^3.8.3"
