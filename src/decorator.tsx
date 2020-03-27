@@ -6,9 +6,13 @@ const passProps = (uid: any, parentProps: any, props: any) => Object.assign(prop
   [THEME_STATE]: parentProps[THEME_STATE],
 });
 
-export const mapTermsState = (state: any, map: any) => Object.assign(map, {
+export const mapTermsState = (state: any, map: any) => {
+  console.log('map term state', state, map);
+  
+  return Object.assign(map, {
   [THEME_STATE]: state.ui[THEME_STATE],
-});
+})
+};
 
 export const mapHyperTermState = mapTermsState
 export const getTermGroupProps = passProps;
@@ -30,6 +34,7 @@ export const decorateHyper = (Hyper: any) =>
 export const decorateTerm = (Term: any) =>
   class TerminalDecorator extends Component {
     render() {
+      
       return (
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
           {React.createElement(Term, Object.assign({}, this.props))}
