@@ -1,9 +1,12 @@
 import DokiThemeDefinitions from "./DokiThemeDefinitions";
+import { saveConfig, extractConfig } from "./config";
+import {dialog} from 'electron';
+import path from 'path';
+
 
 export const SET_THEME = 'SET_THEME'
 export const TOGGLE_STICKER = 'TOGGLE_STICKER';
 
-import { saveConfig, extractConfig } from "./config";
 const themes = Object.values(DokiThemeDefinitions)
 .map(dokiDefinition => {
   return {
@@ -15,10 +18,44 @@ const themes = Object.values(DokiThemeDefinitions)
           ...extractConfig(),
           themeId: dokiDefinition.information.id
         }
-      )
+        )
+      }
+    }
+  });
+  
+  
+export const VERSION = 'v2.0.0';
+const appName = 'Doki Theme';
+const icon = path.resolve(__dirname, '..', 'assets', 'Doki-Theme.png');
+const showAbout = () => {
+  dialog.showMessageBox({
+    title: `About ${appName}`,
+    message: `${appName} ${VERSION}`,
+    detail: `Thanks for downloading The Doki Theme for Hyper!`,
+    buttons: ['K Thx'],
+    // @ts-ignore
+    icon
+  });
+}
+const getAboutMenu = () =>{
+  if(process.platform !== 'darwin') {
+    return {
+      role: 'about',
+      click() {
+        showAbout();
+      }
     }
   }
-});
+
+  return {
+    role: 'about',
+    submenu: [
+      {
+        label: VERSION
+      }
+    ]
+  }
+}
 
 export default (menu:any) => {
   const menuItem = {
@@ -51,13 +88,14 @@ export default (menu:any) => {
           )
         }
       },
+      getAboutMenu(),
       {
         label: 'View ChangeLog',
         click: async () => {
           const { shell } = require('electron')
           await shell.openExternal('https://github.com/Unthrottled/doki-theme-hyper/blob/master/CHANGELOG.md')
         }
-      },
+      }
     ]
   };
 
