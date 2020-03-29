@@ -17,8 +17,8 @@ export interface DokiTheme {
 }
 
 export const getThemeByName = (themeName: string | undefined): DokiTheme => {
-  const definedThemeName = themeName || DEFAULT_CONFIGURATION.theme;
+  const definedThemeId = themeName || DEFAULT_CONFIGURATION.themeId;
   // @ts-ignore
-  const maybeDokiTheme = DokiThemeDefinitions[definedThemeName.toLowerCase()];
-  return maybeDokiTheme || DokiThemeDefinitions.ryuko;
+  const maybeDokiTheme = DokiThemeDefinitions[definedThemeId]
+  return maybeDokiTheme || DokiThemeDefinitions["420b0ed5-803c-4127-97e3-dae6aa1a5972"];
 }

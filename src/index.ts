@@ -7,8 +7,10 @@ export { decorateConfig } from './config';
 export {
   decorateHyper,
   decorateTerm,
-  mapHyperTermState,
+  mapHyperState,
   mapTermsState,
   getTermGroupProps,
   getTermProps
 } from './decorator';
+
+export {default as decorateMenu } from './settings';

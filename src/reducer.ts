@@ -1,18 +1,20 @@
-import { Action } from "redux";
-import { TOGGLE_THEME_LIST } from "./middleware";
+import { AnyAction } from "redux";
+import { SET_THEME } from "./settings";
+import { DokiTheme } from "./themeTemp";
 
 export interface ThemeState {
-  showHelp?: boolean;
+  activeTheme: DokiTheme
 }
 
 export const THEME_STATE = 'dokiThemeState';
-const reducer = (state: any, action: Action) => {
+
+const reducer = (state: any, action: AnyAction) => {
   switch (action.type) {
-    case TOGGLE_THEME_LIST: 
+    case SET_THEME: 
       const previousState: ThemeState = state[THEME_STATE] || {};
       return state.set(THEME_STATE, {
         ...previousState,
-        showHelp: !previousState.showHelp
+        activeTheme: action.payload
       });
     default:
       return state;
