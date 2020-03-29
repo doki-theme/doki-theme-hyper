@@ -4,6 +4,10 @@
 
 ![Theme Usage](https://doki.assets.unthrottled.io/screenshots/doki-theme-hyper-usage.gif)
 
+## Installation
+
+[You'll need hyper first!](https://hyper.is/#installation).
+
 ## About!
 
 With well over **10 themes** (light and dark) I think you will be able to find your favorite.
@@ -37,7 +41,11 @@ Help make this plugin better!
 
 # More!
 
+## JetBrains IDEs
+
 Do you also develop using JetBrain's products (Intellij, CLion, Pycharm, etc)? Then be sure to install [the JetBrain's Doki Theme plugin as well!](https://plugins.jetbrains.com/plugin/10804-doki-doki-literature-club-theme)
+
+## VS Code
 
 Hey! Did you know The Doki Theme is also available in VSCode? Then be sure to install [the VSCode Doki Theme plugin as well!](https://github.com/Unthrottled/doki-theme-vscode)
 
