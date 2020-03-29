@@ -1,8 +1,7 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Component } from 'react';
 import { THEME_STATE, ThemeState } from './reducer';
 import { SET_THEME, TOGGLE_STICKER } from './settings';
-import { DokiTheme } from './themeTemp';
 
 const passProps = (uid: any, parentProps: any, props: any) => Object.assign(props, {
   [THEME_STATE]: parentProps[THEME_STATE],
@@ -14,7 +13,7 @@ export const mapTermsState = (state: any, map: any) => {
   })
 };
 
-export const mapHyperState = mapTermsState
+export const mapHyperState = mapTermsState;
 export const getTermGroupProps = passProps;
 export const getTermProps = passProps;
 
@@ -76,10 +75,10 @@ export const decorateTerm = (Term: any) =>
             color: 'black'
           }}>
             {
-              themeState.showSticker ? <img src={themeState.activeTheme.sticker} /> : <></>
+              themeState.showSticker ? <img src={themeState.activeTheme.sticker}  alt={'Sticker!'}/> : <></>
             }
           </div>
         </div>
       )
     }
-  }
+  };

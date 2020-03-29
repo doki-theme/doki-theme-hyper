@@ -28,10 +28,10 @@ const reducer = (state: any, action: AnyAction) => {
       return state.set(THEME_STATE, {
         activeTheme: getTheme(),
         showSticker: extractConfig().showSticker,
-      })
+      });
     default:
       return state;
   }
-}
+};
 
 export default reducer;

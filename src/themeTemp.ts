@@ -19,6 +19,6 @@ export interface DokiTheme {
 export const getThemeByName = (themeName: string | undefined): DokiTheme => {
   const definedThemeId = themeName || DEFAULT_CONFIGURATION.themeId;
   // @ts-ignore
-  const maybeDokiTheme = DokiThemeDefinitions[definedThemeId]
+  const maybeDokiTheme = DokiThemeDefinitions[definedThemeId];
   return maybeDokiTheme || DokiThemeDefinitions["420b0ed5-803c-4127-97e3-dae6aa1a5972"];
-}
+};

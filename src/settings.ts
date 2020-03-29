@@ -3,7 +3,6 @@ import { saveConfig, extractConfig } from "./config";
 import {dialog} from 'electron';
 import path from 'path';
 
-
 export const SET_THEME = 'SET_THEME'
 export const TOGGLE_STICKER = 'TOGGLE_STICKER';
 
@@ -22,8 +21,7 @@ const themes = Object.values(DokiThemeDefinitions)
       }
     }
   });
-  
-  
+
 export const VERSION = 'v2.0.0';
 const appName = 'Doki Theme';
 const icon = path.resolve(__dirname, '..', 'assets', 'Doki-Theme.png');
@@ -36,7 +34,8 @@ const showAbout = () => {
     // @ts-ignore
     icon
   });
-}
+};
+
 const getAboutMenu = () =>{
   if(process.platform !== 'darwin') {
     return {
@@ -55,7 +54,7 @@ const getAboutMenu = () =>{
       }
     ]
   }
-}
+};
 
 export default (menu:any) => {
   const menuItem = {
@@ -92,7 +91,7 @@ export default (menu:any) => {
       {
         label: 'View ChangeLog',
         click: async () => {
-          const { shell } = require('electron')
+          const { shell } = require('electron');
           await shell.openExternal('https://github.com/Unthrottled/doki-theme-hyper/blob/master/CHANGELOG.md')
         }
       }
@@ -103,4 +102,4 @@ export default (menu:any) => {
     ...menu,
     menuItem    
   ]
-}
+};

@@ -294,7 +294,7 @@ walkDir(path.resolve(masterThemeDefinitionDirectoryPath, 'templates'))
       ),
     };
   }).reduce((accum: StringDictonary<any>, definition) => {
-    accum[definition.information.id.toLowerCase()] = definition;
+    accum[definition.information.id] = definition;
     return accum;
   }, {});
   const finalDokiDefinitions = JSON.stringify(dokiThemeDefinitions);
