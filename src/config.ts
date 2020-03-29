@@ -29,7 +29,7 @@ export const saveConfig = (dokiConfig: DokiThemeConfig) => {
   fs.writeFileSync(configFile, JSON.stringify(dokiConfig), 'utf8');
 }
 
-const getTheme = (): DokiTheme => {
+export const getTheme = (): DokiTheme => {
   const hyperDokiConfig = extractConfig();
   return getThemeByName(hyperDokiConfig.themeId);
 }

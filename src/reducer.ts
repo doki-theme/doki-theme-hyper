@@ -1,6 +1,7 @@
 import { AnyAction } from "redux";
 import { SET_THEME } from "./settings";
 import { DokiTheme } from "./themeTemp";
+import { getTheme } from "./config";
 
 export interface ThemeState {
   activeTheme: DokiTheme
@@ -16,6 +17,10 @@ const reducer = (state: any, action: AnyAction) => {
         ...previousState,
         activeTheme: action.payload
       });
+    case 'INIT':
+      return state.set(THEME_STATE, {
+        activeTheme: getTheme()
+      })
     default:
       return state;
   }

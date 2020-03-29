@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { THEME_STATE } from './reducer';
 import { SET_THEME } from './settings';
 import { DokiThemeConfig } from './config';
+import { DokiTheme } from './themeTemp';
 
 const passProps = (uid: any, parentProps: any, props: any) => Object.assign(props, {
   [THEME_STATE]: parentProps[THEME_STATE],
@@ -51,19 +52,18 @@ export const decorateTerm = (Term: any) =>
           type: SET_THEME,
           payload: theme,
         });
-        const dokiThemeConfig: DokiThemeConfig = {
-          themeId: theme.information.name,
-          showSticker: true,
-        };
-
-        window.store.dispatch(reloadConfig({
-          ...window.config.getConfig(),
-          dokiTheme: dokiThemeConfig,
-        }));
+        window.store.dispatch(reloadConfig(
+          window.config.getConfig()
+        ));
       });
     }
 
     render() {
+      // @ts-ignore
+      const dokiTheme: DokiTheme = this.props[THEME_STATE].activeTheme;
+      console.log('term render', this.props);
+      
+      
       return (
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
           {React.createElement(Term, Object.assign({}, this.props))}
@@ -73,7 +73,7 @@ export const decorateTerm = (Term: any) =>
             right: 0,
             color: 'black'
           }}>
-            <img src='https://doki.assets.unthrottled.io/stickers/vscode/danganronpa/ibuki/dark/ibuki_dark.png' />
+            <img src={dokiTheme.sticker} />
           </div>
         </div>
       )
