@@ -1,7 +1,6 @@
 import DokiThemeDefinitions from "./DokiThemeDefinitions";
 
 export const SET_THEME = 'SET_THEME'
-import path from 'path';
 import { saveConfig, extractConfig } from "./config";
 const themes = Object.values(DokiThemeDefinitions)
 .map(dokiDefinition => {
