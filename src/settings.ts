@@ -47,10 +47,10 @@ const getAboutMenu = () =>{
   }
 
   return {
-    role: 'about',
+    label: 'About Plugin',
     submenu: [
       {
-        label: VERSION
+        label: `Version ${VERSION}`,
       }
     ]
   }
