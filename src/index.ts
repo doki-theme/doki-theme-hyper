@@ -1,18 +1,14 @@
-import { extractConfig } from "./config";
-import { constructCSS } from "./css";
-import { constructSyntax } from "./syntax";
-import { getThemeByName } from "./themeTemp";
+export { default as reduceUI } from './reducer';
 
-export const decorateConfig = (config: any) => {
-  const hyperDokiConfig = extractConfig(config);
-  const dokiTheme = getThemeByName(hyperDokiConfig.theme);
+export { decorateConfig } from './config';
 
-  const syntax = constructSyntax(dokiTheme);
-  const css = constructCSS(dokiTheme, hyperDokiConfig);
-  return Object.assign({}, config, syntax, {
-    termCSS: config.termCSS || '',
-    css: `${config.css || ''}
-    ${css}
-    `
-  });
-}
+export {
+  decorateHyper,
+  decorateTerm,
+  mapHyperState,
+  mapTermsState,
+  getTermGroupProps,
+  getTermProps
+} from './decorator';
+
+export {default as decorateMenu } from './settings';

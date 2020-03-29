@@ -1,16 +1,11 @@
 import { DokiTheme } from "./themeTemp";
-import {DokiThemeConfig} from "./config";
 
-
-export const constructCSS = (dokiTheme: DokiTheme, hyperDokiConfig: DokiThemeConfig): string => {
+export const constructCSS = (dokiTheme: DokiTheme): string => {
   const background =dokiTheme.colors.baseBackground;
   const foreground = dokiTheme.colors.foregroundColor;
   const header = dokiTheme.colors.headerColor;
   const activeTab = dokiTheme.colors.highlightColor;
   const accentColor = dokiTheme.colors.accentColor;
-
-  const imagePath = hyperDokiConfig.showSticker === undefined || 
-  hyperDokiConfig.showSticker ? dokiTheme.sticker : '';
 
   return `
   #hyper {
@@ -21,11 +16,6 @@ export const constructCSS = (dokiTheme: DokiTheme, hyperDokiConfig: DokiThemeCon
     background: ${header} !important;
   }
   
-  .hyper_main {
-    background: url("${imagePath}") ${background};
-    background-position:97% 97%;
-    background-repeat:no-repeat;
-  }
   .header_header, .header_shape {
     color: ${foreground}
   }

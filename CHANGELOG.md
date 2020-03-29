@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.0.0 [New Themes!]
+
+- Added Setting Menu Option
+    - Change Theme, Toggle Sticker on/off, view version, and see changelog
+- Added 5 new themes based on various new characters!
+    - Re:Zero:
+        - Emilia (Dark/Light Theme)
+    - Danganronpa:
+        - Mioda Ibuki (Dark/Light Theme)
+    - Hatsune Miku (Dark Theme)
+
+![Miku](https://doki.assets.unthrottled.io/backgrounds/miku.png)
+
 ## 1.0.0 [Initial Release!]
 
 - 14 Color Themes based on characters from various anime and visual novels.
@@ -20,3 +33,5 @@
 - Each Theme has a corresponding sticker pack which includes:
   - A sticker of the character in the lower right hand corner of you editor window
   - A Customized background of the selected character when all editor windows are closed.
+  
+![Rem](https://doki.assets.unthrottled.io/backgrounds/rem.png)
