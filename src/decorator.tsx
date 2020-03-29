@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Component } from 'react';
-import { THEME_STATE } from './reducer';
-import { SET_THEME } from './settings';
+import { THEME_STATE, ThemeState } from './reducer';
+import { SET_THEME, TOGGLE_STICKER } from './settings';
 import { DokiTheme } from './themeTemp';
 
 const passProps = (uid: any, parentProps: any, props: any) => Object.assign(props, {
@@ -55,11 +55,17 @@ export const decorateTerm = (Term: any) =>
           window.config.getConfig()
         ));
       });
+      window.rpc.on(TOGGLE_STICKER, ()=>{
+        window.store.dispatch({
+          type: TOGGLE_STICKER,
+        });
+      })
     }
 
     render() {
       // @ts-ignore
-      const dokiTheme: DokiTheme = this.props[THEME_STATE].activeTheme;
+      const themeState: ThemeState = this.props[THEME_STATE];
+
       return (
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
           {React.createElement(Term, Object.assign({}, this.props))}
@@ -69,7 +75,9 @@ export const decorateTerm = (Term: any) =>
             right: 0,
             color: 'black'
           }}>
-            <img src={dokiTheme.sticker} />
+            {
+              themeState.showSticker ? <img src={themeState.activeTheme.sticker} /> : <></>
+            }
           </div>
         </div>
       )

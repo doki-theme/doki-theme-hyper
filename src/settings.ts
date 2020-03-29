@@ -1,6 +1,8 @@
 import DokiThemeDefinitions from "./DokiThemeDefinitions";
 
 export const SET_THEME = 'SET_THEME'
+export const TOGGLE_STICKER = 'TOGGLE_STICKER';
+
 import { saveConfig, extractConfig } from "./config";
 const themes = Object.values(DokiThemeDefinitions)
 .map(dokiDefinition => {
@@ -38,8 +40,15 @@ export default (menu:any) => {
       },
       {
         label: 'Toggle Sticker',
-        click: async () => {
-          // todo: toggle sticker
+        click: async (_: any, focusedWindow: Window) => {
+          focusedWindow.rpc.emit(TOGGLE_STICKER);
+          const savedConfig = extractConfig();
+          saveConfig(
+            {
+              ...savedConfig,
+              showSticker: !savedConfig.showSticker 
+            }
+          )
         }
       },
       {
