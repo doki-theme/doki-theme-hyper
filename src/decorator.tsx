@@ -65,17 +65,22 @@ export const decorateTerm = (Term: any) =>
       // @ts-ignore
       const themeState: ThemeState = this.props[THEME_STATE];
 
+      const imageStyle = window.screen.height * window.devicePixelRatio <= 1980 ?
+      {maxHeight: '200px'} : {}
       return (
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
           {React.createElement(Term, Object.assign({}, this.props))}
           <div style={{
             position: 'absolute',
-            bottom: 0,
-            right: 0,
+            bottom: '0.5rem',
+            right: '0.5rem',
             color: 'black'
           }}>
             {
-              themeState.showSticker ? <img src={themeState.activeTheme.sticker}  alt={'Sticker!'}/> : <></>
+              themeState.showSticker ? 
+              <img src={themeState.activeTheme.sticker}  
+                   style={imageStyle}
+                   alt={'Sticker!'}/> : <></>
             }
           </div>
         </div>
