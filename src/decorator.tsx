@@ -65,7 +65,7 @@ export const decorateTerm = (Term: any) =>
       // @ts-ignore
       const themeState: ThemeState = this.props[THEME_STATE];
 
-      const imageStyle = window.screen.height * window.devicePixelRatio <= 1980 ?
+      const imageStyle = window.screen.width * window.devicePixelRatio <= 1980 ?
       {maxHeight: '200px'} : {}
       return (
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
