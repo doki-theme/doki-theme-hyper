@@ -7,6 +7,13 @@
 ## Installation
 
 [You'll need hyper first!](https://hyper.is/#installation).
+After you have hyper, you will need to make sure that hyper is in your path (you can find that in the plugins menu). Then all you need to run is
+
+```
+hyper i doki-theme-hyper
+```
+
+Be sure to restart hyper afterwards.
 
 ## About!
 
@@ -26,7 +33,7 @@ No worries! You can configure them to be on or off at your leisure.
 
 # Got Contributions, fun ideas, or issues?
 
-Don't be afraid to reach out and join the [Gitter Community](https://gitter.im/doki-theme-hyper/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link!
+Don't be afraid to reach out and join the [Gitter Community](https://gitter.im/doki-theme-hyper/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link!)
 
 ## Enjoying the plugin and want more people to use it?
 
