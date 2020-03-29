@@ -15,7 +15,7 @@ Variety is the spice of life! So you can choose themes from the following Doki-D
 - Re:Zero
 - Kill La Kill
 - KonoSuba
-- DanganRonp
+- DanganRonpa
 
 Sticker in the way?
 No worries! You can configure them to be on or off at your leisure.
