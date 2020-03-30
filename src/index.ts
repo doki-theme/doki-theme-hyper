@@ -12,3 +12,5 @@ export {
 } from './decorator';
 
 export {default as decorateMenu } from './settings';
+
+export {decorateKeymaps} from './shortcuts';

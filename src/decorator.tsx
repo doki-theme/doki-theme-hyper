@@ -2,6 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import { THEME_STATE, ThemeState } from './reducer';
 import { SET_THEME, TOGGLE_STICKER } from './settings';
+import { CYCLE_THEME } from './shortcuts';
 
 const passProps = (uid: any, parentProps: any, props: any) => Object.assign(props, {
   [THEME_STATE]: parentProps[THEME_STATE],

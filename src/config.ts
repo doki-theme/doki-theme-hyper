@@ -1,4 +1,4 @@
-import { DokiTheme, getThemeByName } from "./themeTemp";
+import { DokiTheme, getThemeByName, findNextTheme } from "./themeTemp";
 import { constructSyntax } from "./syntax";
 import { constructCSS } from "./css";
 import path from 'path';
@@ -32,6 +32,14 @@ export const saveConfig = (dokiConfig: DokiThemeConfig) => {
 export const getTheme = (): DokiTheme => {
   const hyperDokiConfig = extractConfig();
   return getThemeByName(hyperDokiConfig.themeId);
+};
+
+export const getNextTheme = (): DokiTheme => {
+  const currentThemeId = extractConfig().themeId;
+  const newLocal = findNextTheme(currentThemeId);
+  console.log(currentThemeId, newLocal);
+  
+  return newLocal;
 };
 
 export const decorateConfig = (config: any) => {

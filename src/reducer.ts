@@ -1,7 +1,8 @@
 import { AnyAction } from "redux";
-import { SET_THEME, TOGGLE_STICKER } from "./settings";
+import { SET_THEME, TOGGLE_STICKER, saveNewTheme } from "./settings";
 import { DokiTheme } from "./themeTemp";
-import { getTheme, extractConfig } from "./config";
+import { getTheme, extractConfig, getNextTheme } from "./config";
+import { CYCLE_THEME } from "./shortcuts";
 
 export interface ThemeState {
   activeTheme: DokiTheme;
@@ -16,19 +17,30 @@ const reducer = (state: any, action: AnyAction) => {
       const previousState: ThemeState = state[THEME_STATE] || {};
       return state.set(THEME_STATE, {
         ...previousState,
-        activeTheme: action.payload
+        activeTheme: action.payload,
       });
     case TOGGLE_STICKER:
       const previousState2: ThemeState = state[THEME_STATE] || {};
       return state.set(THEME_STATE, {
         ...previousState2,
-        showSticker: !state[THEME_STATE].showSticker
+        showSticker: !state[THEME_STATE].showSticker,
       });
     case 'INIT':
       return state.set(THEME_STATE, {
         activeTheme: getTheme(),
         showSticker: extractConfig().showSticker,
       });
+    case 'UI_COMMAND_EXEC': {
+      if (action.command === CYCLE_THEME) {
+        const nextTheme = getNextTheme();
+        saveNewTheme(nextTheme);
+        return state.set(THEME_STATE, {
+          ...(state[THEME_STATE] || {}),
+          activeTheme: nextTheme,
+        });
+      }
+      return state;
+    }
     default:
       return state;
   }

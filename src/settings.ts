@@ -2,6 +2,7 @@ import DokiThemeDefinitions from "./DokiThemeDefinitions";
 import { saveConfig, extractConfig } from "./config";
 import {dialog} from 'electron';
 import path from 'path';
+import { DokiTheme } from "./themeTemp";
 
 export const SET_THEME = 'SET_THEME'
 export const TOGGLE_STICKER = 'TOGGLE_STICKER';
@@ -12,12 +13,7 @@ const themes = Object.values(DokiThemeDefinitions)
     label: dokiDefinition.information.name,
     click: async (_: any, focusedWindow: any) => {
       focusedWindow.rpc.emit(SET_THEME, dokiDefinition);
-      saveConfig(
-        {
-          ...extractConfig(),
-          themeId: dokiDefinition.information.id
-        }
-        )
+      saveNewTheme(dokiDefinition);
       }
     }
   });
@@ -103,3 +99,10 @@ export default (menu:any) => {
     menuItem    
   ]
 };
+
+export function saveNewTheme(dokiDefinition: DokiTheme) {
+  saveConfig({
+    ...extractConfig(),
+    themeId: dokiDefinition.information.id
+  });
+}
