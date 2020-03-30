@@ -32,6 +32,5 @@
     - Rem (Dark Theme)
 - Each Theme has a corresponding sticker pack which includes:
   - A sticker of the character in the lower right hand corner of you editor window
-  - A Customized background of the selected character when all editor windows are closed.
   
 ![Rem](https://doki.assets.unthrottled.io/backgrounds/rem.png)

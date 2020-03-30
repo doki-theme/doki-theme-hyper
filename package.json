@@ -29,5 +29,10 @@
   "dependencies": {
     "lodash": "^4.17.15",
     "react": "^16.13.1"
-  }
+  },
+  "files": [
+	  "build/",
+	  "assets",
+	  "README.md"
+  ]
 }
