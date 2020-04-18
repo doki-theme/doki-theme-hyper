@@ -223,7 +223,7 @@ const readTemplates = (templatePaths: string[]): TemplateTypes => {
 };
 
 
-function readSticker(
+function resolveStickerPath(
   themeDefinitonPath: string,
   themeDefinition: MasterDokiThemeDefinition,
 ) {
@@ -231,8 +231,7 @@ function readSticker(
     path.resolve(themeDefinitonPath, '..'),
     themeDefinition.stickers.normal || themeDefinition.stickers.default
   );
-  const stickerDefinition = stickerPath.substr(masterThemeDefinitionDirectoryPath.length + '/definitions'.length);
-  return `https://doki.assets.unthrottled.io/stickers/vscode${stickerDefinition}`;
+  return stickerPath.substr(masterThemeDefinitionDirectoryPath.length + '/definitions'.length);
 }
 
 
@@ -288,7 +287,7 @@ walkDir(path.resolve(masterThemeDefinitionDirectoryPath, 'templates'))
         'icons'
       ]),
       colors: dokiTheme.theme.colors,
-      sticker: readSticker(
+      sticker: resolveStickerPath(
         dokiTheme.path,
         dokiDefinition
       ),

@@ -2,6 +2,7 @@ import DokiThemeDefinitions from "./DokiThemeDefinitions";
 import { saveConfig, extractConfig } from "./config";
 import {dialog} from 'electron';
 import path from 'path';
+import { attemptToUpdateSticker } from "./StickerUpdateService";
 
 export const SET_THEME = 'SET_THEME'
 export const TOGGLE_STICKER = 'TOGGLE_STICKER';
@@ -57,6 +58,7 @@ const getAboutMenu = () =>{
 };
 
 export default (menu:any) => {
+  attemptToUpdateSticker();
   const menuItem = {
     id: 'Doki-Theme',
     label: 'Doki-Theme Settings',

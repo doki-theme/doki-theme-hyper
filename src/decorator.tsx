@@ -2,6 +2,9 @@ import React from 'react';
 import { Component } from 'react';
 import { THEME_STATE, ThemeState } from './reducer';
 import { SET_THEME, TOGGLE_STICKER } from './settings';
+import path from 'path';
+import { resolveLocalStickerPath } from './StickerUpdateService';
+import {ipcRenderer} from 'electron';
 
 const passProps = (uid: any, parentProps: any, props: any) => Object.assign(props, {
   [THEME_STATE]: parentProps[THEME_STATE],
@@ -54,6 +57,12 @@ export const decorateTerm = (Term: any) =>
           window.config.getConfig()
         ));
       });
+      ipcRenderer.on('yeet', ()=>{
+        console.log('new sticker!!');
+        window.store.dispatch(reloadConfig(
+          window.config.getConfig()
+        ));
+      })
       window.rpc.on(TOGGLE_STICKER, ()=>{
         window.store.dispatch({
           type: TOGGLE_STICKER,
@@ -78,7 +87,7 @@ export const decorateTerm = (Term: any) =>
           }}>
             {
               themeState.showSticker ? 
-              <img src={themeState.activeTheme.sticker}  
+              <img src={resolveLocalStickerPath(themeState.activeTheme.sticker).replace(path.sep, '/')}  
                    style={imageStyle}
                    alt={'Sticker!'}/> : <></>
             }
