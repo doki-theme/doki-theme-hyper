@@ -4,7 +4,7 @@ import { THEME_STATE, ThemeState } from './reducer';
 import { SET_THEME, TOGGLE_STICKER } from './settings';
 import path from 'path';
 import { resolveLocalStickerPath } from './StickerUpdateService';
-import {ipcRenderer} from 'electron';
+import {ipcRenderer, App} from 'electron';
 
 const passProps = (uid: any, parentProps: any, props: any) => Object.assign(props, {
   [THEME_STATE]: parentProps[THEME_STATE],
@@ -33,6 +33,15 @@ declare global {
     rpc: any,
     store: any,
   }
+  module Electron {
+    interface App {
+      getWindows: () => BrowserWindow[];
+      getLastFocusedWindow: () => BrowserWindow;
+    }
+    interface BrowserWindow {
+      rpc: any;
+    }
+  }
 }
 
 export const CONFIG_RELOAD = 'CONFIG_RELOAD';
@@ -59,9 +68,9 @@ export const decorateTerm = (Term: any) =>
       });
       ipcRenderer.on('yeet', ()=>{
         console.log('new sticker!!');
-        window.store.dispatch(reloadConfig(
-          window.config.getConfig()
-        ));
+        this.setState({
+          renderTime: new Date().valueOf().toString(32)
+        })
       })
       window.rpc.on(TOGGLE_STICKER, ()=>{
         window.store.dispatch({

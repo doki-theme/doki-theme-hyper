@@ -5,6 +5,7 @@ import fs from 'fs';
 import crypto from 'crypto';
 import { VSCODE_ASSETS_URL } from './ENV';
 import { getTheme } from './config';
+import { BrowserWindow, app } from 'electron';
 
 const fetchRemoteChecksum = async (stickerPath: string) => {
   const checksumUrl = `${VSCODE_ASSETS_URL}${stickerPath}.checksum.txt`;
@@ -53,10 +54,14 @@ export enum StickerUpdateStatus {
   CURRENT, STALE, NOT_CHECKED,
 }
 
-export const attemptToUpdateSticker = async () => {
+export const attemptToUpdateSticker = async (browserWindow?: BrowserWindow) => {
   const currentTheme = getTheme();
   const localStickerPath = resolveLocalStickerPath(currentTheme.sticker);
   if (await isStickerNotCurrent(currentTheme.sticker, localStickerPath)) {
     await installSticker(currentTheme, StickerUpdateStatus.STALE);
+    const resolvedBrowserWindow = browserWindow || app.getLastFocusedWindow();
+    if (resolvedBrowserWindow) {
+      resolvedBrowserWindow.webContents.send('yeet', 'aoeu');
+    }
   }
 };

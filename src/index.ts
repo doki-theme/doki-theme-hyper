@@ -1,3 +1,7 @@
+import { attemptToUpdateSticker } from './StickerUpdateService';
+
+attemptToUpdateSticker();
+
 export { default as reduceUI } from './reducer';
 
 export { decorateConfig } from './config';

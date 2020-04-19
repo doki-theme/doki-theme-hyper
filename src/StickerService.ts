@@ -4,7 +4,7 @@ import { resolveLocalStickerPath, isStickerNotCurrent, StickerUpdateStatus } fro
 import { performGet } from "./RESTClient";
 import { VSCODE_ASSETS_URL } from "./ENV";
 import { DokiTheme } from './themeTemp';
-import {BrowserWindow} from 'electron';
+import { app } from 'electron';
 
 export enum InstallStatus {
   INSTALLED, NOT_INSTALLED, FAILURE
@@ -13,12 +13,17 @@ export enum InstallStatus {
 const main = require.main || { filename: 'yeet' };
 export const workbenchDirectory = path.join(path.dirname(main.filename), 'vs', 'workbench');
 
-
+function mkdirp(dir: string) {
+  if (fs.existsSync(dir)) { return true }
+  const dirname = path.dirname(dir)
+  mkdirp(dirname);
+  fs.mkdirSync(dir);
+}
 
 const downloadSticker = async (stickerPath: string, localDestination: string) => {
   const parentDirectory = path.dirname(localDestination);
   if (!fs.existsSync(parentDirectory)) {
-    fs.mkdirSync(parentDirectory, { recursive: true });
+    mkdirp(parentDirectory);
   }
 
   const stickerUrl = `${VSCODE_ASSETS_URL}${stickerPath}`;
@@ -34,11 +39,10 @@ export async function getLatestStickerAndBackground(
   const localStickerPath = resolveLocalStickerPath(
     dokiTheme.sticker
   );
-  if (stickerStatus === StickerUpdateStatus.STALE || 
+  if (stickerStatus === StickerUpdateStatus.STALE ||
     !fs.existsSync(localStickerPath) ||
     await isStickerNotCurrent(dokiTheme.sticker, localStickerPath)) {
     await downloadSticker(dokiTheme.sticker, localStickerPath);
-    send('yeet','aoeu')
   }
 }
 
@@ -46,12 +50,12 @@ export async function installSticker(
   dokiTheme: DokiTheme,
   stickerStatus: StickerUpdateStatus = StickerUpdateStatus.NOT_CHECKED
 ): Promise<boolean> {
-    try {
-      await getLatestStickerAndBackground(dokiTheme, stickerStatus);
-      return true;
-    } catch (e) {
-      console.error('Unable to install sticker!', e);
-    }
+  try {
+    await getLatestStickerAndBackground(dokiTheme, stickerStatus);
+    return true;
+  } catch (e) {
+    console.error('Unable to install sticker!', e);
+  }
 
   return false;
 }
