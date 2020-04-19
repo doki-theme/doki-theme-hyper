@@ -10,10 +10,8 @@ export default () => {
   const browserWindow = app.getLastFocusedWindow()
   if (browserWindow && !listener) {
     attemptToUpdateSticker();
-    console.log("initializing listeners!!!");
     listener = (_, channel) => {
       if (channel[0] === SET_THEME) {
-        console.log('heard set theme');
         attemptToUpdateSticker();
       }
     }

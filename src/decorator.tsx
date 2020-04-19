@@ -75,7 +75,6 @@ export const decorateTerm = (Term: any) =>
         ipcRenderer.send(SET_THEME, theme);
       });
       ipcRenderer.on(STICKER_UPDATED, () => {
-        console.log('new sticker!!');
         this.forceUpdate();
         window.store.dispatch({
           type: 'RE_RENDER_PLZ',
