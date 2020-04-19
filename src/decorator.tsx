@@ -4,7 +4,7 @@ import { THEME_STATE, ThemeState } from './reducer';
 import { SET_THEME, TOGGLE_STICKER, STICKER_UPDATED } from './settings';
 import path from 'path';
 import { resolveLocalStickerPath } from './StickerUpdateService';
-import {ipcRenderer, App} from 'electron';
+import { ipcRenderer, App } from 'electron';
 
 const passProps = (uid: any, parentProps: any, props: any) => Object.assign(props, {
   [THEME_STATE]: parentProps[THEME_STATE],
@@ -54,8 +54,15 @@ export function reloadConfig(config: any) {
   };
 }
 
+interface StickerState {
+  imageLoaded: boolean;
+}
+
 export const decorateTerm = (Term: any) =>
-  class TerminalDecorator extends Component {
+  class TerminalDecorator extends Component<any, StickerState> {
+    state = {
+      imageLoaded: false,
+    }
     componentDidMount() {
       window.rpc.on(SET_THEME, (theme: any) => {
         window.store.dispatch({
@@ -67,26 +74,38 @@ export const decorateTerm = (Term: any) =>
         ));
         ipcRenderer.send(SET_THEME, theme);
       });
-      ipcRenderer.on(STICKER_UPDATED, ()=>{
+      ipcRenderer.on(STICKER_UPDATED, () => {
         console.log('new sticker!!');
         this.forceUpdate();
         window.store.dispatch({
           type: 'RE_RENDER_PLZ',
         });
       })
-      window.rpc.on(TOGGLE_STICKER, ()=>{
+      window.rpc.on(TOGGLE_STICKER, () => {
         window.store.dispatch({
           type: TOGGLE_STICKER,
         });
       })
     }
 
+    private setLoaded() {
+      this.setState({imageLoaded: true});
+    }
+
+    componentWillReceiveProps(nextProps: any){
+      const themeState: ThemeState = this.props[THEME_STATE]
+      const nextThemeState: ThemeState = nextProps[THEME_STATE];
+      if(themeState.activeTheme.sticker !== nextThemeState.activeTheme.sticker){
+        this.setState({imageLoaded: false});
+      }
+
+    }
+
     render() {
-      // @ts-ignore
       const themeState: ThemeState = this.props[THEME_STATE];
 
       const imageStyle = window.screen.width <= 1920 ?
-      {maxHeight: '200px'} : {}
+        { maxHeight: '200px' } : {}
       return (
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
           {React.createElement(Term, Object.assign({}, this.props))}
@@ -97,10 +116,12 @@ export const decorateTerm = (Term: any) =>
             color: 'black'
           }}>
             {
-              themeState.showSticker ? 
-              <img src={this.constructStickerUrl(themeState)}  
-                   style={imageStyle}
-                   alt={'Sticker!'}/> : <></>
+              themeState.showSticker ?
+                <img
+                  style={this.state.imageLoaded ? imageStyle : { display: 'none' }}
+                  onLoad={()=>this.setLoaded()}
+                  src={this.constructStickerUrl(themeState)}
+                /> : <></>
             }
           </div>
         </div>
