@@ -60,9 +60,12 @@ interface StickerState {
   imageLoaded: boolean;
 }
 
+const createCacheBuster = () =>
+  new Date().valueOf().toString(32);
+
 export const decorateTerm = (Term: any) => {
-  let cacheBuster: string = new Date().valueOf().toString(32);
- return class TerminalDecorator extends Component<any, StickerState> {
+  let cacheBuster: string = createCacheBuster();
+  return class TerminalDecorator extends Component<any, StickerState> {
     state = {
       imageLoaded: false,
     }
@@ -96,12 +99,12 @@ export const decorateTerm = (Term: any) => {
       const nextThemeState: ThemeState = nextProps[THEME_STATE];
       if (themeState.activeTheme.sticker !== nextThemeState.activeTheme.sticker) {
         this.setState({imageLoaded: false});
-        cacheBuster = new Date().valueOf().toString(32);
+        cacheBuster = createCacheBuster();
       }
     }
 
-    private imageError(){
-      cacheBuster = new Date().valueOf().toString(32);
+    private static imageError() {
+      cacheBuster = createCacheBuster();
     }
 
     render() {
@@ -123,7 +126,7 @@ export const decorateTerm = (Term: any) => {
                 <img
                   style={this.state.imageLoaded ? imageStyle : {display: 'none'}}
                   onLoad={() => this.setLoaded()}
-                  onError={()=> this.imageError()}
+                  onError={() => TerminalDecorator.imageError()}
                   src={TerminalDecorator.constructStickerUrl(themeState)}
                   alt={themeState.activeTheme.sticker}
                 /> : <></>

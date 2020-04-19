@@ -17,5 +17,4 @@ export default () => {
     }
     browserWindow.webContents.on('ipc-message', listener)
   }
-
 }

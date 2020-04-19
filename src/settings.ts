@@ -62,7 +62,6 @@ const getAboutMenu = () => {
   }
 };
 
-
 export default (menu: any) => {
   AppInitialization();
   const menuItem = {
