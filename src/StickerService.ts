@@ -29,6 +29,7 @@ const downloadSticker = async (stickerPath: string, localDestination: string) =>
   const stickerUrl = `${VSCODE_ASSETS_URL}${stickerPath}`;
   console.log(`Downloading image: ${stickerUrl}`);
   const stickerInputStream = await performGet(stickerUrl);
+  console.log('Image downloaded');
   fs.writeFileSync(localDestination, stickerInputStream.read());
 };
 

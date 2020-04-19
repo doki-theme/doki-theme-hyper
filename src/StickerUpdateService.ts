@@ -6,11 +6,13 @@ import crypto from 'crypto';
 import { VSCODE_ASSETS_URL } from './ENV';
 import { getTheme } from './config';
 import { BrowserWindow, app } from 'electron';
+import { STICKER_UPDATED } from './settings';
 
 const fetchRemoteChecksum = async (stickerPath: string) => {
   const checksumUrl = `${VSCODE_ASSETS_URL}${stickerPath}.checksum.txt`;
   console.log(`Fetching checksum: ${checksumUrl}`);
   const checkSumInputStream = await performGet(checksumUrl);
+  console.log('Checksum fetched!');
   return checkSumInputStream.setEncoding('utf8').read();
 };
 
@@ -61,7 +63,7 @@ export const attemptToUpdateSticker = async (browserWindow?: BrowserWindow) => {
     await installSticker(currentTheme, StickerUpdateStatus.STALE);
     const resolvedBrowserWindow = browserWindow || app.getLastFocusedWindow();
     if (resolvedBrowserWindow) {
-      resolvedBrowserWindow.webContents.send('yeet', 'aoeu');
+      resolvedBrowserWindow.webContents.send(STICKER_UPDATED);
     }
   }
 };

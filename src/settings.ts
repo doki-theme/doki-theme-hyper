@@ -1,18 +1,19 @@
 import DokiThemeDefinitions from "./DokiThemeDefinitions";
 import { saveConfig, extractConfig } from "./config";
-import {dialog, app} from 'electron';
+import {dialog, app, ipcRenderer} from 'electron';
 import path from 'path';
 import { attemptToUpdateSticker } from "./StickerUpdateService";
+import AppInitialization from "./AppInitialization";
 
 export const SET_THEME = 'SET_THEME'
 export const TOGGLE_STICKER = 'TOGGLE_STICKER';
+export const STICKER_UPDATED = 'STICKER_UPDATED';
 
 const themes = Object.values(DokiThemeDefinitions)
 .map(dokiDefinition => {
   return {
     label: dokiDefinition.information.name,
     click: async (_: any, focusedWindow: any) => {
-      await attemptToUpdateSticker(focusedWindow);
       focusedWindow.rpc.emit(SET_THEME, dokiDefinition);
       saveConfig(
         {
@@ -58,7 +59,10 @@ const getAboutMenu = () =>{
   }
 };
 
+
+
 export default (menu:any) => {
+  AppInitialization();
   const menuItem = {
     id: 'Doki-Theme',
     label: 'Doki-Theme Settings',

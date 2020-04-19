@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import { THEME_STATE, ThemeState } from './reducer';
-import { SET_THEME, TOGGLE_STICKER } from './settings';
+import { SET_THEME, TOGGLE_STICKER, STICKER_UPDATED } from './settings';
 import path from 'path';
 import { resolveLocalStickerPath } from './StickerUpdateService';
 import {ipcRenderer, App} from 'electron';
@@ -65,12 +65,14 @@ export const decorateTerm = (Term: any) =>
         window.store.dispatch(reloadConfig(
           window.config.getConfig()
         ));
+        ipcRenderer.send(SET_THEME, theme);
       });
-      ipcRenderer.on('yeet', ()=>{
+      ipcRenderer.on(STICKER_UPDATED, ()=>{
         console.log('new sticker!!');
-        this.setState({
-          renderTime: new Date().valueOf().toString(32)
-        })
+        this.forceUpdate();
+        window.store.dispatch({
+          type: 'RE_RENDER_PLZ',
+        });
       })
       window.rpc.on(TOGGLE_STICKER, ()=>{
         window.store.dispatch({
@@ -96,12 +98,17 @@ export const decorateTerm = (Term: any) =>
           }}>
             {
               themeState.showSticker ? 
-              <img src={resolveLocalStickerPath(themeState.activeTheme.sticker).replace(path.sep, '/')}  
+              <img src={this.constructStickerUrl(themeState)}  
                    style={imageStyle}
                    alt={'Sticker!'}/> : <></>
             }
           </div>
         </div>
       )
+    }
+
+    private constructStickerUrl(themeState: ThemeState): string | undefined {
+      const localStickerPath = resolveLocalStickerPath(themeState.activeTheme.sticker).replace(path.sep, '/');
+      return `${localStickerPath}?time=${new Date().valueOf().toString(32)}`;
     }
   };
