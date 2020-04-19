@@ -1,5 +1,5 @@
 import https from 'https';
-import { Transform as Stream } from 'stream';
+import {Transform as Stream} from 'stream';
 
 export const performGet = (url: string): Promise<Stream> => {
   return new Promise((resolve, reject) => {

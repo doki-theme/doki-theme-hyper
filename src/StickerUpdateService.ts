@@ -1,12 +1,12 @@
-import { performGet } from './RESTClient';
-import { installSticker } from './StickerService';
+import {performGet} from './RESTClient';
+import {installSticker} from './StickerService';
 import path from 'path';
 import fs from 'fs';
 import crypto from 'crypto';
-import { VSCODE_ASSETS_URL } from './ENV';
-import { getTheme } from './config';
-import { BrowserWindow, app } from 'electron';
-import { STICKER_UPDATED } from './settings';
+import {VSCODE_ASSETS_URL} from './ENV';
+import {getTheme} from './config';
+import {app, BrowserWindow} from 'electron';
+import {STICKER_UPDATED} from './settings';
 
 const fetchRemoteChecksum = async (stickerPath: string) => {
   const checksumUrl = `${VSCODE_ASSETS_URL}${stickerPath}.checksum.txt`;
@@ -52,6 +52,7 @@ export const isStickerNotCurrent = async (
     return false;
   }
 };
+
 export enum StickerUpdateStatus {
   CURRENT, STALE, NOT_CHECKED,
 }

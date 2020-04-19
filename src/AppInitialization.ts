@@ -1,10 +1,10 @@
-import { attemptToUpdateSticker } from './StickerUpdateService';
-import { app, Input } from 'electron';
-import { SET_THEME } from './settings';
+import {attemptToUpdateSticker} from './StickerUpdateService';
+import {app} from 'electron';
+import {SET_THEME} from './settings';
 
 let listener: (event: Event,
-  channel: string,
-  ...args: any[]) => void;
+               channel: string,
+               ...args: any[]) => void;
 
 export default () => {
   const browserWindow = app.getLastFocusedWindow()
@@ -16,5 +16,6 @@ export default () => {
       }
     }
     browserWindow.webContents.on('ipc-message', listener)
-  };
+  }
+
 }

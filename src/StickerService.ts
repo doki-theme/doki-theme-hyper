@@ -1,20 +1,14 @@
 import path from 'path';
 import fs from "fs";
-import { resolveLocalStickerPath, isStickerNotCurrent, StickerUpdateStatus } from "./StickerUpdateService";
-import { performGet } from "./RESTClient";
-import { VSCODE_ASSETS_URL } from "./ENV";
-import { DokiTheme } from './themeTemp';
-import { app } from 'electron';
-
-export enum InstallStatus {
-  INSTALLED, NOT_INSTALLED, FAILURE
-}
-
-const main = require.main || { filename: 'yeet' };
-export const workbenchDirectory = path.join(path.dirname(main.filename), 'vs', 'workbench');
+import {isStickerNotCurrent, resolveLocalStickerPath, StickerUpdateStatus} from "./StickerUpdateService";
+import {performGet} from "./RESTClient";
+import {VSCODE_ASSETS_URL} from "./ENV";
+import {DokiTheme} from './themeTemp';
 
 function mkdirp(dir: string) {
-  if (fs.existsSync(dir)) { return true }
+  if (fs.existsSync(dir)) {
+    return true
+  }
   const dirname = path.dirname(dir)
   mkdirp(dirname);
   fs.mkdirSync(dir);
