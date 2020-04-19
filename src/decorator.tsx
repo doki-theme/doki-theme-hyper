@@ -60,8 +60,9 @@ interface StickerState {
   imageLoaded: boolean;
 }
 
-export const decorateTerm = (Term: any) =>
-  class TerminalDecorator extends Component<any, StickerState> {
+export const decorateTerm = (Term: any) => {
+  let cacheBuster: string = new Date().valueOf().toString(32);
+ return class TerminalDecorator extends Component<any, StickerState> {
     state = {
       imageLoaded: false,
     }
@@ -95,7 +96,12 @@ export const decorateTerm = (Term: any) =>
       const nextThemeState: ThemeState = nextProps[THEME_STATE];
       if (themeState.activeTheme.sticker !== nextThemeState.activeTheme.sticker) {
         this.setState({imageLoaded: false});
+        cacheBuster = new Date().valueOf().toString(32);
       }
+    }
+
+    private imageError(){
+      cacheBuster = new Date().valueOf().toString(32);
     }
 
     render() {
@@ -117,6 +123,7 @@ export const decorateTerm = (Term: any) =>
                 <img
                   style={this.state.imageLoaded ? imageStyle : {display: 'none'}}
                   onLoad={() => this.setLoaded()}
+                  onError={()=> this.imageError()}
                   src={TerminalDecorator.constructStickerUrl(themeState)}
                   alt={themeState.activeTheme.sticker}
                 /> : <></>
@@ -132,6 +139,7 @@ export const decorateTerm = (Term: any) =>
 
     private static constructStickerUrl(themeState: ThemeState): string | undefined {
       const localStickerPath = resolveLocalStickerPath(themeState.activeTheme.sticker).replace(path.sep, '/');
-      return `${localStickerPath}?time=${new Date().valueOf().toString(32)}`;
+      return `${localStickerPath}?time=${cacheBuster}`;
     }
   };
+};
