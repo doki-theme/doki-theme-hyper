@@ -1,5 +1,10 @@
 # Change Log
 
+## 2.0.1 [Non-Functional]
+
+- Changed how the plugin gets stickers. 
+    - I am now able to update the stickers without you having to download a new version.
+    
 ## 2.0.0 [New Themes!]
 
 - Added Setting Menu Option
