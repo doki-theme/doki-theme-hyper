@@ -8,6 +8,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "clean": "rm -rf build/",
+    "prepare": "yarn clean && (yarn build || true)",
     "build": "tsc",
     "build:ultimate": "PRODUCT=ultimate yarn build",
     "prebuild": "yarn buildThemes",
