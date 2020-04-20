@@ -1,6 +1,6 @@
-export { default as reduceUI } from './reducer';
+export {default as reduceUI} from './reducer';
 
-export { decorateConfig } from './config';
+export {decorateConfig} from './config';
 
 export {
   decorateHyper,
@@ -11,4 +11,4 @@ export {
   getTermProps
 } from './decorator';
 
-export {default as decorateMenu } from './settings';
+export {default as decorateMenu} from './settings';

@@ -1,28 +1,34 @@
 import DokiThemeDefinitions from "./DokiThemeDefinitions";
-import { saveConfig, extractConfig } from "./config";
+import {extractConfig, saveConfig} from "./config";
 import {dialog} from 'electron';
 import path from 'path';
+import AppInitialization from "./AppInitialization";
 
 export const SET_THEME = 'SET_THEME'
 export const TOGGLE_STICKER = 'TOGGLE_STICKER';
+export const STICKER_UPDATED = 'STICKER_UPDATED';
 
 const themes = Object.values(DokiThemeDefinitions)
-.map(dokiDefinition => {
-  return {
-    label: dokiDefinition.information.name,
-    click: async (_: any, focusedWindow: any) => {
-      focusedWindow.rpc.emit(SET_THEME, dokiDefinition);
-      saveConfig(
-        {
-          ...extractConfig(),
-          themeId: dokiDefinition.information.id
-        }
+  .map(dokiDefinition => {
+    return {
+      label: dokiDefinition.information.name,
+      click: async (_: any, focusedWindow: any) => {
+        focusedWindow.rpc.emit(SET_THEME, dokiDefinition);
+        setTimeout(() => {
+          // triggers event loop to continue download?
+          focusedWindow.rpc.emit('refresh');
+        }, 500);
+        saveConfig(
+          {
+            ...extractConfig(),
+            themeId: dokiDefinition.information.id
+          }
         )
       }
     }
   });
 
-export const VERSION = 'v2.0.0';
+export const VERSION = 'v2.0.1';
 const appName = 'Doki Theme';
 const icon = path.resolve(__dirname, '..', 'assets', 'Doki-Theme.png');
 const showAbout = () => {
@@ -36,8 +42,8 @@ const showAbout = () => {
   });
 };
 
-const getAboutMenu = () =>{
-  if(process.platform !== 'darwin') {
+const getAboutMenu = () => {
+  if (process.platform !== 'darwin') {
     return {
       role: 'about',
       click() {
@@ -56,7 +62,8 @@ const getAboutMenu = () =>{
   }
 };
 
-export default (menu:any) => {
+export default (menu: any) => {
+  AppInitialization();
   const menuItem = {
     id: 'Doki-Theme',
     label: 'Doki-Theme Settings',
@@ -82,7 +89,7 @@ export default (menu:any) => {
           saveConfig(
             {
               ...savedConfig,
-              showSticker: !savedConfig.showSticker 
+              showSticker: !savedConfig.showSticker
             }
           )
         }
@@ -91,7 +98,7 @@ export default (menu:any) => {
       {
         label: 'View ChangeLog',
         click: async () => {
-          const { shell } = require('electron');
+          const {shell} = require('electron');
           await shell.openExternal('https://github.com/Unthrottled/doki-theme-hyper/blob/master/CHANGELOG.md')
         }
       }
@@ -100,6 +107,6 @@ export default (menu:any) => {
 
   return [
     ...menu,
-    menuItem    
+    menuItem
   ]
 };
