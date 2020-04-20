@@ -1,5 +1,9 @@
 # Change Log
 
+## 2.0.2 [UI Adjustment]
+
+- When an option becomes selected you will be able to read the selected text.
+
 ## 2.0.1 [Non-Functional]
 
 - Changed how the plugin gets stickers. 
