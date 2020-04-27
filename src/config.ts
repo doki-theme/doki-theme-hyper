@@ -1,4 +1,4 @@
-import { DokiTheme, getThemeByName } from "./themeTemp";
+import { DokiTheme, getThemeByName } from "./themeTools";
 import { constructSyntax } from "./syntax";
 import { constructCSS } from "./css";
 import path from 'path';

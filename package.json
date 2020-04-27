@@ -16,7 +16,7 @@
     "buildThemes": "ts-node ./buildSrc/BuildThemes.ts",
     "buildThemes:ultimate": "PRODUCT=ultimate ts-node ./buildSrc/BuildThemes.ts",
     "predev": "yarn buildThemes",
-    "dev": "tsc -w"
+    "watch": "tsc -w"
   },
   "devDependencies": {
     "@types/electron": "^1.6.10",

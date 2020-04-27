@@ -1,4 +1,4 @@
-import { DokiTheme } from "./themeTemp";
+import { DokiTheme } from "./themeTools";
 
 export const constructCSS = (dokiTheme: DokiTheme): string => {
   const background =dokiTheme.colors.baseBackground;

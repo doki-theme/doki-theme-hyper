@@ -3,7 +3,7 @@ import fs from "fs";
 import {isStickerNotCurrent, resolveLocalStickerPath, StickerUpdateStatus} from "./StickerUpdateService";
 import {performGet} from "./RESTClient";
 import {VSCODE_ASSETS_URL} from "./ENV";
-import {DokiTheme} from './themeTemp';
+import {DokiTheme} from './themeTools';
 
 function mkdirp(dir: string) {
   if (fs.existsSync(dir)) {

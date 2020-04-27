@@ -1,4 +1,4 @@
-import { DokiTheme, StringDictonary } from "./themeTemp";
+import { DokiTheme, StringDictonary } from "./themeTools";
 import startsWith from 'lodash/startsWith'
 import toPairs from 'lodash/toPairs'
 
