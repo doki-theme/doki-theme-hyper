@@ -84,12 +84,13 @@ export default (menu: any) => {
       {
         label: 'Toggle Sticker',
         click: async (_: any, focusedWindow: Window) => {
-          focusedWindow.rpc.emit(TOGGLE_STICKER);
           const savedConfig = extractConfig();
+          const showSticker = !savedConfig.showSticker;
+          focusedWindow.rpc.emit(TOGGLE_STICKER);
           saveConfig(
             {
               ...savedConfig,
-              showSticker: !savedConfig.showSticker
+              showSticker
             }
           )
         }

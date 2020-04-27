@@ -1,7 +1,7 @@
-import { AnyAction } from "redux";
-import { SET_THEME, TOGGLE_STICKER } from "./settings";
-import { DokiTheme } from "./themeTools";
-import { getTheme, extractConfig } from "./config";
+import {AnyAction} from "redux";
+import {SET_THEME, TOGGLE_STICKER} from "./settings";
+import {DokiTheme} from "./themeTools";
+import {extractConfig, getTheme} from "./config";
 
 export interface ThemeState {
   activeTheme: DokiTheme;
