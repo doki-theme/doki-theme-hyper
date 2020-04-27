@@ -2,7 +2,7 @@ import DokiThemeDefinitions from "./DokiThemeDefinitions";
 import {extractConfig, saveConfig} from "./config";
 import {dialog} from 'electron';
 import path from 'path';
-import AppInitialization from "./AppInitialization";
+import {attemptToUpdateSticker} from "./StickerUpdateService";
 
 export const SET_THEME = 'SET_THEME'
 export const TOGGLE_STICKER = 'TOGGLE_STICKER';
@@ -20,6 +20,7 @@ const themes = Object.values(DokiThemeDefinitions)
           }
         )
         focusedWindow.rpc.emit(SET_THEME, dokiDefinition);
+        attemptToUpdateSticker();
         setTimeout(() => {
           // triggers event loop to continue download?
           focusedWindow.rpc.emit('refresh');
@@ -63,7 +64,6 @@ const getAboutMenu = () => {
 };
 
 export default (menu: any) => {
-  AppInitialization();
   const menuItem = {
     id: 'Doki-Theme',
     label: 'Doki-Theme Settings',
