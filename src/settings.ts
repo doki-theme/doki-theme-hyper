@@ -13,17 +13,17 @@ const themes = Object.values(DokiThemeDefinitions)
     return {
       label: dokiDefinition.information.name,
       click: async (_: any, focusedWindow: any) => {
-        focusedWindow.rpc.emit(SET_THEME, dokiDefinition);
-        setTimeout(() => {
-          // triggers event loop to continue download?
-          focusedWindow.rpc.emit('refresh');
-        }, 500);
         saveConfig(
           {
             ...extractConfig(),
             themeId: dokiDefinition.information.id
           }
         )
+        focusedWindow.rpc.emit(SET_THEME, dokiDefinition);
+        setTimeout(() => {
+          // triggers event loop to continue download?
+          focusedWindow.rpc.emit('refresh');
+        }, 500);
       }
     }
   });

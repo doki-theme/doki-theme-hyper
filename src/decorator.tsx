@@ -141,7 +141,8 @@ export const decorateTerm = (Term: any) => {
     }
 
     private static constructStickerUrl(themeState: ThemeState): string | undefined {
-      const localStickerPath = resolveLocalStickerPath(themeState.activeTheme.sticker).replace(path.sep, '/');
+      const localStickerPath = resolveLocalStickerPath(themeState.activeTheme)
+        .replace(path.sep, '/');
       return `${localStickerPath}?time=${cacheBuster}`;
     }
   };

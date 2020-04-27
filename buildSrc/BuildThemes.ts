@@ -291,6 +291,7 @@ walkDir(path.resolve(masterThemeDefinitionDirectoryPath, 'templates'))
         dokiTheme.path,
         dokiDefinition
       ),
+      wallpaper: dokiTheme.definition.stickers.default
     };
   }).reduce((accum: StringDictonary<any>, definition) => {
     accum[definition.information.id] = definition;
