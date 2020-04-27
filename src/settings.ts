@@ -30,9 +30,9 @@ const themes = Object.values(DokiThemeDefinitions)
   });
 
 export const VERSION = 'v2.1.0';
-const appName = 'Doki Theme';
 const icon = path.resolve(__dirname, '..', 'assets', 'Doki-Theme.png');
 const showAbout = () => {
+  const appName = 'Doki Theme';
   dialog.showMessageBox({
     title: `About ${appName}`,
     message: `${appName} ${VERSION}`,
@@ -46,7 +46,7 @@ const showAbout = () => {
 const getAboutMenu = () => {
   if (process.platform !== 'darwin') {
     return {
-      role: 'about',
+      label: 'About Plugin',
       click() {
         showAbout();
       }
