@@ -63,6 +63,8 @@ interface StickerState {
 const createCacheBuster = () =>
   new Date().valueOf().toString(32);
 
+let initialized = false;
+
 export const decorateTerm = (Term: any) => {
   let cacheBuster: string = createCacheBuster();
   return class TerminalDecorator extends Component<any, StickerState> {
@@ -70,28 +72,41 @@ export const decorateTerm = (Term: any) => {
       imageLoaded: false,
     }
 
+    private static imageError() {
+      cacheBuster = createCacheBuster();
+    }
+
+    private static constructStickerUrl(themeState: ThemeState): string | undefined {
+      const localStickerPath = resolveLocalStickerPath(themeState.activeTheme)
+        .replace(path.sep, '/');
+      return `${localStickerPath}?time=${cacheBuster}`;
+    }
+
     componentDidMount() {
-      window.rpc.on(SET_THEME, (theme: any) => {
-        window.store.dispatch({
-          type: SET_THEME,
-          payload: theme,
+      if (!initialized) {
+        window.rpc.on(SET_THEME, (theme: any) => {
+          window.store.dispatch({
+            type: SET_THEME,
+            payload: theme,
+          });
+          window.store.dispatch(reloadConfig(
+            window.config.getConfig()
+          ));
+          ipcRenderer.send(SET_THEME, theme);
         });
-        window.store.dispatch(reloadConfig(
-          window.config.getConfig()
-        ));
-        ipcRenderer.send(SET_THEME, theme);
-      });
-      ipcRenderer.on(STICKER_UPDATED, () => {
-        this.forceUpdate();
-        window.store.dispatch({
-          type: 'RE_RENDER_PLZ',
+        ipcRenderer.on(STICKER_UPDATED, () => {
+          this.forceUpdate();
+          window.store.dispatch({
+            type: 'RE_RENDER_PLZ',
+          });
+        })
+        window.rpc.on(TOGGLE_STICKER, () => {
+          window.store.dispatch({
+            type: TOGGLE_STICKER,
+          });
         });
-      })
-      window.rpc.on(TOGGLE_STICKER, () => {
-        window.store.dispatch({
-          type: TOGGLE_STICKER,
-        });
-      })
+        initialized = true;
+      }
     }
 
     componentWillReceiveProps(nextProps: any) {
@@ -101,10 +116,6 @@ export const decorateTerm = (Term: any) => {
         this.setState({imageLoaded: false});
         cacheBuster = createCacheBuster();
       }
-    }
-
-    private static imageError() {
-      cacheBuster = createCacheBuster();
     }
 
     render() {
@@ -138,11 +149,6 @@ export const decorateTerm = (Term: any) => {
 
     private setLoaded() {
       this.setState({imageLoaded: true});
-    }
-
-    private static constructStickerUrl(themeState: ThemeState): string | undefined {
-      const localStickerPath = resolveLocalStickerPath(themeState.activeTheme.sticker).replace(path.sep, '/');
-      return `${localStickerPath}?time=${cacheBuster}`;
     }
   };
 };

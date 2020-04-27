@@ -4,6 +4,23 @@
 
 ![Theme Usage](https://doki.assets.unthrottled.io/screenshots/doki-theme-hyper-usage.gif)
 
+## Screen Samples!
+
+[Complete Theme Album.](https://github.com/Unthrottled/doki-theme-hyper/blob/master/complete_theme_album.md)
+
+[Re:Zero Album](https://github.com/Unthrottled/doki-theme-hyper/blob/master/r0_album.md)
+
+[DanganRonpa Album](https://github.com/Unthrottled/doki-theme-hyper/blob/master/dr_themes.md)
+
+[Kill La Kill Album](https://github.com/Unthrottled/doki-theme-hyper/blob/master/klk_album.md)
+
+[KonoSuba Album](https://github.com/Unthrottled/doki-theme-hyper/blob/master/ks_album.md)
+
+[Miscellaneous Album](https://github.com/Unthrottled/doki-theme-hyper/blob/master/misc_themes.md)
+
+[Doki-Doki Literature Club Album](https://github.com/Unthrottled/doki-theme-hyper/blob/master/theme_album.md)
+
+
 ## Installation
 
 [You'll need hyper first!](https://hyper.is/#installation).

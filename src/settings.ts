@@ -2,7 +2,7 @@ import DokiThemeDefinitions from "./DokiThemeDefinitions";
 import {extractConfig, saveConfig} from "./config";
 import {dialog} from 'electron';
 import path from 'path';
-import AppInitialization from "./AppInitialization";
+import {attemptToUpdateSticker} from "./StickerUpdateService";
 
 export const SET_THEME = 'SET_THEME'
 export const TOGGLE_STICKER = 'TOGGLE_STICKER';
@@ -13,22 +13,23 @@ const themes = Object.values(DokiThemeDefinitions)
     return {
       label: dokiDefinition.information.name,
       click: async (_: any, focusedWindow: any) => {
-        focusedWindow.rpc.emit(SET_THEME, dokiDefinition);
-        setTimeout(() => {
-          // triggers event loop to continue download?
-          focusedWindow.rpc.emit('refresh');
-        }, 500);
         saveConfig(
           {
             ...extractConfig(),
             themeId: dokiDefinition.information.id
           }
         )
+        focusedWindow.rpc.emit(SET_THEME, dokiDefinition);
+        attemptToUpdateSticker();
+        setTimeout(() => {
+          // triggers event loop to continue download?
+          focusedWindow.rpc.emit('refresh');
+        }, 500);
       }
     }
   });
 
-export const VERSION = 'v2.0.2';
+export const VERSION = 'v2.1.0';
 const appName = 'Doki Theme';
 const icon = path.resolve(__dirname, '..', 'assets', 'Doki-Theme.png');
 const showAbout = () => {
@@ -63,7 +64,6 @@ const getAboutMenu = () => {
 };
 
 export default (menu: any) => {
-  AppInitialization();
   const menuItem = {
     id: 'Doki-Theme',
     label: 'Doki-Theme Settings',
@@ -84,12 +84,13 @@ export default (menu: any) => {
       {
         label: 'Toggle Sticker',
         click: async (_: any, focusedWindow: Window) => {
-          focusedWindow.rpc.emit(TOGGLE_STICKER);
           const savedConfig = extractConfig();
+          const showSticker = !savedConfig.showSticker;
+          focusedWindow.rpc.emit(TOGGLE_STICKER);
           saveConfig(
             {
               ...savedConfig,
-              showSticker: !savedConfig.showSticker
+              showSticker
             }
           )
         }
