@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.1.0 [Master Theme Update]
+
+- Updated the look and feel of light Emilia.
+- Added colored scrollbars
+- Fixed sticker toggling issue when multiple tabs are open.
+
+
 ## 2.0.2 [UI Adjustment]
 
 - When an option becomes selected you will be able to read the selected text.

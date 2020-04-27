@@ -29,7 +29,7 @@ const themes = Object.values(DokiThemeDefinitions)
     }
   });
 
-export const VERSION = 'v2.0.2';
+export const VERSION = 'v2.1.0';
 const appName = 'Doki Theme';
 const icon = path.resolve(__dirname, '..', 'assets', 'Doki-Theme.png');
 const showAbout = () => {
