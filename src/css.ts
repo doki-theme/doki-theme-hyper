@@ -82,5 +82,28 @@ export const constructCSS = (dokiTheme: DokiTheme): string => {
   .terms_terms .terms_termGroup .splitpane_panes .splitpane_divider {
     background-color: ${foreground} !important;
   }
+  .xterm-viewport::-webkit-scrollbar-button {
+      width: 0;
+      height: 0;
+      display: none;
+  }
+  .xterm-viewport::-webkit-scrollbar-corner {
+      background-color: transparent;
+  }
+  .xterm-viewport::-webkit-scrollbar-track,
+  .xterm-viewport::-webkit-scrollbar-thumb {
+      -webkit-border-radius: 8px;
+  }
+  .xterm-viewport::-webkit-scrollbar-thumb {
+      background-color: ${accentColor}9a;
+      -webkit-box-shadow: none;
+  }
+  .xterm-viewport::-webkit-scrollbar-thumb:hover {
+      background-color: ${accentColor};
+      -webkit-box-shadow: none;
+  }
+  .xterm .xterm-viewport {
+      overflow-y: auto;
+  }
   `
 }
