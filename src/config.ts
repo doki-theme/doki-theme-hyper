@@ -3,8 +3,16 @@ import { constructSyntax } from "./syntax";
 import { constructCSS } from "./css";
 import path from 'path';
 import fs from 'fs';
+import os from 'os';
 
-const configFile = path.resolve(__dirname, 'config.json');
+const applicationDirectory =
+  process.env.XDG_CONFIG_HOME !== undefined
+    ? path.join(process.env.XDG_CONFIG_HOME, 'hyper')
+    : process.platform == 'win32'
+    ? path.join(process.env.APPDATA!, 'Hyper')
+    : os.homedir();
+
+const configFile = path.resolve(applicationDirectory, '.hyper.doki.config.json');
 
 export interface DokiThemeConfig {
   themeId: string;
