@@ -1,5 +1,9 @@
 # Change Log
 
+## 2.1.1 [Bug Fix]
+
+- Addressed issue the theme being reset to default after the system resumes from suspension.
+
 ## 2.1.0 [Master Theme Update]
 
 - Updated the look and feel of light Emilia.
