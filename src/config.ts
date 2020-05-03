@@ -3,8 +3,18 @@ import { constructSyntax } from "./syntax";
 import { constructCSS } from "./css";
 import path from 'path';
 import fs from 'fs';
+import os from 'os';
+import {createParentDirectories} from "./FileTools";
 
-const configFile = path.resolve(__dirname, 'config.json');
+const applicationDirectory =
+  process.env.XDG_CONFIG_HOME !== undefined
+    ? path.join(process.env.XDG_CONFIG_HOME, 'hyper')
+    : process.platform == 'win32'
+    ? path.join(process.env.APPDATA!, 'Hyper')
+    : os.homedir();
+
+export const configDirectory = path.resolve(applicationDirectory, '.doki-theme-hyper-config');
+const configFile = path.resolve(configDirectory, '.hyper.doki.config.json');
 
 export interface DokiThemeConfig {
   themeId: string;
@@ -19,6 +29,7 @@ export const DEFAULT_CONFIGURATION: DokiThemeConfig = {
 export const extractConfig =
   (): DokiThemeConfig =>{
     if(!fs.existsSync(configFile)){
+      createParentDirectories(configFile);
       fs.writeFileSync(configFile, JSON.stringify(DEFAULT_CONFIGURATION), 'utf8');
       return DEFAULT_CONFIGURATION
     }

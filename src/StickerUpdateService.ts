@@ -3,10 +3,11 @@ import path from 'path';
 import fs from 'fs';
 import crypto from 'crypto';
 import {VSCODE_ASSETS_URL} from './ENV';
-import {getTheme} from './config';
+import {configDirectory, getTheme} from './config';
 import {app} from 'electron';
 import {STICKER_UPDATED} from './settings';
 import {DokiTheme} from "./themeTools";
+import {createParentDirectories} from "./FileTools";
 
 export interface DokiStickers {
   stickerDataURL: string;
@@ -58,14 +59,14 @@ export const resolveLocalStickerPath = (
   currentTheme: DokiTheme,
 ): string => {
   const safeStickerPath = stickerPathToUrl(currentTheme);
-  return path.join(__dirname, "stickers", safeStickerPath);
+  return path.join(configDirectory, "stickers", safeStickerPath);
 };
 
 const resolveLocalWallpaperPath = (
   currentTheme: DokiTheme,
 ): string => {
   const safeStickerPath = wallpaperPathToUrl(currentTheme);
-  return path.join(__dirname, "wallpapers", safeStickerPath);
+  return path.join(configDirectory, "wallpapers", safeStickerPath);
 };
 
 const createCssDokiAssetUrl = (localAssetPath: string): string => {
@@ -115,23 +116,11 @@ const shouldDownloadNewAsset = async (
   }
 };
 
-function mkdirp(dir: string) {
-  if (fs.existsSync(dir)) {
-    return true
-  }
-  const dirname = path.dirname(dir)
-  mkdirp(dirname);
-  fs.mkdirSync(dir);
-}
-
 const downloadRemoteAsset = async (
   remoteAssetUrl: string,
   localDestination: string
 ) => {
-  const parentDirectory = path.dirname(localDestination);
-  if (!fs.existsSync(parentDirectory)) {
-    mkdirp(parentDirectory);
-  }
+  createParentDirectories(localDestination);
   console.log(`Downloading remote asset: ${remoteAssetUrl}`);
   const stickerInputStream = await performGet(remoteAssetUrl);
   console.log("Remote asset Downloaded!");
