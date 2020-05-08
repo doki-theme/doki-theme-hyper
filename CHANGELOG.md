@@ -10,6 +10,8 @@
     - Light Sayori
     - Beatrice
 
+[See the rich diffs for more details](https://github.com/Unthrottled/doki-theme-hyper/pull/8/files#diff-46b50e9197d1c9d21f7b1edd334837d3)
+
 ## 2.1.1 [Bug Fix]
 
 - Addressed issue the theme being reset to default after the system resumes from suspension.
