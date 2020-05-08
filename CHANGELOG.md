@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.2.0 [Light Theme Adjustments]
+
+- Revisited most of the light themes so they are all consistent with the other products.
+  - Themes affected:
+    - Light Monika
+    - Light Natsuki
+    - Light Yuri
+    - Light Sayori
+    - Beatrice
+
 ## 2.1.1 [Bug Fix]
 
 - Addressed issue the theme being reset to default after the system resumes from suspension.
