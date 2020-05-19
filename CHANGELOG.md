@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.1 [Default Fonts]
+
+- Added the `Toggle Fonts` option which does the following:
+    - Set default font to [Victor Mono](https://rubjo.github.io/victor-mono/)
+    - Sets the font weight to `Italic`
+
 ## 2.2.0 [Light Theme Adjustments]
 
 - Revisited most of the light themes so they are all consistent with the other products.

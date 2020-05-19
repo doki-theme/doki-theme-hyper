@@ -47,7 +47,7 @@ export const getTheme = (): DokiTheme => {
   return getThemeByName(hyperDokiConfig.themeId);
 };
 
-const getExtras = (): {[key: string]: string} => {
+const getExtraSettings = (): {[key: string]: string} => {
   return extractConfig().useFonts ?
     {
       fontFamily: '"Victor Mono", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
@@ -60,7 +60,7 @@ export const decorateConfig = (config: any) => {
   const syntax = constructSyntax(dokiTheme);
   const css = constructCSS(dokiTheme);
   return Object.assign({}, config, syntax, {
-    ...getExtras(),
+    ...getExtraSettings(),
     termCSS: config.termCSS || '',
     css: `${config.css || ''}
     ${css}
