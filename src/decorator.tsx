@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {THEME_STATE, ThemeState} from './reducer';
-import {SET_THEME, STICKER_UPDATED, TOGGLE_STICKER} from './settings';
+import {SET_THEME, STICKER_UPDATED, TOGGLE_FONT, TOGGLE_STICKER} from './settings';
 import path from 'path';
 import {resolveLocalStickerPath} from './StickerUpdateService';
 import {App, ipcRenderer} from 'electron';
@@ -93,6 +93,11 @@ export const decorateTerm = (Term: any) => {
             window.config.getConfig()
           ));
           ipcRenderer.send(SET_THEME, theme);
+        });
+        window.rpc.on(TOGGLE_FONT, (theme: any) => {
+          window.store.dispatch(reloadConfig(
+            window.config.getConfig()
+          ));
         });
         ipcRenderer.on(STICKER_UPDATED, () => {
           this.forceUpdate();

@@ -6,6 +6,7 @@ import {attemptToUpdateSticker} from "./StickerUpdateService";
 
 export const SET_THEME = 'SET_THEME'
 export const TOGGLE_STICKER = 'TOGGLE_STICKER';
+export const TOGGLE_FONT = 'TOGGLE_FONT';
 export const STICKER_UPDATED = 'STICKER_UPDATED';
 
 const themes = Object.values(DokiThemeDefinitions)
@@ -29,7 +30,7 @@ const themes = Object.values(DokiThemeDefinitions)
     }
   });
 
-export const VERSION = 'v2.2.0';
+export const VERSION = 'v2.2.1';
 const icon = path.resolve(__dirname, '..', 'assets', 'Doki-Theme.png');
 const showAbout = () => {
   const appName = 'Doki Theme';
@@ -93,6 +94,20 @@ export default (menu: any) => {
               showSticker
             }
           )
+        }
+      },
+      {
+        label: 'Toggle Fonts',
+        click: async (_: any, focusedWindow: Window) => {
+          const savedConfig = extractConfig();
+          const useFonts = !savedConfig.useFonts;
+          saveConfig(
+            {
+              ...savedConfig,
+            useFonts
+            }
+          );
+          focusedWindow.rpc.emit(TOGGLE_FONT);
         }
       },
       getAboutMenu(),
