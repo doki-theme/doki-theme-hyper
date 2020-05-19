@@ -63,23 +63,21 @@ Be sure to share it with others who also may enjoy it as well!
 Feel free to submit your feedback as [an issue](https://github.com/Unthrottled/doki-theme-hyper/issues/new).
 Help make this plugin better!
 
-# More!
+# Even more Doki-Theme!
 
+![Intellij](./readmeStuff/intellij.png)
 ## JetBrains IDEs
 
-Do you also develop using JetBrain's products (Intellij, CLion, Pycharm, etc)? Then be sure to install [the JetBrain's Doki Theme plugin as well!](https://plugins.jetbrains.com/plugin/10804-doki-doki-literature-club-theme)
+Do you also develop using JetBrain's products (Intellij, CLion, Pycharm, etc)? 
+Then be sure to install also install [the Doki Theme there as well!](https://github.com/Unthrottled/doki-theme-jetbrains)
 
+![VS Code](./readmeStuff/vscode.png)
 ## VS Code
 
-Hey! Did you know The Doki Theme is also available in VSCode? Then be sure to install [the VSCode Doki Theme plugin as well!](https://github.com/Unthrottled/doki-theme-vscode)
+The Doki Theme is also [available in VSCode!](https://github.com/Unthrottled/doki-theme-vscode)
+Make your VSCode editor more familiar!
 
 ---
 <div align="center">
-    <h3 style="color: pink;">Ṱ͙̠͔́̈́͐̇h̳̳̗̘͂̇́̊e̮̰̼̮̿́̋͗ ̝͇͎̱̊̚̕͝o͙͈̼̜̓̀̉̀n͚̩̣̣̅̍̐̈́l̻̺̩̠͋̑̎͠y̧̱̘͕̿͐̎͘ ̧͎̹̙̓̅̈́͆t̢͔̩̮́̐̕͠h̨͓͔͉̿́͑͝é̹̙̤̮̀̍̈m̙̥̙̺̋̾͑̊e̳̗̖̩̽͐͆͒s͖̰͎̏̍̓̈́ͅ ͎̻͔͍͗͒̾̀y̢̻̜͎̾̄͒̋o̗̝̮̞͛̿̏͐ǔ̥̜̹̘̓̿̕ ̢̛̫͕͔̎̂́ẻ̲̜̰͙̍̌͑v̜̻̗̥̈́̓̈́̔e̡͚͇̫̎̆̋͑r̺̮͓̳̍̊͗̋ ̻̻̣̹͋͑́̈́ǹ̨̲͚͇̒̆͘e̗͉̫̱͂͑͗̓e̳̬̬͈̓̊̂͘d̪̻̞̮̈͂͠͝.͍͇͍̫̒͆̓͝</h3>
-</div>
-
----
-
-<div align="center">
-    <img src="https://doki.assets.unthrottled.io/misc/logo.png" alt="Doki Theme"></img>
+    <img src="https://doki.assets.unthrottled.io/misc/logo.svg" ></img>
 </div>
