@@ -73,6 +73,37 @@ const createCacheBuster = () => new Date().valueOf().toString(32);
 
 let initialized = false;
 
+export const decorateTerms = (Terms: any, {React}: any) => {
+  return class extends React.Component {
+    constructor(props: any, context: any) {
+      super(props, context);
+      this.terms = null;
+      this.onDecorated = this.onDecorated.bind(this);
+    }
+
+    onDecorated(terms: any) {
+      this.terms = terms;
+      terms.registerCommands({
+        'command doki-theme:cycle-forward': (a: any) => {
+          console.log('on command', a);
+        }
+      })
+
+      // Don't forget to propagate it to HOC chain
+      if (this.props.onDecorated) this.props.onDecorated(terms);
+    }
+
+    render() {
+      return React.createElement(
+        Terms,
+        Object.assign({}, this.props, {
+          onDecorated: this.onDecorated
+        })
+      );
+    }
+  }
+}
+
 export const decorateTerm = (Term: any) => {
   let cacheBuster: string = createCacheBuster();
   return class TerminalDecorator extends Component<any, StickerState> {

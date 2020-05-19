@@ -6,6 +6,8 @@ export { default as reduceUI } from "./reducer";
 
 export { decorateConfig } from "./config";
 
+export {decorateKeymaps} from './keymaps'
+
 export {
   decorateHyper,
   decorateTerm,
@@ -13,6 +15,7 @@ export {
   mapTermsState,
   getTermGroupProps,
   getTermProps,
-} from "./decorator";
+  decorateTerms,
+} from './decorator';
 
 export { default as decorateMenu } from "./settings";
