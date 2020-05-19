@@ -19,11 +19,13 @@ const configFile = path.resolve(configDirectory, '.hyper.doki.config.json');
 export interface DokiThemeConfig {
   themeId: string;
   showSticker: boolean;
+  useFonts: boolean;
 }
 
 export const DEFAULT_CONFIGURATION: DokiThemeConfig = {
   themeId: '420b0ed5-803c-4127-97e3-dae6aa1a5972',
   showSticker: true,
+  useFonts: false,
 };
 
 export const extractConfig =
@@ -45,11 +47,20 @@ export const getTheme = (): DokiTheme => {
   return getThemeByName(hyperDokiConfig.themeId);
 };
 
+const getExtras = (): {[key: string]: string} => {
+  return extractConfig().useFonts ?
+    {
+      fontFamily: '"Victor Mono", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+      fontWeight: 'italic',
+    } : {};
+}
+
 export const decorateConfig = (config: any) => {
   const dokiTheme = getTheme();
   const syntax = constructSyntax(dokiTheme);
   const css = constructCSS(dokiTheme);
   return Object.assign({}, config, syntax, {
+    ...getExtras(),
     termCSS: config.termCSS || '',
     css: `${config.css || ''}
     ${css}
