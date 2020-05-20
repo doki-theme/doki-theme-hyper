@@ -44,17 +44,23 @@ export const saveConfig = (dokiConfig: DokiThemeConfig) => {
   fs.writeFileSync(configFile, JSON.stringify(dokiConfig), 'utf8');
 };
 
+export function getCorrectSticker(theme: DokiTheme, stickerType: StickerType) {
+  const defaultSticker = theme.stickers.default;
+  return stickerType === StickerType.SECONDARY ?
+    theme.stickers.secondary || defaultSticker : defaultSticker;
+}
+
 export const getTheme = (): {
   theme: DokiTheme,
   sticker: Sticker
 } => {
     const hyperDokiConfig = extractConfig();
     const theme = getThemeByName(hyperDokiConfig.themeId);
-    const defaultSticker = theme.stickers.default;
-    return {
+  const stickerType = hyperDokiConfig.stickerType;
+  const sticker = getCorrectSticker(theme, stickerType);
+  return {
       theme,
-      sticker: hyperDokiConfig.stickerType === StickerType.SECONDARY ?
-        theme.stickers.secondary || defaultSticker : defaultSticker,
+      sticker: sticker,
   };
 }
 

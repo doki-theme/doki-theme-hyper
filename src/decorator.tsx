@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {THEME_STATE, ThemeState} from './reducer';
-import {SET_THEME, STICKER_UPDATED, TOGGLE_FONT, TOGGLE_STICKER} from './settings';
+import {SET_STICKER_TYPE, SET_THEME, STICKER_UPDATED, TOGGLE_FONT, TOGGLE_STICKER} from './settings';
 import path from 'path';
 import {resolveLocalStickerPath} from './StickerUpdateService';
 import {App, ipcRenderer} from 'electron';
@@ -84,16 +84,8 @@ export const decorateTerm = (Term: any) => {
 
     componentDidMount() {
       if (!initialized) {
-        window.rpc.on(SET_THEME, (theme: any) => {
-          window.store.dispatch({
-            type: SET_THEME,
-            payload: theme,
-          });
-          window.store.dispatch(reloadConfig(
-            window.config.getConfig()
-          ));
-          ipcRenderer.send(SET_THEME, theme);
-        });
+        this.registerListener(SET_THEME)
+        this.registerListener(SET_STICKER_TYPE);
         window.rpc.on(TOGGLE_FONT, (theme: any) => {
           window.store.dispatch(reloadConfig(
             window.config.getConfig()
@@ -112,6 +104,19 @@ export const decorateTerm = (Term: any) => {
         });
         initialized = true;
       }
+    }
+
+    private registerListener(event: string) {
+      window.rpc.on(event, (eventPayload: any) => {
+        window.store.dispatch({
+          type: event,
+          payload: eventPayload,
+        });
+        window.store.dispatch(reloadConfig(
+          window.config.getConfig()
+        ));
+        ipcRenderer.send(event, eventPayload);
+      });
     }
 
     componentWillReceiveProps(nextProps: any) {

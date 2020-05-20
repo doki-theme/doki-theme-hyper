@@ -1,7 +1,7 @@
 import {AnyAction} from "redux";
-import {SET_THEME, TOGGLE_STICKER} from "./settings";
+import {SET_STICKER_TYPE, SET_THEME, TOGGLE_STICKER} from "./settings";
 import {DokiTheme, Sticker} from "./themeTools";
-import {extractConfig, getTheme} from "./config";
+import {extractConfig, getCorrectSticker, getTheme} from "./config";
 
 export interface ThemeState {
   activeTheme: DokiTheme;
@@ -13,18 +13,29 @@ export const THEME_STATE = 'dokiThemeState';
 
 const reducer = (state: any, action: AnyAction) => {
   switch (action.type) {
-    case SET_THEME:
+    case SET_THEME: {
       const previousState: ThemeState = state[THEME_STATE] || {};
       return state.set(THEME_STATE, {
         ...previousState,
         activeTheme: action.payload
       });
-    case TOGGLE_STICKER:
+    }
+    case SET_STICKER_TYPE: {
+      const previousState: ThemeState = state[THEME_STATE] || {};
+      return state.set(THEME_STATE, {
+        ...previousState,
+        currentSticker: getCorrectSticker(
+          previousState.activeTheme, action.payload
+        )
+      });
+    }
+    case TOGGLE_STICKER: {
       const previousState2: ThemeState = state[THEME_STATE] || {};
       return state.set(THEME_STATE, {
         ...previousState2,
         showSticker: !state[THEME_STATE].showSticker
       });
+    }
     case 'INIT': {
       const {theme, sticker} = getTheme();
       return state.set(THEME_STATE, {
@@ -33,8 +44,9 @@ const reducer = (state: any, action: AnyAction) => {
         showSticker: extractConfig().showSticker,
       });
     }
-    default:
+    default: {
       return state;
+    }
   }
 };
 
