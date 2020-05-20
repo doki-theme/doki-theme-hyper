@@ -225,14 +225,36 @@ const readTemplates = (templatePaths: string[]): TemplateTypes => {
 
 function resolveStickerPath(
   themeDefinitonPath: string,
-  themeDefinition: MasterDokiThemeDefinition,
+  sticker: string,
 ) {
   const stickerPath = path.resolve(
     path.resolve(themeDefinitonPath, '..'),
-    themeDefinition.stickers.normal || themeDefinition.stickers.default
+    sticker
   );
   return stickerPath.substr(masterThemeDefinitionDirectoryPath.length + '/definitions'.length);
 }
+
+const getStickers = (
+  dokiDefinition: MasterDokiThemeDefinition,
+  dokiTheme: any
+) => {
+  const secondary =
+    dokiDefinition.stickers.secondary || dokiDefinition.stickers.normal;
+  return {
+    default: {
+      path: resolveStickerPath(dokiTheme.path, dokiDefinition.stickers.default),
+      name: dokiDefinition.stickers.default,
+    },
+    ...(secondary
+      ? {
+        secondary: {
+          path: resolveStickerPath(dokiTheme.path, secondary),
+          name: secondary,
+        },
+      }
+      : {}),
+  };
+};
 
 
 const omit = require('lodash/omit');
@@ -287,11 +309,7 @@ walkDir(path.resolve(masterThemeDefinitionDirectoryPath, 'templates'))
         'icons'
       ]),
       colors: dokiTheme.theme.colors,
-      sticker: resolveStickerPath(
-        dokiTheme.path,
-        dokiDefinition
-      ),
-      wallpaper: dokiTheme.definition.stickers.default
+      stickers: getStickers(dokiDefinition, dokiTheme)
     };
   }).reduce((accum: StringDictonary<any>, definition) => {
     accum[definition.information.id] = definition;

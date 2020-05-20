@@ -1,10 +1,11 @@
 import {AnyAction} from "redux";
 import {SET_THEME, TOGGLE_STICKER} from "./settings";
-import {DokiTheme} from "./themeTools";
+import {DokiTheme, Sticker} from "./themeTools";
 import {extractConfig, getTheme} from "./config";
 
 export interface ThemeState {
   activeTheme: DokiTheme;
+  currentSticker: Sticker;
   showSticker: boolean;
 }
 
@@ -24,11 +25,14 @@ const reducer = (state: any, action: AnyAction) => {
         ...previousState2,
         showSticker: !state[THEME_STATE].showSticker
       });
-    case 'INIT':
+    case 'INIT': {
+      const {theme, sticker} = getTheme();
       return state.set(THEME_STATE, {
-        activeTheme: getTheme(),
+        activeTheme: theme,
+        currentSticker: sticker,
         showSticker: extractConfig().showSticker,
       });
+    }
     default:
       return state;
   }

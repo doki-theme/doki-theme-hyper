@@ -5,9 +5,21 @@ export interface StringDictonary<T> {
   [key: string]: T;
 }
 
+export enum StickerType {
+  DEFAULT= "DEFAULT", SECONDARY = "SECONDARY"
+}
+
+export interface Sticker {
+  path: string;
+  name: string;
+}
+
 export interface DokiTheme {
   colors: StringDictonary<string>;
-  sticker: string;
+  stickers: {
+    default: Sticker;
+    secondary?: Sticker;
+  }
   wallpaper: string;
 }
 

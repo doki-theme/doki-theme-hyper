@@ -1,6 +1,6 @@
-import { DokiTheme, getThemeByName } from "./themeTools";
-import { constructSyntax } from "./syntax";
-import { constructCSS } from "./css";
+import {DokiTheme, getThemeByName, Sticker, StickerType} from "./themeTools";
+import {constructSyntax} from "./syntax";
+import {constructCSS} from "./css";
 import path from 'path';
 import fs from 'fs';
 import os from 'os';
@@ -19,12 +19,14 @@ const configFile = path.resolve(configDirectory, '.hyper.doki.config.json');
 export interface DokiThemeConfig {
   themeId: string;
   showSticker: boolean;
+  stickerType: StickerType;
   useFonts: boolean;
 }
 
 export const DEFAULT_CONFIGURATION: DokiThemeConfig = {
   themeId: '420b0ed5-803c-4127-97e3-dae6aa1a5972',
   showSticker: true,
+  stickerType: StickerType.DEFAULT,
   useFonts: false,
 };
 
@@ -42,10 +44,19 @@ export const saveConfig = (dokiConfig: DokiThemeConfig) => {
   fs.writeFileSync(configFile, JSON.stringify(dokiConfig), 'utf8');
 };
 
-export const getTheme = (): DokiTheme => {
-  const hyperDokiConfig = extractConfig();
-  return getThemeByName(hyperDokiConfig.themeId);
-};
+export const getTheme = (): {
+  theme: DokiTheme,
+  sticker: Sticker
+} => {
+    const hyperDokiConfig = extractConfig();
+    const theme = getThemeByName(hyperDokiConfig.themeId);
+    const defaultSticker = theme.stickers.default;
+    return {
+      theme,
+      sticker: hyperDokiConfig.stickerType === StickerType.SECONDARY ?
+        theme.stickers.secondary || defaultSticker : defaultSticker,
+  };
+}
 
 const getExtraSettings = (): {[key: string]: string} => {
   return extractConfig().useFonts ?
@@ -56,7 +67,7 @@ const getExtraSettings = (): {[key: string]: string} => {
 }
 
 export const decorateConfig = (config: any) => {
-  const dokiTheme = getTheme();
+  const {theme: dokiTheme} = getTheme();
   const syntax = constructSyntax(dokiTheme);
   const css = constructCSS(dokiTheme);
   return Object.assign({}, config, syntax, {

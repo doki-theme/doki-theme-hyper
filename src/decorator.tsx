@@ -77,7 +77,7 @@ export const decorateTerm = (Term: any) => {
     }
 
     private static constructStickerUrl(themeState: ThemeState): string | undefined {
-      const localStickerPath = resolveLocalStickerPath(themeState.activeTheme)
+      const localStickerPath = resolveLocalStickerPath(themeState.currentSticker)
         .replace(path.sep, '/');
       return `${localStickerPath}?time=${cacheBuster}`;
     }
@@ -117,7 +117,7 @@ export const decorateTerm = (Term: any) => {
     componentWillReceiveProps(nextProps: any) {
       const themeState: ThemeState = this.props[THEME_STATE]
       const nextThemeState: ThemeState = nextProps[THEME_STATE];
-      if (themeState.activeTheme.sticker !== nextThemeState.activeTheme.sticker) {
+      if (themeState.currentSticker.path !== nextThemeState.currentSticker.path) {
         this.setState({imageLoaded: false});
         cacheBuster = createCacheBuster();
       }
@@ -127,7 +127,7 @@ export const decorateTerm = (Term: any) => {
       const themeState: ThemeState = this.props[THEME_STATE];
 
       const imageStyle = window.screen.width <= 1920 ?
-        {maxHeight: '200px'} : {}
+        {maxHeight: '200px', maxWidth: '175px'} : {}
       return (
         <div style={{width: '100%', height: '100%', position: 'relative'}}>
           {React.createElement(Term, Object.assign({}, this.props))}
@@ -144,7 +144,7 @@ export const decorateTerm = (Term: any) => {
                   onLoad={() => this.setLoaded()}
                   onError={() => TerminalDecorator.imageError()}
                   src={TerminalDecorator.constructStickerUrl(themeState)}
-                  alt={themeState.activeTheme.sticker}
+                  alt={themeState.activeTheme.stickers.default.name}
                 /> : <></>
             }
           </div>
