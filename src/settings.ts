@@ -38,7 +38,7 @@ const stickerTypeMenus = [
           stickerType: type
         }
       )
-      focusedWindow.rpc.emit(SET_THEME, type);
+      focusedWindow.rpc.emit(SET_STICKER_TYPE, type);
       attemptToDoStickerStuff(focusedWindow);
     }
   }
