@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.3.0 [Secondary Sticker Port]
+
+- Brought the secondary stickers from the Intellij themes over to Hyper!
+  - Themes that have a secondary sticker now:
+    - Monika (Light/Dark)
+    - Natsuki (Light/Dark)
+    - Sayori (Light/Dark)
+    - Yuri (Light/Dark)
+
 ## 2.2.1 [Default Fonts]
 
 - Added the `Toggle Fonts` option which does the following:
