@@ -1,6 +1,6 @@
-import { DokiTheme, getThemeByName } from "./themeTools";
-import { constructSyntax } from "./syntax";
-import { constructCSS } from "./css";
+import {DokiSticker, DokiTheme, getThemeByName, StickerType} from "./themeTools";
+import {constructSyntax} from "./syntax";
+import {constructCSS} from "./css";
 import path from 'path';
 import fs from 'fs';
 import os from 'os';
@@ -19,18 +19,20 @@ const configFile = path.resolve(configDirectory, '.hyper.doki.config.json');
 export interface DokiThemeConfig {
   themeId: string;
   showSticker: boolean;
+  stickerType: StickerType;
   useFonts: boolean;
 }
 
 export const DEFAULT_CONFIGURATION: DokiThemeConfig = {
   themeId: '420b0ed5-803c-4127-97e3-dae6aa1a5972',
   showSticker: true,
+  stickerType: StickerType.DEFAULT,
   useFonts: false,
 };
 
 export const extractConfig =
-  (): DokiThemeConfig =>{
-    if(!fs.existsSync(configFile)){
+  (): DokiThemeConfig => {
+    if (!fs.existsSync(configFile)) {
       createParentDirectories(configFile);
       fs.writeFileSync(configFile, JSON.stringify(DEFAULT_CONFIGURATION), 'utf8');
       return DEFAULT_CONFIGURATION
@@ -42,12 +44,30 @@ export const saveConfig = (dokiConfig: DokiThemeConfig) => {
   fs.writeFileSync(configFile, JSON.stringify(dokiConfig), 'utf8');
 };
 
-export const getTheme = (): DokiTheme => {
-  const hyperDokiConfig = extractConfig();
-  return getThemeByName(hyperDokiConfig.themeId);
-};
+export function getCorrectSticker(theme: DokiTheme, stickerType: StickerType) {
+  const defaultSticker = theme.stickers.default;
+  return stickerType === StickerType.SECONDARY ?
+    theme.stickers.secondary || defaultSticker : defaultSticker;
+}
 
-const getExtraSettings = (): {[key: string]: string} => {
+export const getTheme = (): {
+  theme: DokiTheme;
+  sticker: DokiSticker;
+} => {
+  const hyperDokiConfig = extractConfig();
+  const theme = getThemeByName(hyperDokiConfig.themeId);
+  const stickerType = hyperDokiConfig.stickerType;
+  const sticker = getCorrectSticker(theme, stickerType);
+  return {
+    theme,
+    sticker: {
+      sticker,
+      type: stickerType
+    },
+  };
+}
+
+const getExtraSettings = (): { [key: string]: string } => {
   return extractConfig().useFonts ?
     {
       fontFamily: '"Victor Mono", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
@@ -56,7 +76,7 @@ const getExtraSettings = (): {[key: string]: string} => {
 }
 
 export const decorateConfig = (config: any) => {
-  const dokiTheme = getTheme();
+  const {theme: dokiTheme} = getTheme();
   const syntax = constructSyntax(dokiTheme);
   const css = constructCSS(dokiTheme);
   return Object.assign({}, config, syntax, {

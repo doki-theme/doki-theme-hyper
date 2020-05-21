@@ -3,11 +3,46 @@ import {extractConfig, saveConfig} from "./config";
 import {dialog} from 'electron';
 import path from 'path';
 import {attemptToUpdateSticker} from "./StickerUpdateService";
+import {StickerType} from "./themeTools";
 
 export const SET_THEME = 'SET_THEME'
+export const SET_STICKER_TYPE = 'SET_STICKER_TYPE'
 export const TOGGLE_STICKER = 'TOGGLE_STICKER';
 export const TOGGLE_FONT = 'TOGGLE_FONT';
 export const STICKER_UPDATED = 'STICKER_UPDATED';
+
+function attemptToDoStickerStuff(focusedWindow: any) {
+  attemptToUpdateSticker();
+  setTimeout(() => {
+    // triggers event loop to continue download?
+    focusedWindow.rpc.emit('refresh');
+  }, 500);
+}
+
+const stickerTypeMenus = [
+  {
+    name: 'Primary',
+    type: StickerType.DEFAULT,
+  },
+  {
+    name: 'Secondary',
+    type: StickerType.SECONDARY,
+  },
+].map(({name, type}) => {
+  return {
+    label: name,
+    click: async (_: any, focusedWindow: any) => {
+      saveConfig(
+        {
+          ...extractConfig(),
+          stickerType: type
+        }
+      )
+      focusedWindow.rpc.emit(SET_STICKER_TYPE, type);
+      attemptToDoStickerStuff(focusedWindow);
+    }
+  }
+})
 
 const themes = Object.values(DokiThemeDefinitions)
   .map(dokiDefinition => {
@@ -21,16 +56,12 @@ const themes = Object.values(DokiThemeDefinitions)
           }
         )
         focusedWindow.rpc.emit(SET_THEME, dokiDefinition);
-        attemptToUpdateSticker();
-        setTimeout(() => {
-          // triggers event loop to continue download?
-          focusedWindow.rpc.emit('refresh');
-        }, 500);
+        attemptToDoStickerStuff(focusedWindow);
       }
     }
   });
 
-export const VERSION = 'v2.2.1';
+export const VERSION = 'v2.3.0';
 const icon = path.resolve(__dirname, '..', 'assets', 'Doki-Theme.png');
 const showAbout = () => {
   const appName = 'Doki Theme';
@@ -81,6 +112,14 @@ export default (menu: any) => {
         enabled: true,
         role: 'help',
         submenu: themes,
+      },
+      {
+        id: 'StickerType',
+        label: 'Sticker Type',
+        commandId: 1985,
+        checked: false,
+        enabled: true,
+        submenu: stickerTypeMenus,
       },
       {
         label: 'Toggle Sticker',

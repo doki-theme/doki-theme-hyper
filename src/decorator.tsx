@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {THEME_STATE, ThemeState} from './reducer';
-import {SET_THEME, STICKER_UPDATED, TOGGLE_FONT, TOGGLE_STICKER} from './settings';
+import {SET_STICKER_TYPE, SET_THEME, STICKER_UPDATED, TOGGLE_FONT, TOGGLE_STICKER} from './settings';
 import path from 'path';
 import {resolveLocalStickerPath} from './StickerUpdateService';
 import {App, ipcRenderer} from 'electron';
@@ -77,24 +77,16 @@ export const decorateTerm = (Term: any) => {
     }
 
     private static constructStickerUrl(themeState: ThemeState): string | undefined {
-      const localStickerPath = resolveLocalStickerPath(themeState.activeTheme)
+      const localStickerPath = resolveLocalStickerPath(themeState.currentSticker.sticker)
         .replace(path.sep, '/');
       return `${localStickerPath}?time=${cacheBuster}`;
     }
 
     componentDidMount() {
       if (!initialized) {
-        window.rpc.on(SET_THEME, (theme: any) => {
-          window.store.dispatch({
-            type: SET_THEME,
-            payload: theme,
-          });
-          window.store.dispatch(reloadConfig(
-            window.config.getConfig()
-          ));
-          ipcRenderer.send(SET_THEME, theme);
-        });
-        window.rpc.on(TOGGLE_FONT, (theme: any) => {
+        this.registerListener(SET_THEME)
+        this.registerListener(SET_STICKER_TYPE);
+        window.rpc.on(TOGGLE_FONT, () => {
           window.store.dispatch(reloadConfig(
             window.config.getConfig()
           ));
@@ -114,10 +106,23 @@ export const decorateTerm = (Term: any) => {
       }
     }
 
+    private registerListener(event: string) {
+      window.rpc.on(event, (eventPayload: any) => {
+        window.store.dispatch({
+          type: event,
+          payload: eventPayload,
+        });
+        window.store.dispatch(reloadConfig(
+          window.config.getConfig()
+        ));
+        ipcRenderer.send(event, eventPayload);
+      });
+    }
+
     componentWillReceiveProps(nextProps: any) {
       const themeState: ThemeState = this.props[THEME_STATE]
       const nextThemeState: ThemeState = nextProps[THEME_STATE];
-      if (themeState.activeTheme.sticker !== nextThemeState.activeTheme.sticker) {
+      if (themeState.currentSticker.sticker.path !== nextThemeState.currentSticker.sticker.path) {
         this.setState({imageLoaded: false});
         cacheBuster = createCacheBuster();
       }
@@ -127,7 +132,7 @@ export const decorateTerm = (Term: any) => {
       const themeState: ThemeState = this.props[THEME_STATE];
 
       const imageStyle = window.screen.width <= 1920 ?
-        {maxHeight: '200px'} : {}
+        {maxHeight: '200px', maxWidth: '175px'} : {}
       return (
         <div style={{width: '100%', height: '100%', position: 'relative'}}>
           {React.createElement(Term, Object.assign({}, this.props))}
@@ -144,7 +149,7 @@ export const decorateTerm = (Term: any) => {
                   onLoad={() => this.setLoaded()}
                   onError={() => TerminalDecorator.imageError()}
                   src={TerminalDecorator.constructStickerUrl(themeState)}
-                  alt={themeState.activeTheme.sticker}
+                  alt={themeState.currentSticker.sticker.name}
                 /> : <></>
             }
           </div>

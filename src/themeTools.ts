@@ -5,10 +5,36 @@ export interface StringDictonary<T> {
   [key: string]: T;
 }
 
+export enum StickerType {
+  DEFAULT= "DEFAULT", SECONDARY = "SECONDARY"
+}
+
+export interface Sticker {
+  path: string;
+  name: string;
+}
+
+export interface DokiSticker {
+  type: StickerType;
+  sticker: Sticker
+}
+
+export interface ThemeInformation {
+  id: string;
+  name: string;
+  displayName: string;
+  dark: boolean;
+  author: string;
+  group: string;
+}
+
 export interface DokiTheme {
   colors: StringDictonary<string>;
-  sticker: string;
-  wallpaper: string;
+  stickers: {
+    default: Sticker;
+    secondary?: Sticker;
+  }
+  information: ThemeInformation;
 }
 
 export const getThemeByName = (themeName: string | undefined): DokiTheme => {
