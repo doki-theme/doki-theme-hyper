@@ -77,7 +77,7 @@ export const decorateTerm = (Term: any) => {
     }
 
     private static constructStickerUrl(themeState: ThemeState): string | undefined {
-      const localStickerPath = resolveLocalStickerPath(themeState.currentSticker)
+      const localStickerPath = resolveLocalStickerPath(themeState.currentSticker.sticker)
         .replace(path.sep, '/');
       return `${localStickerPath}?time=${cacheBuster}`;
     }
@@ -86,7 +86,7 @@ export const decorateTerm = (Term: any) => {
       if (!initialized) {
         this.registerListener(SET_THEME)
         this.registerListener(SET_STICKER_TYPE);
-        window.rpc.on(TOGGLE_FONT, (theme: any) => {
+        window.rpc.on(TOGGLE_FONT, () => {
           window.store.dispatch(reloadConfig(
             window.config.getConfig()
           ));
@@ -122,7 +122,7 @@ export const decorateTerm = (Term: any) => {
     componentWillReceiveProps(nextProps: any) {
       const themeState: ThemeState = this.props[THEME_STATE]
       const nextThemeState: ThemeState = nextProps[THEME_STATE];
-      if (themeState.currentSticker.path !== nextThemeState.currentSticker.path) {
+      if (themeState.currentSticker.sticker.path !== nextThemeState.currentSticker.sticker.path) {
         this.setState({imageLoaded: false});
         cacheBuster = createCacheBuster();
       }
@@ -149,7 +149,7 @@ export const decorateTerm = (Term: any) => {
                   onLoad={() => this.setLoaded()}
                   onError={() => TerminalDecorator.imageError()}
                   src={TerminalDecorator.constructStickerUrl(themeState)}
-                  alt={themeState.activeTheme.stickers.default.name}
+                  alt={themeState.currentSticker.sticker.name}
                 /> : <></>
             }
           </div>

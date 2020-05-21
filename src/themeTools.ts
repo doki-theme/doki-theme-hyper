@@ -14,13 +14,27 @@ export interface Sticker {
   name: string;
 }
 
+export interface DokiSticker {
+  type: StickerType;
+  sticker: Sticker
+}
+
+export interface ThemeInformation {
+  id: string;
+  name: string;
+  displayName: string;
+  dark: boolean;
+  author: string;
+  group: string;
+}
+
 export interface DokiTheme {
   colors: StringDictonary<string>;
   stickers: {
     default: Sticker;
     secondary?: Sticker;
   }
-  wallpaper: string;
+  information: ThemeInformation;
 }
 
 export const getThemeByName = (themeName: string | undefined): DokiTheme => {

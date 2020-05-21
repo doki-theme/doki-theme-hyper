@@ -14,7 +14,7 @@ export interface DokiStickers {
 }
 
 export const attemptToUpdateSticker = async (): Promise<DokiStickers> => {
-  const {sticker: currentSticker} = getTheme();
+  const {sticker: {sticker: currentSticker}} = getTheme();
   const remoteStickerUrl = `${VSCODE_ASSETS_URL}${stickerPathToUrl(
     currentSticker
   )}`;

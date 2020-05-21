@@ -1,4 +1,4 @@
-import {DokiTheme, getThemeByName, Sticker, StickerType} from "./themeTools";
+import {DokiSticker, DokiTheme, getThemeByName, StickerType} from "./themeTools";
 import {constructSyntax} from "./syntax";
 import {constructCSS} from "./css";
 import path from 'path';
@@ -31,8 +31,8 @@ export const DEFAULT_CONFIGURATION: DokiThemeConfig = {
 };
 
 export const extractConfig =
-  (): DokiThemeConfig =>{
-    if(!fs.existsSync(configFile)){
+  (): DokiThemeConfig => {
+    if (!fs.existsSync(configFile)) {
       createParentDirectories(configFile);
       fs.writeFileSync(configFile, JSON.stringify(DEFAULT_CONFIGURATION), 'utf8');
       return DEFAULT_CONFIGURATION
@@ -51,20 +51,23 @@ export function getCorrectSticker(theme: DokiTheme, stickerType: StickerType) {
 }
 
 export const getTheme = (): {
-  theme: DokiTheme,
-  sticker: Sticker
+  theme: DokiTheme;
+  sticker: DokiSticker;
 } => {
-    const hyperDokiConfig = extractConfig();
-    const theme = getThemeByName(hyperDokiConfig.themeId);
+  const hyperDokiConfig = extractConfig();
+  const theme = getThemeByName(hyperDokiConfig.themeId);
   const stickerType = hyperDokiConfig.stickerType;
   const sticker = getCorrectSticker(theme, stickerType);
   return {
-      theme,
-      sticker: sticker,
+    theme,
+    sticker: {
+      sticker,
+      type: stickerType
+    },
   };
 }
 
-const getExtraSettings = (): {[key: string]: string} => {
+const getExtraSettings = (): { [key: string]: string } => {
   return extractConfig().useFonts ?
     {
       fontFamily: '"Victor Mono", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
