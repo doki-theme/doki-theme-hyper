@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "lint": "eslint src && prettier src",
+    "lint": "eslint src --fix && prettier --write src",
     "clean": "rm -rf build/",
     "prepare": "yarn clean && (yarn build || true)",
     "build": "tsc",

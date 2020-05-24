@@ -1,10 +1,10 @@
 import AppInitialization from "./AppInitialization";
 
-AppInitialization()
+AppInitialization();
 
-export {default as reduceUI} from './reducer';
+export { default as reduceUI } from "./reducer";
 
-export {decorateConfig} from './config';
+export { decorateConfig } from "./config";
 
 export {
   decorateHyper,
@@ -12,7 +12,7 @@ export {
   mapHyperState,
   mapTermsState,
   getTermGroupProps,
-  getTermProps
-} from './decorator';
+  getTermProps,
+} from "./decorator";
 
-export {default as decorateMenu} from './settings';
+export { default as decorateMenu } from "./settings";

@@ -3,9 +3,9 @@ import fs from "fs";
 
 function mkdirp(dir: string) {
   if (fs.existsSync(dir)) {
-    return true
+    return true;
   }
-  const dirname = path.dirname(dir)
+  const dirname = path.dirname(dir);
   mkdirp(dirname);
   fs.mkdirSync(dir);
 }
