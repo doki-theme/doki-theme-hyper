@@ -10,9 +10,9 @@ function mkdirp(dir: string) {
   fs.mkdirSync(dir);
 }
 
-export function createParentDirectories(localDestination: string) {
+export const createParentDirectories = (localDestination: string): void => {
   const parentDirectory = path.dirname(localDestination);
   if (!fs.existsSync(parentDirectory)) {
     mkdirp(parentDirectory);
   }
-}
+};

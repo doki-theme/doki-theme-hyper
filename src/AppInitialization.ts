@@ -1,7 +1,7 @@
 import {attemptToUpdateSticker} from './StickerUpdateService';
 import {app} from 'electron';
 
-const init = () => {
+const init = (): void => {
   if (app) {
     attemptToUpdateSticker();
   }

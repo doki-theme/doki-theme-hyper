@@ -3,7 +3,7 @@ import {extractConfig, saveConfig} from "./config";
 import {dialog} from 'electron';
 import path from 'path';
 import {attemptToUpdateSticker} from "./StickerUpdateService";
-import {StickerType} from "./themeTools";
+import {StickerType, StringDictonary} from "./themeTools";
 
 export const SET_THEME = 'SET_THEME'
 export const SET_STICKER_TYPE = 'SET_STICKER_TYPE'
@@ -95,7 +95,7 @@ const getAboutMenu = () => {
   }
 };
 
-export default (menu: any) => {
+export default (providedMenu: any): StringDictonary<any>=> {
   const menuItem = {
     id: 'Doki-Theme',
     label: 'Doki-Theme Settings',
@@ -153,6 +153,7 @@ export default (menu: any) => {
       {
         label: 'View ChangeLog',
         click: async () => {
+          // eslint-disable-next-line @typescript-eslint/no-var-requires
           const {shell} = require('electron');
           await shell.openExternal('https://github.com/Unthrottled/doki-theme-hyper/blob/master/CHANGELOG.md')
         }
@@ -161,7 +162,7 @@ export default (menu: any) => {
   };
 
   return [
-    ...menu,
+    ...providedMenu,
     menuItem
   ]
 };

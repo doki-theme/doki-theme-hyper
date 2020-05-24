@@ -10,7 +10,7 @@ const applicationDirectory =
   process.env.XDG_CONFIG_HOME !== undefined
     ? path.join(process.env.XDG_CONFIG_HOME, 'hyper')
     : process.platform == 'win32'
-    ? path.join(process.env.APPDATA!, 'Hyper')
+    ? path.join(process.env.APPDATA || '', 'Hyper')
     : os.homedir();
 
 export const configDirectory = path.resolve(applicationDirectory, '.doki-theme-hyper-config');

@@ -45,7 +45,7 @@ const buildColors = (dokiTheme: DokiTheme) => {
   }, {})
 }
 
-export const constructSyntax = (dokiTheme: DokiTheme) => {
+export const constructSyntax = (dokiTheme: DokiTheme): StringDictonary<any>=> {
   const colors = buildColors(dokiTheme);
   return {
     colors,

@@ -3,7 +3,7 @@ import {THEME_STATE, ThemeState} from './reducer';
 import {SET_STICKER_TYPE, SET_THEME, STICKER_UPDATED, TOGGLE_FONT, TOGGLE_STICKER} from './settings';
 import path from 'path';
 import {resolveLocalStickerPath} from './StickerUpdateService';
-import {App, ipcRenderer} from 'electron';
+import {ipcRenderer} from 'electron';
 
 const passProps = (uid: any, parentProps: any, props: any) => Object.assign(props, {
   [THEME_STATE]: parentProps[THEME_STATE],
@@ -19,6 +19,7 @@ export const mapHyperState = mapTermsState;
 export const getTermGroupProps = passProps;
 export const getTermProps = passProps;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const decorateHyper = (Hyper: any) =>
   class HyperDecorator extends Component<any> {
     render() {
@@ -33,7 +34,8 @@ declare global {
     store: any,
   }
 
-  module Electron {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace Electron {
     interface App {
       getWindows: () => BrowserWindow[];
       getLastFocusedWindow: () => BrowserWindow;
