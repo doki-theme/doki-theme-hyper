@@ -1,12 +1,13 @@
 import { DEFAULT_CONFIGURATION } from "./config";
-import DokiThemeDefinitions from './DokiThemeDefinitions';
+import DokiThemeDefinitions from "./DokiThemeDefinitions";
 
 export interface StringDictonary<T> {
   [key: string]: T;
 }
 
 export enum StickerType {
-  DEFAULT= "DEFAULT", SECONDARY = "SECONDARY"
+  DEFAULT = "DEFAULT",
+  SECONDARY = "SECONDARY",
 }
 
 export interface Sticker {
@@ -16,7 +17,7 @@ export interface Sticker {
 
 export interface DokiSticker {
   type: StickerType;
-  sticker: Sticker
+  sticker: Sticker;
 }
 
 export interface ThemeInformation {
@@ -33,7 +34,7 @@ export interface DokiTheme {
   stickers: {
     default: Sticker;
     secondary?: Sticker;
-  }
+  };
   information: ThemeInformation;
 }
 
@@ -41,5 +42,8 @@ export const getThemeByName = (themeName: string | undefined): DokiTheme => {
   const definedThemeId = themeName || DEFAULT_CONFIGURATION.themeId;
   // @ts-ignore
   const maybeDokiTheme = DokiThemeDefinitions[definedThemeId];
-  return maybeDokiTheme || DokiThemeDefinitions["420b0ed5-803c-4127-97e3-dae6aa1a5972"];
+  return (
+    maybeDokiTheme ||
+    DokiThemeDefinitions["420b0ed5-803c-4127-97e3-dae6aa1a5972"]
+  );
 };

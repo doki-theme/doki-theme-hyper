@@ -1,7 +1,7 @@
 import { DokiTheme } from "./themeTools";
 
 export const constructCSS = (dokiTheme: DokiTheme): string => {
-  const background =dokiTheme.colors.baseBackground;
+  const background = dokiTheme.colors.baseBackground;
   const foreground = dokiTheme.colors.foregroundColor;
   const header = dokiTheme.colors.headerColor;
   const activeTab = dokiTheme.colors.highlightColor;
@@ -105,5 +105,5 @@ export const constructCSS = (dokiTheme: DokiTheme): string => {
   .xterm .xterm-viewport {
       overflow-y: auto;
   }
-  `
-}
+  `;
+};

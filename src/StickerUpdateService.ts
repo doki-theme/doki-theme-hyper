@@ -1,27 +1,27 @@
-import {performGet} from './RESTClient';
-import path from 'path';
-import fs from 'fs';
-import crypto from 'crypto';
-import {VSCODE_ASSETS_URL} from './ENV';
-import {configDirectory, getTheme} from './config';
-import {app} from 'electron';
-import {STICKER_UPDATED} from './settings';
-import {Sticker} from "./themeTools";
-import {createParentDirectories} from "./FileTools";
+import { performGet } from "./RESTClient";
+import path from "path";
+import fs from "fs";
+import crypto from "crypto";
+import { VSCODE_ASSETS_URL } from "./ENV";
+import { configDirectory, getTheme } from "./config";
+import { app } from "electron";
+import { STICKER_UPDATED } from "./settings";
+import { Sticker } from "./themeTools";
+import { createParentDirectories } from "./FileTools";
 
 export interface DokiStickers {
   stickerDataURL: string;
 }
 
 export const attemptToUpdateSticker = async (): Promise<DokiStickers> => {
-  const {sticker: {sticker: currentSticker}} = getTheme();
+  const {
+    sticker: { sticker: currentSticker },
+  } = getTheme();
   const remoteStickerUrl = `${VSCODE_ASSETS_URL}${stickerPathToUrl(
     currentSticker
   )}`;
   const localStickerPath = resolveLocalStickerPath(currentSticker);
-  await Promise.all([
-    attemptToUpdateAsset(remoteStickerUrl, localStickerPath),
-  ]);
+  await Promise.all([attemptToUpdateAsset(remoteStickerUrl, localStickerPath)]);
 
   return {
     stickerDataURL: createCssDokiAssetUrl(localStickerPath),
@@ -48,9 +48,7 @@ const fetchRemoteChecksum = async (remoteAssetUrl: string) => {
   return checkSumInputStream.setEncoding("utf8").read();
 };
 
-export const resolveLocalStickerPath = (
-  currentSticker: Sticker,
-): string => {
+export const resolveLocalStickerPath = (currentSticker: Sticker): string => {
   const safeStickerPath = stickerPathToUrl(currentSticker);
   return path.join(configDirectory, "stickers", safeStickerPath);
 };
