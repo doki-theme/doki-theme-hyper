@@ -143,8 +143,8 @@ function buildLAFColors(
     applyNamedColors(resolvedColorTemplate, resolvedNameColors);
   return {
     ...resolvedColors,
-    ...resolvedNameColors,
     ...resolvedColorTemplate,
+    ...resolvedNameColors,
   };
 }
 
