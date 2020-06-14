@@ -147,7 +147,7 @@ export default (providedMenu: any): StringDictonary<any> => {
           // eslint-disable-next-line @typescript-eslint/no-var-requires
           const { shell } = require("electron");
           await shell.openExternal(
-            "https://github.com/Unthrottled/doki-theme-hyper/blob/master/CHANGELOG.md"
+            "https://github.com/doki-theme/doki-theme-hyper/blob/master/CHANGELOG.md"
           );
         },
       },

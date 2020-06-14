@@ -50,7 +50,7 @@ Be sure to share it with others who also may enjoy it as well!
 
 ## Not your thing or something bothering you?
 
-Feel free to submit your feedback as [an issue](https://github.com/Unthrottled/doki-theme-hyper/issues/new).
+Feel free to submit your feedback as [an issue](https://github.com/doki-theme/doki-theme-hyper/issues/new).
 Help make this plugin better!
 
 # Even more Doki-Theme!
@@ -59,12 +59,12 @@ Help make this plugin better!
 ## JetBrains IDEs
 
 Do you also develop using JetBrain's products (Intellij, CLion, Pycharm, etc)? 
-Then be sure to install also install [the Doki Theme there as well!](https://github.com/Unthrottled/doki-theme-jetbrains)
+Then be sure to install also install [the Doki Theme there as well!](https://github.com/doki-theme/doki-theme-jetbrains)
 
 ![VS Code](./readmeStuff/vscode.png)
 ## VS Code
 
-The Doki Theme is also [available in VSCode!](https://github.com/Unthrottled/doki-theme-vscode)
+The Doki Theme is also [available in VSCode!](https://github.com/doki-theme/doki-theme-vscode)
 Make your VSCode editor more familiar!
 
 ---

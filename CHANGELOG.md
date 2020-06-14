@@ -1,6 +1,6 @@
 # Change Log
 
-# 8.0.0 [New Themes!]
+# 3.0.0 [New Themes!]
 
 - Added 5 new themes based on various new characters!
     - High School DxD:
@@ -39,7 +39,7 @@
     - Light Sayori
     - Beatrice
 
-[See the rich diffs for more details](https://github.com/Unthrottled/doki-theme-hyper/pull/8/files#diff-46b50e9197d1c9d21f7b1edd334837d3)
+[See the rich diffs for more details](https://github.com/doki-theme/doki-theme-hyper/pull/8/files#diff-46b50e9197d1c9d21f7b1edd334837d3)
 
 ## 2.1.1 [Bug Fix]
 
