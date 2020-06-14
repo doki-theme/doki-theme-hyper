@@ -56,7 +56,7 @@ const themes = Object.values(DokiThemeDefinitions).map((dokiDefinition) => {
   };
 });
 
-export const VERSION = "v2.3.0";
+export const VERSION = "v3.0.0";
 const icon = path.resolve(__dirname, "..", "assets", "Doki-Theme.png");
 const showAbout = () => {
   const appName = "Doki Theme";
@@ -147,7 +147,7 @@ export default (providedMenu: any): StringDictonary<any> => {
           // eslint-disable-next-line @typescript-eslint/no-var-requires
           const { shell } = require("electron");
           await shell.openExternal(
-            "https://github.com/Unthrottled/doki-theme-hyper/blob/master/CHANGELOG.md"
+            "https://github.com/doki-theme/doki-theme-hyper/blob/master/CHANGELOG.md"
           );
         },
       },

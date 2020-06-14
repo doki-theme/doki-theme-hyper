@@ -1,5 +1,19 @@
 # Change Log
 
+# 3.0.0 [New Themes!]
+
+- Added 5 new themes based on various new characters!
+    - High School DxD:
+        - Rias Gremory (Dark Theme)
+    - Sword Art Online:
+        - Yuuki Asuna (Light Theme)
+    - Lucky Star:
+        - Izumi Konata (Light Theme/2 Stickers)
+    - KonoSuba:
+        - Darkness (Light/Dark Theme)
+
+![The New Girls](https://doki.assets.unthrottled.io/misc/v8_girls.png?version=1)
+
 ## 2.3.0 [Secondary Sticker Port]
 
 - Brought the secondary stickers from the Intellij themes over to Hyper!
@@ -25,7 +39,7 @@
     - Light Sayori
     - Beatrice
 
-[See the rich diffs for more details](https://github.com/Unthrottled/doki-theme-hyper/pull/8/files#diff-46b50e9197d1c9d21f7b1edd334837d3)
+[See the rich diffs for more details](https://github.com/doki-theme/doki-theme-hyper/pull/8/files#diff-46b50e9197d1c9d21f7b1edd334837d3)
 
 ## 2.1.1 [Bug Fix]
 
