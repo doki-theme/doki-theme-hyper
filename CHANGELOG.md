@@ -1,5 +1,11 @@
 # Change Log
 
+# 4.0.0 [Misato Katsuragi]
+
+- Added Neon Genesis Evangelion's `Misato Katsuragi` as a dark theme!
+
+![The New Woman](https://doki.assets.unthrottled.io/misc/v9_girl.png?version=1)
+
 # 3.0.0 [New Themes!]
 
 - Added 5 new themes based on various new characters!
