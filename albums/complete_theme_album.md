@@ -21,6 +21,13 @@ DanganRonpa
 ![ibuki_light code](../screenshots/danganRonpa/ibuki_light_code.png)
 ![ibuki_dark code](../screenshots/danganRonpa/ibuki_dark_code.png)
 
+Neon Genesis Evangelion
+---
+
+### Misato Katsuragi
+
+![misato_dark code](../screenshots/eva/misato_dark_code.png)
+
 Miscellaneous
 ---
 
