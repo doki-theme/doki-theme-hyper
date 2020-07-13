@@ -8,6 +8,7 @@ import { StickerType, StringDictonary } from "./themeTools";
 export const SET_THEME = "SET_THEME";
 export const SET_STICKER_TYPE = "SET_STICKER_TYPE";
 export const TOGGLE_STICKER = "TOGGLE_STICKER";
+export const CYCLE_THEME = "CYCLE_THEME";
 export const TOGGLE_FONT = "TOGGLE_FONT";
 export const STICKER_UPDATED = "STICKER_UPDATED";
 

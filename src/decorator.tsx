@@ -6,6 +6,7 @@ import {
   STICKER_UPDATED,
   TOGGLE_FONT,
   TOGGLE_STICKER,
+  CYCLE_THEME,
 } from "./settings";
 import path from "path";
 import { resolveLocalStickerPath } from "./StickerUpdateService";
@@ -83,9 +84,16 @@ export const decorateTerms = (Terms: any, {React}: any) => {
 
     onDecorated(terms: any) {
       this.terms = terms;
+      console.log('adding commands');
+      
       terms.registerCommands({
-        'command doki-theme:cycle-forward': (a: any) => {
-          console.log('on command', a);
+        'tab:next': () => {
+          console.log('dispetching');
+          
+          window.store.dispatch({
+            type: CYCLE_THEME,
+          });
+          window.store.dispatch(reloadConfig(window.config.getConfig()))
         }
       })
 
