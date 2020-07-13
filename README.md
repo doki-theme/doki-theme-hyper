@@ -2,7 +2,7 @@
 
 # Feature Preview
 
-![Theme Usage](https://doki.assets.unthrottled.io/screenshots/doki-theme-hyper-usage.gif)
+![Theme Usage](./screenshots/gifs/doki-theme-hyper-preview.gif)
 
 ## Screen Samples!
 
@@ -22,6 +22,20 @@ hyper i doki-theme-hyper
 
 Be sure to restart hyper afterwards.
 
+## Configuration
+
+![Theme Usage](./screenshots/gifs/hyper_usage.gif)
+
+In the hamburger menu (Linux/Windows) or settings bar (MacoOS) there is a `Doki-Theme 
+Settings` option with various options:
+
+- **Themes**: Contains all of themes you can decorate your Hyper.js term with.
+- **Sticker Type**: Some themes have more than one sticker associated with the theme. This enables you to switch between the two.
+- **Toggle Sticker**: This shows or hides the theme's sticker. It is defaulted to being on.
+- **Toggle Fonts**: The current font family for the Doki-Theme is `Victor Mono`, this is a convience option to apply that font family for you.
+- **About Plugin**: Gives you the current version of the plugin.
+- **View Changelog**: Opens your default browser to the changelog of Doki-Theme for Hyper.js.
+
 ## About!
 
 With well over **20 themes** (light and dark) I think you will be able to find your favorite.
@@ -37,6 +51,7 @@ Variety is the spice of life! So you can choose themes from the following Doki-D
 - High School DxD
 - Lucky Star
 - Sword Art Online
+- Neon Genesis Evangelion
 
 Sticker in the way?
 No worries! You can configure them to be on or off at your leisure.
