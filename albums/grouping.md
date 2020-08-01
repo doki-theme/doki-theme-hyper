@@ -5,6 +5,8 @@ Themes grouped by album
 
 [Re:Zero Album](r0_album.md)
 
+[Miss Kobayashi's Dragon Maid](dm_album.md)
+
 [DanganRonpa Album](dr_themes.md)
 
 [Neon Genesis Evangelion](eva_album.md)
