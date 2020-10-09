@@ -38,10 +38,11 @@ Settings` option with various options:
 
 ## About!
 
-With well over **20 themes** (light and dark) I think you will be able to find your favorite.
-You can even find a theme that fits your mood for the day.
+This plugin is for serious Otaku programmers.
+Code with your waifu. With over **20** themes,
+I think you will find best girl.
 
-Variety is the spice of life! So you can choose themes from the following Doki-Doki Theme Suites:
+You can choose themes from various, Anime, Manga, or Visual Novels:
 
 - Doki-Doki Literature Club
 - Re:Zero
@@ -52,6 +53,9 @@ Variety is the spice of life! So you can choose themes from the following Doki-D
 - Lucky Star
 - Sword Art Online
 - Neon Genesis Evangelion
+- Fate
+- Gate
+- Miss Kobayashi's Dragon Maid
 
 Sticker in the way?
 No worries! You can configure them to be on or off at your leisure.
