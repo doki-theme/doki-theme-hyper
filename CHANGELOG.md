@@ -1,5 +1,41 @@
 # Change Log
 
+# 7.0.0 [Echidna, Yukino, Kurisu, Asuna, Umi, & Konata]
+
+## 5 New Themes!
+
+Love Live! series:
+
+- Sonoda Umi (Dark)
+
+From the OreGairu series:
+
+- Yukinoshita Yukino (Dark)
+
+Addition to Re:Zero series:
+
+- Echidna (Dark)
+
+From the Steins Gate series:
+
+- Makise Kurisu (Dark)
+
+Addition to the Sword Art Online series:
+
+- Yuuki Asuna (Dark)
+
+![v12 Girls](https://doki.assets.unthrottled.io/misc/v12_girls.png)
+
+## Other Stuff
+
+### Updates
+
+- Konata's theme is now a bit darker to aid in usability
+
+### Miscellaneous
+
+- Sorted theme menu
+
 # 6.0.0 [Fate, Gate, Konosuba]
 
 ## 5 New Themes!

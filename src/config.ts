@@ -88,7 +88,6 @@ const getExtraSettings = (): { [key: string]: string } => {
 export const decorateConfig = (config: any) => {
   const { theme: dokiTheme } = getTheme();
   const syntax = constructSyntax(dokiTheme);
-  const a = 5;
   const css = constructCSS(dokiTheme);
   return Object.assign({}, config, syntax, {
     ...getExtraSettings(),
