@@ -12,6 +12,23 @@ Fate
 
 ![ishtar light code](../screenshots/fate/ishtar_light_code.png)
 
+OreGairu
+---
+
+### Yukinoshita Yukino
+![yukino_dark code](../screenshots/oreGairu/yukino_dark_code.png)
+
+Steins Gate
+---
+
+### Makise Kurisu
+![kurisu_dark code](../screenshots/steinsGate/kurisu_dark_code.png)
+
+Love Live!
+---
+
+### Sonoda Umi
+![umi_dark code](../screenshots/loveLive/umi_dark_code.png)
 
 Gate
 ---
@@ -22,6 +39,8 @@ Gate
 
 Re:Zero
 ---
+### Echidna
+![echidna_dark code](../screenshots/reZero/echidna_dark_code.png)
 
 ### Emilia
 ![emilia_light code](../screenshots/reZero/emilia_light_code.png)
@@ -83,6 +102,7 @@ Sword Art Online
 ---
 ### Yuuki Asuna
 ![asuna code](../screenshots/sao/asuna_light_code.png)
+![asuna code](../screenshots/sao/asuna_dark_code.png)
 
 Kill La Kill
 ---
@@ -103,8 +123,8 @@ Lucky Star
 ---
 
 ### Izumi Konata
-![konata code](../screenshots/luckyStar/konata_light_code.png)
-![konata code](../screenshots/luckyStar/konata_light_secondary_code.png)
+![konata code](../screenshots/luckyStar/konata_dark_code.png)
+![konata code](../screenshots/luckyStar/konata_dark_secondary_code.png)
 
 
 Doki-Doki Literature Club

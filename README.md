@@ -32,30 +32,33 @@ Settings` option with various options:
 - **Themes**: Contains all of themes you can decorate your Hyper.js term with.
 - **Sticker Type**: Some themes have more than one sticker associated with the theme. This enables you to switch between the two.
 - **Toggle Sticker**: This shows or hides the theme's sticker. It is defaulted to being on.
-- **Toggle Fonts**: The current font family for the Doki-Theme is `Victor Mono`, this is a convience option to apply that font family for you.
+- **Toggle Fonts**: The current font family for the Doki-Theme is `Victor Mono`, this is a convenience option to apply that font family for you.
 - **About Plugin**: Gives you the current version of the plugin.
 - **View Changelog**: Opens your default browser to the changelog of Doki-Theme for Hyper.js.
 
 ## About!
 
 This plugin is for serious Otaku programmers.
-Code with your waifu. With over **20** themes,
+Code with your waifu. With over **30** themes,
 I think you will find best girl.
 
 You can choose themes from various, Anime, Manga, or Visual Novels:
 
-- Doki-Doki Literature Club
-- Re:Zero
-- Kill La Kill
-- KonoSuba
 - DanganRonpa
-- High School DxD
-- Lucky Star
-- Sword Art Online
-- Neon Genesis Evangelion
+- Doki-Doki Literature Club
 - Fate
 - Gate
+- High School DxD
+- Kill La Kill
+- KonoSuba
+- Love Live!
+- Lucky Star
 - Miss Kobayashi's Dragon Maid
+- Neon Genesis Evangelion
+- OreGairu
+- Re:Zero
+- Steins Gate
+- Sword Art Online
 
 Sticker in the way?
 No worries! You can configure them to be on or off at your leisure.
@@ -63,6 +66,10 @@ No worries! You can configure them to be on or off at your leisure.
 # Got Contributions, fun ideas, or issues?
 
 Don't be afraid to reach out and join the [Gitter Community](https://gitter.im/doki-theme-hyper/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link!)
+
+## Theme Requests
+
+If you want your main squeeze to be featured in the Doki Theme suite, feel free to [submit a theme request](https://github.com/doki-theme/doki-master-theme/issues).
 
 ## Enjoying the plugin and want more people to use it?
 

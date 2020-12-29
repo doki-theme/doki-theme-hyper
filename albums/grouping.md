@@ -1,28 +1,34 @@
 Themes grouped by album
 ---
 
-[Doki-Doki Literature Club Album](theme_album.md)
+[DanganRonpa Album](../albums/dr_themes.md)
 
-[Re:Zero Album](r0_album.md)
+[Doki-Doki Literature Club Album](../albums/theme_album.md)
 
-[Fate](fate_themes.md)
+[Fate](../albums/fate_themes.md)
 
-[Gate](gate_themes.md)
+[Gate](../albums/gate_themes.md)
 
-[Miss Kobayashi's Dragon Maid](dm_album.md)
+[High School DxD Album](../albums/dxd_album.md)
 
-[DanganRonpa Album](dr_themes.md)
+[Kill La Kill Album](../albums/klk_album.md)
 
-[Neon Genesis Evangelion](eva_album.md)
+[KonoSuba Album](../albums/ks_album.md)
 
-[Kill La Kill Album](klk_album.md)
+[Love Live!](../albums/ll_themes.md)
 
-[KonoSuba Album](ks_album.md)
+[Lucky Star Album](../albums/ls_album.md)
 
-[Lucky Star Album](ls_album.md)
+[Miscellaneous Album](../albums/misc_themes.md)
 
-[High School DxD Album](dxd_album.md)
+[Miss Kobayashi's Dragon Maid](../albums/dm_album.md)
 
-[Sword Art Online Album](sao_album.md)
+[Neon Genesis Evangelion](../albums/eva_album.md)
 
-[Miscellaneous Album](misc_themes.md)
+[OreGairu](../albums/og_themes.md)
+
+[Re:Zero Album](../albums/r0_album.md)
+
+[Steins Gate](../albums/sg_themes.md)
+
+[Sword Art Online Album](../albums/sao_album.md)

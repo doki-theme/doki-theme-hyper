@@ -42,7 +42,9 @@ const stickerTypeMenus = [
   };
 });
 
-const themes = Object.values(DokiThemeDefinitions).map((dokiDefinition) => {
+const themes = Object.values(DokiThemeDefinitions)
+  .sort((def1, def2) => def1.information.name.localeCompare(def2.information.name))
+  .map((dokiDefinition) => {
   return {
     label: dokiDefinition.information.name,
     click: async (_: any, focusedWindow: any) => {
@@ -56,7 +58,7 @@ const themes = Object.values(DokiThemeDefinitions).map((dokiDefinition) => {
   };
 });
 
-export const VERSION = "v6.0.0";
+export const VERSION = "v7.0.0";
 const icon = path.resolve(__dirname, "..", "assets", "Doki-Theme.png");
 const showAbout = () => {
   const appName = "Doki Theme";
