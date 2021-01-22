@@ -59,7 +59,7 @@ export const constructSyntax = (dokiTheme: DokiTheme): StringDictonary<any> => {
     cursorColor: dokiTheme.colors.accentColor,
     cursorAccentColor: dokiTheme.colors.caretForeground,
     foregroundColor: dokiTheme.colors.foregroundColor,
-    backgroundColor: dokiTheme.colors.baseBackground,
+    backgroundColor: "#00000000",
     borderColor: dokiTheme.colors.borderColor,
     selectionColor: `${dokiTheme.colors.selectionBackground}55`,
     fontFamily:

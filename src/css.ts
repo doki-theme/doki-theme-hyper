@@ -1,4 +1,4 @@
-import { DokiTheme } from "./themeTools";
+import {DokiTheme} from "./themeTools";
 
 export const constructCSS = (dokiTheme: DokiTheme): string => {
   const background = dokiTheme.colors.baseBackground;
@@ -6,10 +6,24 @@ export const constructCSS = (dokiTheme: DokiTheme): string => {
   const header = dokiTheme.colors.headerColor;
   const activeTab = dokiTheme.colors.highlightColor;
   const accentColor = dokiTheme.colors.accentColor;
+  const backgroundOpacity = dokiTheme.information.dark ? 0.10 : 0.15;
 
   return `
   #hyper {
     color: ${foreground} !important;
+  }
+
+  .terms_terms::after {
+      content: "";
+      background: url('file:///home/alex/.config/JetBrains/WebStorm2020.3/dokiThemeAssets/backgrounds/wallpapers/yukino_dark.png') center;
+      background-size: cover;
+      opacity: ${backgroundOpacity};
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: -1;
   }
 
   #hyper .header_header, #hyper .header_windowHeader {
