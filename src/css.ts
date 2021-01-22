@@ -1,6 +1,7 @@
-import {DokiTheme} from "./themeTools";
+import {DokiSticker, DokiTheme} from "./themeTools";
+import {resolveLocalWallpaperPath} from "./StickerUpdateService";
 
-export const constructCSS = (dokiTheme: DokiTheme): string => {
+export const constructCSS = (dokiTheme: DokiTheme, sticker: DokiSticker): string => {
   const background = dokiTheme.colors.baseBackground;
   const foreground = dokiTheme.colors.foregroundColor;
   const header = dokiTheme.colors.headerColor;
@@ -15,7 +16,7 @@ export const constructCSS = (dokiTheme: DokiTheme): string => {
 
   .terms_terms::after {
       content: "";
-      background: url('file:///home/alex/.config/JetBrains/WebStorm2020.3/dokiThemeAssets/backgrounds/wallpapers/yukino_dark.png') center;
+      background: url('file://${resolveLocalWallpaperPath(sticker.sticker)}') center;
       background-size: cover;
       opacity: ${backgroundOpacity};
       top: 0;

@@ -86,9 +86,9 @@ const getExtraSettings = (): { [key: string]: string } => {
 };
 
 export const decorateConfig = (config: any) => {
-  const { theme: dokiTheme } = getTheme();
+  const { theme: dokiTheme, sticker } = getTheme();
   const syntax = constructSyntax(dokiTheme);
-  const css = constructCSS(dokiTheme);
+  const css = constructCSS(dokiTheme, sticker);
   return Object.assign({}, config, syntax, {
     ...getExtraSettings(),
     termCSS: config.termCSS || "",
