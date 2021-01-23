@@ -36,6 +36,21 @@ Settings` option with various options:
 - **About Plugin**: Gives you the current version of the plugin.
 - **View Changelog**: Opens your default browser to the changelog of Doki-Theme for Hyper.js.
 
+### Settings
+
+```js
+  dokiSettings: {
+    backgrounds: {
+      dark: {
+        opacity: 0.2
+      },
+      light: {
+        opacity: 0.4
+      }
+    }
+  }
+```
+
 ## About!
 
 This plugin is for serious Otaku programmers.

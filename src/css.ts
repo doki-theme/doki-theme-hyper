@@ -1,15 +1,30 @@
 import {DokiSticker, DokiTheme} from "./themeTools";
 import {resolveLocalWallpaperPath} from "./StickerUpdateService";
 
-export const constructCSS = (dokiTheme: DokiTheme, sticker: DokiSticker): string => {
+export interface BackgroundSettings {
+  opacity?: number;
+}
+
+export interface Config {
+  dokiSettings: {
+    backgrounds: {
+      dark?: BackgroundSettings;
+      light?: BackgroundSettings;
+    }
+  }
+  [key: string]: any
+}
+
+export const constructCSS = (dokiTheme: DokiTheme, sticker: DokiSticker, config: Config): string => {
   const background = dokiTheme.colors.baseBackground;
   const foreground = dokiTheme.colors.foregroundColor;
   const header = dokiTheme.colors.headerColor;
   const activeTab = dokiTheme.colors.highlightColor;
   const accentColor = dokiTheme.colors.accentColor;
-  const backgroundOpacity = dokiTheme.information.dark ? 0.10 : 0.15;
+  const backgroundOpacity = dokiTheme.information.dark ?
+    config?.dokiSettings?.backgrounds?.dark?.opacity || 0.10 :
+    config?.dokiSettings?.backgrounds?.light?.opacity || 0.15;
 
-  // todo: backgrounds opacity
   return `
   #hyper {
     color: ${foreground} !important;

@@ -5,7 +5,7 @@ import {
   StickerType,
 } from "./themeTools";
 import { constructSyntax } from "./syntax";
-import { constructCSS } from "./css";
+import {Config, constructCSS} from "./css";
 import path from "path";
 import fs from "fs";
 import os from "os";
@@ -85,10 +85,10 @@ const getExtraSettings = (): { [key: string]: string } => {
     : {};
 };
 
-export const decorateConfig = (config: any) => {
+export const decorateConfig = (config: Config) => {
   const { theme: dokiTheme, sticker } = getTheme();
   const syntax = constructSyntax(dokiTheme);
-  const css = constructCSS(dokiTheme, sticker);
+  const css = constructCSS(dokiTheme, sticker, config);
   return Object.assign({}, config, syntax, {
     ...getExtraSettings(),
     termCSS: config.termCSS || "",
