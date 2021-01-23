@@ -10,9 +10,14 @@ export enum StickerType {
   SECONDARY = "SECONDARY",
 }
 
+export interface Wallpaper {
+  anchor?: string;
+}
+
 export interface Sticker {
   path: string;
   name: string;
+  background: Wallpaper
 }
 
 export interface DokiSticker {

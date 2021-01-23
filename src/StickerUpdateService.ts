@@ -9,6 +9,8 @@ import { STICKER_UPDATED } from "./settings";
 import { Sticker } from "./themeTools";
 import { createParentDirectories } from "./FileTools";
 
+
+//todo: re-draw/reset config so wallpaper shows up
 export interface DokiStickers {
   stickerDataURL: string;
   wallpaperURL: string;

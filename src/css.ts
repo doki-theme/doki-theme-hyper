@@ -9,6 +9,7 @@ export const constructCSS = (dokiTheme: DokiTheme, sticker: DokiSticker): string
   const accentColor = dokiTheme.colors.accentColor;
   const backgroundOpacity = dokiTheme.information.dark ? 0.10 : 0.15;
 
+  // todo: backgrounds opacity
   return `
   #hyper {
     color: ${foreground} !important;
@@ -16,7 +17,9 @@ export const constructCSS = (dokiTheme: DokiTheme, sticker: DokiSticker): string
 
   .terms_terms::after {
       content: "";
-      background: url('file://${resolveLocalWallpaperPath(sticker.sticker)}') center;
+      background: url('file://${resolveLocalWallpaperPath(sticker.sticker)}?cache=${
+    new Date().valueOf().toString(32)
+  }') ${sticker.sticker.background?.anchor || 'center'};
       background-size: cover;
       opacity: ${backgroundOpacity};
       top: 0;
