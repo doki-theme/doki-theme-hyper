@@ -13,7 +13,9 @@ export const TOGGLE_FONT = "TOGGLE_FONT";
 export const STICKER_UPDATED = "STICKER_UPDATED";
 
 function attemptToDoStickerStuff(focusedWindow: any) {
-  attemptToUpdateSticker();
+  attemptToUpdateSticker().then(() => {
+    focusedWindow.rpc.emit(STICKER_UPDATED)
+  });
   setTimeout(() => {
     // triggers event loop to continue download?
     focusedWindow.rpc.emit("refresh");

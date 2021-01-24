@@ -1,16 +1,12 @@
-import { performGet } from "./RESTClient";
+import {performGet} from "./RESTClient";
 import path from "path";
 import fs from "fs";
 import crypto from "crypto";
 import {BACKGROUND_ASSETS_URL, VSCODE_ASSETS_URL} from "./ENV";
-import { configDirectory, getTheme } from "./config";
-import { app } from "electron";
-import { STICKER_UPDATED } from "./settings";
-import { Sticker } from "./themeTools";
-import { createParentDirectories } from "./FileTools";
+import {configDirectory, getTheme} from "./config";
+import {Sticker} from "./themeTools";
+import {createParentDirectories} from "./FileTools";
 
-
-//todo: re-draw/reset config so wallpaper shows up
 export interface DokiStickers {
   stickerDataURL: string;
   wallpaperURL: string;
@@ -18,7 +14,7 @@ export interface DokiStickers {
 
 export const attemptToUpdateSticker = async (): Promise<DokiStickers> => {
   const {
-    sticker: { sticker: currentSticker },
+    sticker: {sticker: currentSticker},
   } = getTheme();
   const remoteStickerUrl = `${VSCODE_ASSETS_URL}${stickerPathToUrl(
     currentSticker
@@ -41,14 +37,10 @@ export const attemptToUpdateSticker = async (): Promise<DokiStickers> => {
 
 async function attemptToUpdateAsset(
   remoteStickerUrl: string,
-  localStickerPath: string
+  localStickerPath: string,
 ) {
   if (await shouldDownloadNewAsset(remoteStickerUrl, localStickerPath)) {
     await installAsset(remoteStickerUrl, localStickerPath);
-    const resolvedBrowserWindow = app.getLastFocusedWindow();
-    if (resolvedBrowserWindow) {
-      resolvedBrowserWindow.webContents.send(STICKER_UPDATED);
-    }
   }
 }
 
