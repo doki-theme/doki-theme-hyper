@@ -27,6 +27,7 @@ const configFile = path.resolve(configDirectory, ".hyper.doki.config.json");
 export interface DokiThemeConfig {
   themeId: string;
   showSticker: boolean;
+  showWallpaper: boolean;
   stickerType: StickerType;
   useFonts: boolean;
 }
@@ -34,6 +35,7 @@ export interface DokiThemeConfig {
 export const DEFAULT_CONFIGURATION: DokiThemeConfig = {
   themeId: "420b0ed5-803c-4127-97e3-dae6aa1a5972",
   showSticker: true,
+  showWallpaper: true,
   stickerType: StickerType.DEFAULT,
   useFonts: false,
 };

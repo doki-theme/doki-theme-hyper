@@ -1,9 +1,9 @@
 import DokiThemeDefinitions from "./DokiThemeDefinitions";
-import { extractConfig, saveConfig } from "./config";
-import { dialog } from "electron";
+import {extractConfig, saveConfig} from "./config";
+import {dialog} from "electron";
 import path from "path";
-import { attemptToUpdateSticker } from "./StickerUpdateService";
-import { StickerType, StringDictonary } from "./themeTools";
+import {attemptToUpdateSticker} from "./StickerUpdateService";
+import {StickerType, StringDictonary} from "./themeTools";
 
 export const SET_THEME = "SET_THEME";
 export const SET_STICKER_TYPE = "SET_STICKER_TYPE";
@@ -29,7 +29,7 @@ const stickerTypeMenus = [
     name: "Secondary",
     type: StickerType.SECONDARY,
   },
-].map(({ name, type }) => {
+].map(({name, type}) => {
   return {
     label: name,
     click: async (_: any, focusedWindow: any) => {
@@ -46,18 +46,18 @@ const stickerTypeMenus = [
 const themes = Object.values(DokiThemeDefinitions)
   .sort((def1, def2) => def1.information.name.localeCompare(def2.information.name))
   .map((dokiDefinition) => {
-  return {
-    label: dokiDefinition.information.name,
-    click: async (_: any, focusedWindow: any) => {
-      saveConfig({
-        ...extractConfig(),
-        themeId: dokiDefinition.information.id,
-      });
-      focusedWindow.rpc.emit(SET_THEME, dokiDefinition);
-      attemptToDoStickerStuff(focusedWindow);
-    },
-  };
-});
+    return {
+      label: dokiDefinition.information.name,
+      click: async (_: any, focusedWindow: any) => {
+        saveConfig({
+          ...extractConfig(),
+          themeId: dokiDefinition.information.id,
+        });
+        focusedWindow.rpc.emit(SET_THEME, dokiDefinition);
+        attemptToDoStickerStuff(focusedWindow);
+      },
+    };
+  });
 
 export const VERSION = "v7.1.0";
 const icon = path.resolve(__dirname, "..", "assets", "Doki-Theme.png");
@@ -132,6 +132,18 @@ export default (providedMenu: any): StringDictonary<any> => {
         },
       },
       {
+        label: "Toggle Wallpaper",
+        click: async (_: any, focusedWindow: Window) => {
+          const savedConfig = extractConfig();
+          const showWallpaper = !(savedConfig.showWallpaper || savedConfig.showWallpaper == undefined);
+          focusedWindow.rpc.emit(TOGGLE_WALLPAPER);
+          saveConfig({
+            ...savedConfig,
+            showWallpaper,
+          });
+        },
+      },
+      {
         label: "Toggle Fonts",
         click: async (_: any, focusedWindow: Window) => {
           const savedConfig = extractConfig();
@@ -148,7 +160,7 @@ export default (providedMenu: any): StringDictonary<any> => {
         label: "View ChangeLog",
         click: async () => {
           // eslint-disable-next-line @typescript-eslint/no-var-requires
-          const { shell } = require("electron");
+          const {shell} = require("electron");
           await shell.openExternal(
             "https://github.com/doki-theme/doki-theme-hyper/blob/master/CHANGELOG.md"
           );

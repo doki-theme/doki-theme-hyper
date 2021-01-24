@@ -92,6 +92,7 @@ export const decorateTerm = (Term: any) => {
         this.registerListener(SET_THEME);
         this.registerListener(SET_STICKER_TYPE);
         this.registerListener(STICKER_UPDATED);
+        this.registerListener(TOGGLE_WALLPAPER);
         window.rpc.on(TOGGLE_FONT, () => {
           window.store.dispatch(reloadConfig(window.config.getConfig()));
         });
