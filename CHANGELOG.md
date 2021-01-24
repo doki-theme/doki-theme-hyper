@@ -1,5 +1,11 @@
 # Change Log
 
+# 7.1.0 [Themed Wallpapers!]
+
+- You now have the ability to `Toggle Wallpaper` in the settings to Show/Hide the wallpaper
+  - The wallpaper's can be configured [please see documentation for more details](https://github.com/doki-theme/doki-theme-hyper#configuration)
+  - Wallpapers are enabled by default.
+
 # 7.0.0 [Echidna, Yukino, Kurisu, Asuna, Umi, & Konata]
 
 ## 5 New Themes!

@@ -36,20 +36,24 @@ Settings` option with various options:
 - **About Plugin**: Gives you the current version of the plugin.
 - **View Changelog**: Opens your default browser to the changelog of Doki-Theme for Hyper.js.
 
-### Settings
+### Configuration
+
+If you want to be able to configure the opacity of the wallpaper used by your current theme(s), please add this to your hyper config.
 
 ```js
   dokiSettings: {
     backgrounds: {
       dark: {
-        opacity: 0.2
+        opacity: 0.2 // default is 0.10
       },
       light: {
-        opacity: 0.4
+        opacity: 0.4 // default is 0.15
       }
     }
   }
 ```
+
+[You can find your hyper config here](https://hyper.is/#cfg)
 
 ## About!
 
