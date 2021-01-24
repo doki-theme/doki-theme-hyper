@@ -10,6 +10,24 @@ const fs = require('fs');
 const masterThemeDefinitionDirectoryPath =
   path.resolve(repoDirectory, 'masterThemes');
 
+const hyperDefinitionDirectoryPath = path.resolve(
+  repoDirectory,
+  "buildAssets",
+  "definitions"
+);
+
+interface Wallpaper {
+  anchor: string;
+}
+
+export interface HyperDokiThemeDefinition {
+  id: string;
+  backgrounds: {
+    default?: Wallpaper;
+    secondary?: Wallpaper;
+  }
+}
+
 function walkDir(dir: string): Promise<string[]> {
   const values: Promise<string[]>[] = fs.readdirSync(dir)
     .map((file: string) => {
@@ -177,6 +195,7 @@ function buildHyperTheme(
 
 function createDokiTheme(
   dokiFileDefinitionPath: string,
+  dokiThemeHyperDefinition: HyperDokiThemeDefinition,
   dokiThemeDefinition: MasterDokiThemeDefinition,
   dokiTemplateDefinitions: DokiThemeDefinitions
 ) {
@@ -187,7 +206,8 @@ function createDokiTheme(
       theme: buildHyperTheme(
         dokiThemeDefinition,
         dokiTemplateDefinitions
-      )
+      ),
+      hyperDef: dokiThemeHyperDefinition
     };
   } catch (e) {
     throw new Error(`Unable to build ${dokiThemeDefinition.name}'s theme for reasons ${e}`);
@@ -236,6 +256,7 @@ function resolveStickerPath(
 
 const getStickers = (
   dokiDefinition: MasterDokiThemeDefinition,
+  hyperDef: HyperDokiThemeDefinition,
   dokiTheme: any
 ) => {
   const secondary =
@@ -244,12 +265,14 @@ const getStickers = (
     default: {
       path: resolveStickerPath(dokiTheme.path, dokiDefinition.stickers.default),
       name: dokiDefinition.stickers.default,
+      background: hyperDef.backgrounds?.default || {},
     },
     ...(secondary
       ? {
         secondary: {
           path: resolveStickerPath(dokiTheme.path, secondary),
           name: secondary,
+          background: hyperDef.backgrounds?.secondary || {},
         },
       }
       : {}),
@@ -271,17 +294,51 @@ walkDir(path.resolve(masterThemeDefinitionDirectoryPath, 'templates'))
           dokiFileDefinitionPaths
         };
       });
-  })
+  }).then(({dokiTemplateDefinitions, dokiFileDefinitionPaths}) => {
+  return walkDir(hyperDefinitionDirectoryPath)
+    .then((files) =>
+      files.filter((file) => file.endsWith("hyper.definition.json"))
+    )
+    .then((dokiThemeHyperDefinitionPaths) => {
+      return {
+        dokiTemplateDefinitions,
+        dokiFileDefinitionPaths,
+        dokiThemeHyperDefinitions: dokiThemeHyperDefinitionPaths
+          .map((dokiThemeHyperDefinitionPath) =>
+            readJson<HyperDokiThemeDefinition>(dokiThemeHyperDefinitionPath)
+          )
+          .reduce(
+            (accum: StringDictonary<HyperDokiThemeDefinition>, def) => {
+              accum[def.id] = def;
+              return accum;
+            },
+            {}
+          ),
+      };
+    });
+})
   .then(templatesAndDefinitions => {
     const {
       dokiTemplateDefinitions,
-      dokiFileDefinitionPaths
+      dokiFileDefinitionPaths,
+      dokiThemeHyperDefinitions,
     } = templatesAndDefinitions;
     return dokiFileDefinitionPaths
-      .map(dokiFileDefinitionPath => ({
-        dokiFileDefinitionPath,
-        dokiThemeDefinition: readJson<MasterDokiThemeDefinition>(dokiFileDefinitionPath),
-      }))
+      .map(dokiFileDefinitionPath => {
+        const dokiThemeDefinition = readJson<MasterDokiThemeDefinition>(dokiFileDefinitionPath);
+        const dokiThemeHyperDefinition =
+          dokiThemeHyperDefinitions[dokiThemeDefinition.id];
+        if (!dokiThemeHyperDefinition) {
+          throw new Error(
+            `${dokiThemeDefinition.displayName}'s theme does not have a Hyper Definition!!`
+          );
+        }
+        return ({
+          dokiFileDefinitionPath,
+          dokiThemeHyperDefinition,
+          dokiThemeDefinition: dokiThemeDefinition,
+        });
+      })
       .filter(pathAndDefinition =>
         (pathAndDefinition.dokiThemeDefinition.product === 'ultimate' &&
           process.env.PRODUCT === 'ultimate') ||
@@ -289,10 +346,12 @@ walkDir(path.resolve(masterThemeDefinitionDirectoryPath, 'templates'))
       )
       .map(({
               dokiFileDefinitionPath,
+              dokiThemeHyperDefinition,
               dokiThemeDefinition,
             }) =>
         createDokiTheme(
           dokiFileDefinitionPath,
+          dokiThemeHyperDefinition,
           dokiThemeDefinition,
           dokiTemplateDefinitions
         )
@@ -309,7 +368,7 @@ walkDir(path.resolve(masterThemeDefinitionDirectoryPath, 'templates'))
         'icons'
       ]),
       colors: dokiTheme.theme.colors,
-      stickers: getStickers(dokiDefinition, dokiTheme)
+      stickers: getStickers(dokiDefinition, dokiTheme.hyperDef, dokiTheme),
     };
   }).reduce((accum: StringDictonary<any>, definition) => {
     accum[definition.information.id] = definition;

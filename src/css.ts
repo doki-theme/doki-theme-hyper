@@ -1,16 +1,59 @@
-import { DokiTheme } from "./themeTools";
+import {DokiSticker, DokiTheme} from "./themeTools";
+import {resolveLocalWallpaperPath} from "./StickerUpdateService";
+import {extractConfig} from "./config";
 
-export const constructCSS = (dokiTheme: DokiTheme): string => {
+export interface BackgroundSettings {
+  opacity?: number;
+}
+
+export interface Config {
+  dokiSettings: {
+    backgrounds: {
+      dark?: BackgroundSettings;
+      light?: BackgroundSettings;
+    }
+  }
+
+  [key: string]: any
+}
+
+export const constructCSS = (
+  dokiTheme: DokiTheme,
+  sticker: DokiSticker,
+  config: Config
+): string => {
   const background = dokiTheme.colors.baseBackground;
   const foreground = dokiTheme.colors.foregroundColor;
   const header = dokiTheme.colors.headerColor;
   const activeTab = dokiTheme.colors.highlightColor;
   const accentColor = dokiTheme.colors.accentColor;
+  const savedConfig = extractConfig();
+  const backgroundOpacity = dokiTheme.information.dark ?
+    config?.dokiSettings?.backgrounds?.dark?.opacity || 0.10 :
+    config?.dokiSettings?.backgrounds?.light?.opacity || 0.15;
+
+  const backgroundCSS = savedConfig.showWallpaper || savedConfig.showWallpaper === undefined ?
+    `.terms_terms::after {
+      content: "";
+      background: url('file://${resolveLocalWallpaperPath(sticker.sticker)}?cache=${
+      new Date().valueOf().toString(32)
+    }') ${sticker.sticker.background?.anchor || 'center'};
+      background-size: cover;
+      opacity: ${backgroundOpacity};
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: -1;
+  }` : '';
 
   return `
   #hyper {
     color: ${foreground} !important;
   }
+
+  ${backgroundCSS}
 
   #hyper .header_header, #hyper .header_windowHeader {
     background: ${header} !important;

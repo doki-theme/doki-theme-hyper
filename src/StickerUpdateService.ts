@@ -1,43 +1,46 @@
-import { performGet } from "./RESTClient";
+import {performGet} from "./RESTClient";
 import path from "path";
 import fs from "fs";
 import crypto from "crypto";
-import { VSCODE_ASSETS_URL } from "./ENV";
-import { configDirectory, getTheme } from "./config";
-import { app } from "electron";
-import { STICKER_UPDATED } from "./settings";
-import { Sticker } from "./themeTools";
-import { createParentDirectories } from "./FileTools";
+import {BACKGROUND_ASSETS_URL, VSCODE_ASSETS_URL} from "./ENV";
+import {configDirectory, getTheme} from "./config";
+import {Sticker} from "./themeTools";
+import {createParentDirectories} from "./FileTools";
 
 export interface DokiStickers {
   stickerDataURL: string;
+  wallpaperURL: string;
 }
 
 export const attemptToUpdateSticker = async (): Promise<DokiStickers> => {
   const {
-    sticker: { sticker: currentSticker },
+    sticker: {sticker: currentSticker},
   } = getTheme();
   const remoteStickerUrl = `${VSCODE_ASSETS_URL}${stickerPathToUrl(
     currentSticker
   )}`;
+  const remoteWallpaperUrl = `${BACKGROUND_ASSETS_URL}${wallpaperPathToUrl(
+    currentSticker
+  )}`;
   const localStickerPath = resolveLocalStickerPath(currentSticker);
-  await Promise.all([attemptToUpdateAsset(remoteStickerUrl, localStickerPath)]);
+  const localWallpaperPath = resolveLocalWallpaperPath(currentSticker);
+  await Promise.all([
+    attemptToUpdateAsset(remoteStickerUrl, localStickerPath),
+    attemptToUpdateAsset(remoteWallpaperUrl, localWallpaperPath),
+  ]);
 
   return {
     stickerDataURL: createCssDokiAssetUrl(localStickerPath),
+    wallpaperURL: createCssDokiAssetUrl(localWallpaperPath),
   };
 };
 
 async function attemptToUpdateAsset(
   remoteStickerUrl: string,
-  localStickerPath: string
+  localStickerPath: string,
 ) {
   if (await shouldDownloadNewAsset(remoteStickerUrl, localStickerPath)) {
     await installAsset(remoteStickerUrl, localStickerPath);
-    const resolvedBrowserWindow = app.getLastFocusedWindow();
-    if (resolvedBrowserWindow) {
-      resolvedBrowserWindow.webContents.send(STICKER_UPDATED);
-    }
   }
 }
 
@@ -53,6 +56,11 @@ export const resolveLocalStickerPath = (currentSticker: Sticker): string => {
   return path.join(configDirectory, "stickers", safeStickerPath);
 };
 
+export const resolveLocalWallpaperPath = (currentSticker: Sticker): string => {
+  const safeStickerPath = wallpaperPathToUrl(currentSticker);
+  return path.join(configDirectory, "wallpapers", safeStickerPath);
+};
+
 const createCssDokiAssetUrl = (localAssetPath: string): string => {
   return `file://${cleanPathToUrl(localAssetPath)}`;
 };
@@ -63,6 +71,11 @@ function cleanPathToUrl(stickerPath: string) {
 
 function stickerPathToUrl(currentSticker: Sticker) {
   const stickerPath = currentSticker.path;
+  return cleanPathToUrl(stickerPath);
+}
+
+function wallpaperPathToUrl(currentSticker: Sticker) {
+  const stickerPath = `/` + currentSticker.name;
   return cleanPathToUrl(stickerPath);
 }
 

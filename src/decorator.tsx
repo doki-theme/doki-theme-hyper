@@ -1,15 +1,9 @@
-import React, { Component } from "react";
-import { THEME_STATE, ThemeState } from "./reducer";
-import {
-  SET_STICKER_TYPE,
-  SET_THEME,
-  STICKER_UPDATED,
-  TOGGLE_FONT,
-  TOGGLE_STICKER,
-} from "./settings";
+import React, {Component} from "react";
+import {THEME_STATE, ThemeState} from "./reducer";
+import {SET_STICKER_TYPE, SET_THEME, STICKER_UPDATED, TOGGLE_FONT, TOGGLE_STICKER, TOGGLE_WALLPAPER,} from "./settings";
 import path from "path";
-import { resolveLocalStickerPath } from "./StickerUpdateService";
-import { ipcRenderer } from "electron";
+import {resolveLocalStickerPath} from "./StickerUpdateService";
+import {ipcRenderer} from "electron";
 
 const passProps = (uid: any, parentProps: any, props: any) =>
   Object.assign(props, {
@@ -97,6 +91,8 @@ export const decorateTerm = (Term: any) => {
       if (!initialized) {
         this.registerListener(SET_THEME);
         this.registerListener(SET_STICKER_TYPE);
+        this.registerListener(STICKER_UPDATED);
+        this.registerListener(TOGGLE_WALLPAPER);
         window.rpc.on(TOGGLE_FONT, () => {
           window.store.dispatch(reloadConfig(window.config.getConfig()));
         });
@@ -109,6 +105,11 @@ export const decorateTerm = (Term: any) => {
         window.rpc.on(TOGGLE_STICKER, () => {
           window.store.dispatch({
             type: TOGGLE_STICKER,
+          });
+        });
+        window.rpc.on(TOGGLE_WALLPAPER, () => {
+          window.store.dispatch({
+            type: TOGGLE_WALLPAPER,
           });
         });
         initialized = true;
