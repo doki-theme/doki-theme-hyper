@@ -35,8 +35,9 @@ export const constructCSS = (
   const backgroundCSS = savedConfig.showWallpaper || savedConfig.showWallpaper === undefined ?
     `.terms_terms::after {
       content: "";
-      background: url('file://${resolveLocalWallpaperPath(sticker.sticker)}?cache=${
-      new Date().valueOf().toString(32)
+      background: url('file://${
+      resolveLocalWallpaperPath(sticker.sticker)
+        .replace(/\\/g, "/")
     }') ${sticker.sticker.background?.anchor || 'center'};
       background-size: cover;
       opacity: ${backgroundOpacity};
