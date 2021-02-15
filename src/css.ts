@@ -38,6 +38,8 @@ export const constructCSS = (
       background: url('file://${
       resolveLocalWallpaperPath(sticker.sticker)
         .replace(/\\/g, "/")
+    }?cache=${
+      new Date().valueOf().toString(32)
     }') ${sticker.sticker.background?.anchor || 'center'};
       background-size: cover;
       opacity: ${backgroundOpacity};
