@@ -1,3 +1,11 @@
+Darling in the Franxx
+---
+
+### Zero Two
+
+![zero two code](../screenshots/franxx/zero_two_dark_code.png)
+![zero two code](../screenshots/franxx/zero_two_light_code.png)
+
 Fate
 ---
 
@@ -11,6 +19,20 @@ Fate
 ![ishtar dark code](../screenshots/fate/ishtar_dark_code.png)
 
 ![ishtar light code](../screenshots/fate/ishtar_light_code.png)
+
+Rascal does not dream of bunny girl senpai
+---
+
+### Sakurajima Mai
+
+![mai dark code](../screenshots/bunnySenpai/mai_dark_code.png)
+![mai dark code](../screenshots/bunnySenpai/mai_dark_secondary_code.png)
+
+
+![mai light code](../screenshots/bunnySenpai/mai_light_code.png)
+![mai light code](../screenshots/bunnySenpai/mai_light_secondary_code.png)
+
+
 
 OreGairu
 ---
