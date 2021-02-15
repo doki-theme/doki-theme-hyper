@@ -1,5 +1,9 @@
 # Change Log
 
+# 8.0.1 [Windows 10 Wallpapers]
+
+- Fixed bug that prevented wallpapers from appearing on Windows 10.
+
 # 8.0.0 [Zero Two, Sakurajima Mai]
 
 ## 4 New Themes
