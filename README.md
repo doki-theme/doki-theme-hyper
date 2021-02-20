@@ -2,7 +2,7 @@
 
 # Feature Preview
 
-![Theme Usage](./screenshots/gifs/doki-theme-hyper-preview.gif)
+![Theme Usage](./screenshots/gifs/doki-theme-hyper-preview.webp)
 
 ## Screen Samples!
 
