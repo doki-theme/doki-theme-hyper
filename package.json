@@ -1,6 +1,6 @@
 {
   "name": "doki-theme-hyper",
-  "version": "8.0.1",
+  "version": "8.1.0",
   "description": "The Doki Theme for Hyper",
   "main": "build/index.js",
   "repository": "https://github.com/doki-theme/doki-theme-hyper.git",
@@ -13,10 +13,6 @@
     "prepare": "yarn clean && (yarn build || true)",
     "build": "tsc",
     "build:ultimate": "PRODUCT=ultimate yarn build",
-    "prebuild": "yarn buildThemes",
-    "buildThemes": "ts-node ./buildSrc/BuildThemes.ts",
-    "buildThemes:ultimate": "PRODUCT=ultimate ts-node ./buildSrc/BuildThemes.ts",
-    "predev": "yarn buildThemes",
     "watch": "tsc -w"
   },
   "devDependencies": {

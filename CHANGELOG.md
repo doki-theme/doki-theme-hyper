@@ -1,5 +1,9 @@
 # Change Log
 
+# 8.1.0 [Non-functional]
+
+- Updated theme build process to common library.
+
 # 8.0.1 [Windows 10 Wallpapers]
 
 - Fixed bug that prevented wallpapers from appearing on Windows 10.
