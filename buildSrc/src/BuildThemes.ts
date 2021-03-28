@@ -3,7 +3,9 @@ import {
   DokiThemeDefinitions,
   evaluateTemplates,
   MasterDokiThemeDefinition,
-  StringDictonary, constructNamedColorTemplate, resolvePaths
+  StringDictionary,
+  constructNamedColorTemplate,
+  resolvePaths
 } from "doki-build-source";
 import path from 'path';
 import fs from "fs";
@@ -32,8 +34,9 @@ type HyperDokiTheme = { path: string; hyperDef: BaseAppDokiThemeDefinition; defi
 function createDokiTheme(
   dokiFileDefinitionPath: string,
   dokiThemeDefinition: MasterDokiThemeDefinition,
-  dokiTemplateDefinitions: DokiThemeDefinitions,
+  masterTemplateDefinitions: DokiThemeDefinitions,
   dokiThemeHyperDefinition: HyperDokiThemeDefinition,
+  dokiTemplateDefinitions: DokiThemeDefinitions,
 ): HyperDokiTheme {
   try {
     return {
@@ -110,7 +113,7 @@ evaluateTemplates<HyperDokiThemeDefinition, HyperDokiTheme>(
       colors: dokiTheme.theme.colors,
       stickers: getStickers(dokiDefinition, dokiTheme.hyperDef, dokiTheme),
     };
-  }).reduce((accum: StringDictonary<any>, definition) => {
+  }).reduce((accum: StringDictionary<any>, definition) => {
     accum[definition.information.id] = definition;
     return accum;
   }, {});
