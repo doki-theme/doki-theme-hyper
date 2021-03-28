@@ -62,7 +62,5 @@ export const constructSyntax = (dokiTheme: DokiTheme): StringDictonary<any> => {
     backgroundColor: "#00000000",
     borderColor: dokiTheme.colors.borderColor,
     selectionColor: `${dokiTheme.colors.selectionBackground}55`,
-    fontFamily:
-      '"Victor Mono", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
   };
 };
