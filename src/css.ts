@@ -84,6 +84,9 @@ export const constructCSS = (
     background: ${background}
     border: 0;
   }
+  .tabs_title { 
+    color: ${foreground} 
+  }
   .tab_icon {
     color: ${background};
     width: 15px;
