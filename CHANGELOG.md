@@ -1,5 +1,9 @@
 # Change Log
 
+# 8.1.1 [Font Family Preferences]
+
+- Font family is back to being customizable when the `Toggle Fonts` action is inactive.
+
 # 8.1.0 [Non-functional]
 
 - Updated theme build process to common library.
