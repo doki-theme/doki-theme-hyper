@@ -36,6 +36,24 @@ Settings` option with various options:
 - **About Plugin**: Gives you the current version of the plugin.
 - **View Changelog**: Opens your default browser to the changelog of Doki-Theme for Hyper.js.
 
+### Suggestive Content
+
+<div align="center">
+    <img src="https://doki.assets.unthrottled.io/misc/suggestive/cultured.gif" ></img>
+</div>
+
+So I thought it was a good idea to add a bit of culture to this plugin.
+<sup><sup>Ya boi is horny on main.</sup></sup>
+
+I will give you a bit of a warning before you install suggestive content.
+Some of us are professional Otaku, who want to remain, well...professional.
+Don't worry if you choose to continue, I won't ask you again for that specific theme.
+
+Applies for the following content:
+
+- Rias Onyx: Secondary Content
+
+
 ### Configuration
 
 If you want to be able to configure the opacity of the wallpaper used by your current theme(s), please add this to your hyper config.
@@ -53,6 +71,12 @@ If you want to be able to configure the opacity of the wallpaper used by your cu
   }
 ```
 
+**Customizing CSS**
+
+If you feel the need to slightly change your current theme's styles, you can add your valid CSS in the `css` property in the config file.
+
+[This should give you an idea of the styles that need to be overridden.](https://github.com/doki-theme/doki-theme-hyper/blob/be29451f076e5904ad25b4d0639fe4d171292ea3/src/css.ts#L54)
+
 [You can find your hyper config here](https://hyper.is/#cfg)
 
 ## About!
@@ -63,6 +87,7 @@ I think you will find best girl.
 
 You can choose themes from various, Anime, Manga, or Visual Novels:
 
+- Blend S
 - DanganRonpa
 - Darling in the Franxx
 - Doki-Doki Literature Club
@@ -84,24 +109,22 @@ You can choose themes from various, Anime, Manga, or Visual Novels:
 Sticker in the way?
 No worries! You can configure them to be on or off at your leisure.
 
-# Got Contributions, fun ideas, or issues?
-
-Don't be afraid to reach out and join the [Gitter Community](https://gitter.im/doki-theme-hyper/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link!)
 
 ## Theme Requests
 
 If you want your main squeeze to be featured in the Doki Theme suite, feel free to [submit a theme request](https://github.com/doki-theme/doki-master-theme/issues).
 
-## Enjoying the plugin and want more people to use it?
+## Enjoying the plugin?
 
 Great! I am glad you like it!
 
-Be sure to share it with others who also may enjoy it as well!
+Be sure to ⭐ and share it with other weebs!
 
-## Not your thing or something bothering you?
+## Contributions?
 
-Feel free to submit your feedback as [an issue](https://github.com/doki-theme/doki-theme-hyper/issues/new).
-Help make this plugin better!
+I think your voice needs to be heard! You probably have good ideas, so feel free to submit your feedback as [an issue](https://github.com/doki-theme/doki-theme-hyper/issues/new).
+
+Don't be afraid to reach out and join the [Gitter Community](https://gitter.im/doki-theme-hyper/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link!)
 
 # Even more Doki-Theme!
 
