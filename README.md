@@ -75,8 +75,7 @@ If you want to be able to configure the opacity of the wallpaper used by your cu
 
 If you feel the need to slightly change your current theme's styles, you can add your valid CSS in the `css` property in the config file.
 
-This should give you an idea of the styles that need to be overridden.
-https://github.com/doki-theme/doki-theme-hyper/blob/be29451f076e5904ad25b4d0639fe4d171292ea3/src/css.ts#L54
+[This should give you an idea of the styles that need to be overridden.](https://github.com/doki-theme/doki-theme-hyper/blob/be29451f076e5904ad25b4d0639fe4d171292ea3/src/css.ts#L54)
 
 [You can find your hyper config here](https://hyper.is/#cfg)
 
