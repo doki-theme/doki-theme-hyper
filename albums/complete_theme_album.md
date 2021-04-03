@@ -9,6 +9,10 @@ Darling in the Franxx
 Fate
 ---
 
+## Astolfo
+
+![astolfo dark code](../screenshots/fate/astolfo_dark_code.png)
+
 ### Tohsaka Rin
 
 ![rin dark code](../screenshots/fate/rin_dark_code.png)
@@ -19,6 +23,13 @@ Fate
 ![ishtar dark code](../screenshots/fate/ishtar_dark_code.png)
 
 ![ishtar light code](../screenshots/fate/ishtar_light_code.png)
+
+Blend S
+---
+
+### Sakuranomiya Maika
+
+![maika dark code](../screenshots/blendS/maika_dark_code.png)
 
 Rascal does not dream of bunny girl senpai
 ---
@@ -94,6 +105,10 @@ DanganRonpa
 Neon Genesis Evangelion
 ---
 
+### Ayanami Rei
+
+![rei dark code](../screenshots/eva/rei_dark_code.png)
+
 ### Misato Katsuragi
 
 ![misato_dark code](../screenshots/eva/misato_dark_code.png)
@@ -140,6 +155,8 @@ High School DxD
 
 ### Rias Gremory
 ![rias code](../screenshots/dxd/rias_dark_code.png)
+![rias code](../screenshots/dxd/rias_onyx_primary_code.png)
+## [Rias Onyx Secondary [Suggestive Content]](../screenshots/dxd/rias_onyx_secondary_code.png)
 
 Lucky Star
 ---
