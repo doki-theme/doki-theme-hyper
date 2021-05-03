@@ -1,6 +1,31 @@
 # Change Log
 
-# 10.0.0
+# 10.0.0 [Nino, Nakano Miku, Gray, & Tohru]
+
+## 5 New Themes
+
+From the Quintessential Quintuplets series:
+
+- Nakano Nino (Dark)
+- Nakano Miku (Dark)
+
+From the Lord El-Melloi II Case Files series:
+
+- Gray (Dark)
+
+From the Daily Life with a Monster girl series:
+
+- Miia (Dark)
+
+Addition to Miss Kobayashi's Dragon Maid:
+
+- Tohru (Light)
+
+## Other stuff
+
+- Added a secondary sticker for [Hatsune Miku](https://github.com/doki-theme/doki-master-theme/issues/62)!
+
+![v15 Girls](https://doki.assets.unthrottled.io/misc/v15_girls.png)
 
 # 9.0.0 [Astolfo, Maika, Rias, & Rei]
 
