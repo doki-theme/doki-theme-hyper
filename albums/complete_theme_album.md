@@ -17,7 +17,6 @@ Quintessential Quintuplets
 
 ![nakano_miku_dark code](../screenshots/quintuplets/nakano_miku_dark_code.png)
 
-
 Type-Moon
 ---
 

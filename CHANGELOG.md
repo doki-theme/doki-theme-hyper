@@ -1,5 +1,7 @@
 # Change Log
 
+# 10.0.0
+
 # 9.0.0 [Astolfo, Maika, Rias, & Rei]
 
 ## 4 New Themes
