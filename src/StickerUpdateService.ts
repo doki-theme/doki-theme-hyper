@@ -66,7 +66,9 @@ const createCssDokiAssetUrl = (localAssetPath: string): string => {
 };
 
 function cleanPathToUrl(stickerPath: string) {
-  return stickerPath.replace(/\\/g, "/");
+  const unEncodedUrl = stickerPath.replace(/\\/g, "/");
+  const encodedUrl = encodeURI(unEncodedUrl).replace(/[!'()*]/g, escape);
+  return encodedUrl;
 }
 
 function stickerPathToUrl(currentSticker: Sticker) {
