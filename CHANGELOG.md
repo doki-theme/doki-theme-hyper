@@ -1,5 +1,9 @@
 # Change Log
 
+# 10.0.1 [Handling non-url characters better]
+
+- Mitigated issues where a user's local file path is not url-friendly, preventing assets from showing up. ([#39](https://github.com/doki-theme/doki-theme-hyper/issues/39)))
+
 # 10.0.0 [Nino, Nakano Miku, Gray, & Tohru]
 
 ## 5 New Themes
