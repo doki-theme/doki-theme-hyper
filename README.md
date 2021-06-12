@@ -82,7 +82,7 @@ If you feel the need to slightly change your current theme's styles, you can add
 ## About!
 
 This plugin is for serious Otaku programmers.
-Code with your waifu. With over **40** themes,
+Code with your waifu. With over **50** themes,
 I think you will find best girl.
 
 You can choose themes from various, Anime, Manga, or Visual Novels:
@@ -91,15 +91,19 @@ You can choose themes from various, Anime, Manga, or Visual Novels:
 - Daily life with a monster girl
 - DanganRonpa
 - Darling in the Franxx
+- Don't Toy With Me, Miss Nagatoro
 - Doki-Doki Literature Club
 - Fate
+- Future Diary
 - Gate
 - High School DxD
+- Kakegurui
 - Kill La Kill
 - KonoSuba
 - Love Live!
 - Lucky Star
 - Miss Kobayashi's Dragon Maid
+- Monogatari
 - Neon Genesis Evangelion
 - OreGairu
 - Quintessential Quintuplets
@@ -107,6 +111,7 @@ You can choose themes from various, Anime, Manga, or Visual Novels:
 - Re:Zero
 - Steins Gate
 - Sword Art Online
+- Yuru Camp
 
 Sticker in the way?
 No worries! You can configure them to be on or off at your leisure.

@@ -1,6 +1,6 @@
 {
   "name": "doki-theme-hyper",
-  "version": "10.0.1",
+  "version": "11.0.0",
   "description": "The Doki Theme for Hyper",
   "main": "build/index.js",
   "repository": "https://github.com/doki-theme/doki-theme-hyper.git",
