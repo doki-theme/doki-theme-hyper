@@ -43,6 +43,28 @@ Type-Moon
 
 ![gray_dark code](../screenshots/fate/gray_dark_code.png)
 
+Monogatari
+---
+
+### Hanekawa Tsubasa
+
+![hanekawa_dark code](../screenshots/monogatari/hanekawa_dark_code.png)
+
+Yuru Camp
+---
+
+### Shima Rin
+
+![shima_rin_dark code](../screenshots/yuruCamp/shima_rin_dark_code.png)
+
+Don't Toy With Me, Miss Nagatoro
+---
+
+### Hayase Nagatoro
+
+![nagatoro_dark code](../screenshots/dontToyWithMeMiss/nagatoro_dark_code.png)
+
+
 Blend S
 ---
 
@@ -86,6 +108,22 @@ Love Live!
 
 ### Sonoda Umi
 ![umi_dark code](../screenshots/loveLive/umi_dark_code.png)
+
+Future Diary
+---
+
+### Gasai Yuno
+
+![yuno_dark code](../screenshots/futureDiary/yuno_dark_code.png)
+
+Kakegurui
+---
+
+### Jabami Yumeko
+
+![yumeko_dark code](../screenshots/kakegurui/yumeko_dark_code.png)
+
+
 
 Gate
 ---
