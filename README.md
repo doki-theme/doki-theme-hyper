@@ -121,6 +121,11 @@ No worries! You can configure them to be on or off at your leisure.
 
 If you want your main squeeze to be featured in the Doki Theme suite, feel free to [submit a theme request](https://github.com/doki-theme/doki-master-theme/issues).
 
+## Contributing
+
+If you want to get your workstation set up to work on the plugin,
+then you'll want to check out the [CONTRIBUTING.md](./CONTRIBUTING.md) for instructions on what is needed.
+
 ## Enjoying the plugin?
 
 Great! I am glad you like it!
