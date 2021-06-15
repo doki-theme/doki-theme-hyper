@@ -24,9 +24,6 @@ the [hyper plugin development setup](https://github.com/vercel/hyper/blob/canary
 should give you a good introduction as what to expect, when developing for this plugin. The `localPlugins` is going to
 be `doki-theme-hyper`.
 
-You'll also want to make sure that you've got all the software installed for the "Hello World" project before continuing
-to the other sections.
-
 # Editing Themes
 
 ## Editing Themes Required Software
