@@ -1,5 +1,15 @@
 # Change Log
 
+# 12.0.0 [NekoPara Release]
+
+## 3 New Themes!!
+
+- Chocola (Dark)
+- Vanilla (Dark)
+- Coconut (Dark)
+
+![v17 Girls](https://doki.assets.unthrottled.io/misc/v17_girls.png)
+
 # 11.0.0 [Hanekawa, Shima Rin, Nagatoro, Yumeko, & Yuno]
 
 ## 5 New Themes!

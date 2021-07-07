@@ -17,6 +17,24 @@ Quintessential Quintuplets
 
 ![nakano_miku_dark code](../screenshots/quintuplets/nakano_miku_dark_code.png)
 
+
+NekoPara
+---
+
+### Chocola
+
+![chocola_dark code](../screenshots/nekoPara/chocola_dark_code.png)
+
+### Vanilla
+
+![vanilla_dark code](../screenshots/nekoPara/vanilla_dark_code.png)
+
+
+### Coconut
+
+![coconut_dark code](../screenshots/nekoPara/coconut_dark_code.png)
+
+
 Type-Moon
 ---
 
