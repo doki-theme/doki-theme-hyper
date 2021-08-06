@@ -34,6 +34,19 @@ NekoPara
 
 ![coconut_dark code](../screenshots/nekoPara/coconut_dark_code.png)
 
+### Maple
+
+![maple_dark code](../screenshots/nekoPara/maple_dark_code.png)
+![maple_light code](../screenshots/nekoPara/maple_light_code.png)
+
+### Cinnamon
+
+![cinnamon_dark code](../screenshots/nekoPara/cinnamon_dark_code.png)
+
+### Azuki
+
+![azuki_dark code](../screenshots/nekoPara/azuki_dark_code.png)
+
 
 Type-Moon
 ---
