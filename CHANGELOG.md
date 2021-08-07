@@ -1,5 +1,15 @@
 # Change Log
 
+# 13.0.0 [NekoPara OneeSan Vol.]
+
+## 4 New Themes!!
+
+- Maple (Light/Dark)
+- Cinnamon (Dark)
+- Azuki (Dark)
+
+![v18 Girls](https://doki.assets.unthrottled.io/misc/v18_girls.png)
+
 # 12.0.0 [NekoPara Release]
 
 ## 3 New Themes!!
