@@ -39,6 +39,10 @@ NekoPara
 ![maple_dark code](../screenshots/nekoPara/maple_dark_code.png)
 ![maple_light code](../screenshots/nekoPara/maple_light_code.png)
 
+### Shigure
+
+![shigure_light code](../screenshots/nekoPara/shigure_light_code.png)
+
 ### Cinnamon
 
 ![cinnamon_dark code](../screenshots/nekoPara/cinnamon_dark_code.png)
@@ -47,6 +51,20 @@ NekoPara
 
 ![azuki_dark code](../screenshots/nekoPara/azuki_dark_code.png)
 
+OreImo (My little sister cannot be this cute)
+---
+
+### Kousaka Kirino
+
+![kirino_dark code](../screenshots/oreimo/kirino_dark_code.png)
+
+
+EroManga Sensei
+---
+
+### Izumi Sagiri
+
+![sagiri_dark code](../screenshots/eromanga/sagiri_dark_code.png)
 
 Type-Moon
 ---
@@ -244,9 +262,11 @@ Kill La Kill
 
 ### Ryuko
 ![ryuko code](../screenshots/killLaKill/ryuko_code.png)
+![ryuko_light code](../screenshots/killLaKill/ryuko_light_code.png)
 
 ### Satsuki
 ![satsuki code](../screenshots/killLaKill/satsuki_code.png)
+![satsuki_dark code](../screenshots/killLaKill/satsuki_dark_code.png)
 
 High School DxD
 ---
