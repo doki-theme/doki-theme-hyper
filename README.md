@@ -82,7 +82,7 @@ If you feel the need to slightly change your current theme's styles, you can add
 ## About!
 
 This plugin is for serious Otaku programmers.
-Code with your waifu. With over **50** themes,
+Code with your waifu. With over **60** themes,
 I think you will find best girl.
 
 You can choose themes from various, Anime, Manga, or Visual Novels:
@@ -93,6 +93,7 @@ You can choose themes from various, Anime, Manga, or Visual Novels:
 - Darling in the Franxx
 - Don't Toy With Me, Miss Nagatoro
 - Doki-Doki Literature Club
+- EroManga Sensei
 - Fate
 - Future Diary
 - Gate
@@ -107,6 +108,7 @@ You can choose themes from various, Anime, Manga, or Visual Novels:
 - NekoPara
 - Neon Genesis Evangelion
 - OreGairu
+- OreImo
 - Quintessential Quintuplets
 - Rascal does not dream of bunny girl senpai
 - Re:Zero
