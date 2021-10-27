@@ -106,6 +106,14 @@ Yuru Camp
 
 ![shima_rin_dark code](../screenshots/yuruCamp/shima_rin_dark_code.png)
 
+Jahy-sama Will Not Be Discouraged!
+---
+
+### Jahy
+
+
+![jahy_dark_smol code](../screenshots/jahySama/jahy_dark_smol_code.png)
+
 Don't Toy With Me, Miss Nagatoro
 ---
 
