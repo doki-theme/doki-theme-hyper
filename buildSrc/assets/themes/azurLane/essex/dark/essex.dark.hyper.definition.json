@@ -1,0 +1,11 @@
+{
+  "id": "e55e70ea-454b-47ef-9270-d46390dd2769",
+  "backgrounds": {
+    "default": {
+      "anchor": "right"
+    },
+    "secondary":{
+      "anchor": "right"
+    }
+  }
+}

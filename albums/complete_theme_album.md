@@ -17,6 +17,15 @@ Quintessential Quintuplets
 
 ![nakano_miku_dark code](../screenshots/quintuplets/nakano_miku_dark_code.png)
 
+### Nakano Yotsuba
+
+![yotsuba_dark code](../screenshots/quintuplets/yotsuba_dark_code.png)
+
+AzurLane
+---
+
+![essex_dark code](../screenshots/azurLane/essex_dark_code.png)
+![essex_dark_plain code](../screenshots/azurLane/essex_dark_plain_code.png)
 
 NekoPara
 ---
@@ -24,6 +33,7 @@ NekoPara
 ### Chocola
 
 ![chocola_dark code](../screenshots/nekoPara/chocola_dark_code.png)
+![chocola_xmas code](../screenshots/nekoPara/chocola_xmas_code.png)
 
 ### Vanilla
 
