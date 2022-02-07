@@ -89,6 +89,7 @@ You can choose themes from various, Anime, Manga, or Visual Novels:
 
 - AzurLane
 - Blend S
+- Chuunibyou, Love, & Other Delusions
 - Daily life with a monster girl
 - DanganRonpa
 - Darling in the Franxx
@@ -114,8 +115,10 @@ You can choose themes from various, Anime, Manga, or Visual Novels:
 - Quintessential Quintuplets
 - Rascal does not dream of bunny girl senpai
 - Re:Zero
+- Rising of the Shield Hero
 - Steins Gate
 - Sword Art Online
+- Toaru Majutsu no Index
 - Yuru Camp
 
 Sticker in the way?
