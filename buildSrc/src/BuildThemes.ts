@@ -70,18 +70,18 @@ const getStickers = (
   dokiTheme: any
 ) => {
   const secondary =
-    dokiDefinition.stickers.secondary || dokiDefinition.stickers.normal;
+    dokiDefinition.stickers.secondary
   return {
     default: {
-      path: resolveStickerPath(dokiTheme.path, dokiDefinition.stickers.default),
-      name: dokiDefinition.stickers.default,
+      path: resolveStickerPath(dokiTheme.path, dokiDefinition.stickers.default.name),
+      name: dokiDefinition.stickers.default.name,
       background: hyperDef.backgrounds?.default || {},
     },
     ...(secondary
       ? {
         secondary: {
-          path: resolveStickerPath(dokiTheme.path, secondary),
-          name: secondary,
+          path: resolveStickerPath(dokiTheme.path, secondary.name),
+          name: secondary.name,
           background: hyperDef.backgrounds?.secondary || {},
         },
       }
