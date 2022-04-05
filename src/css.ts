@@ -29,8 +29,8 @@ export const constructCSS = (
   const accentColor = dokiTheme.colors.accentColor;
   const savedConfig = extractConfig();
   const backgroundOpacity = dokiTheme.information.dark ?
-    config?.dokiSettings?.backgrounds?.dark?.opacity || 0.10 :
-    config?.dokiSettings?.backgrounds?.light?.opacity || 0.15;
+    config?.dokiSettings?.backgrounds?.dark?.opacity || sticker.sticker.background.opacity || 0.10 :
+    config?.dokiSettings?.backgrounds?.light?.opacity || sticker.sticker.background.opacity || 0.15;
 
   const backgroundCSS = savedConfig.showWallpaper || savedConfig.showWallpaper === undefined ?
     `.terms_terms::after {

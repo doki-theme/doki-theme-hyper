@@ -11,7 +11,9 @@ export enum StickerType {
 }
 
 export interface Wallpaper {
-  anchor?: string;
+  name: string;
+  anchor: string;
+  opacity: number;
 }
 
 export interface Sticker {
