@@ -6,7 +6,7 @@ import {
 } from "./themeTools";
 import { constructSyntax } from "./syntax";
 import {constructCSS} from "./css";
-import path from "path";
+import path, {resolve} from "path";
 import fs from "fs";
 import os from "os";
 import { createParentDirectories } from "./FileTools";
@@ -17,6 +17,7 @@ const applicationDirectory =
     : process.platform == "win32"
     ? path.join(process.env.APPDATA || "", "Hyper")
     : os.homedir();
+
 
 export const configDirectory = path.resolve(
   applicationDirectory,

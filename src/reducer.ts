@@ -3,12 +3,18 @@ import {SET_STICKER_TYPE, SET_THEME, SYSTEM_THEME_CHANGED, TOGGLE_STICKER, TOGGL
 import {DokiSticker, DokiTheme, StringDictonary} from "./themeTools";
 import {DEFAULT_THEME_ID, extractConfig, extractHyperConfig, getCorrectSticker, getTheme, saveConfig} from "./config";
 import DokiThemeDefinitions from "./DokiThemeDefinitions";
+import {CONFIG_RELOAD} from "./decorator";
+
+enum SystemState {
+  LIGHT, DARK
+}
 
 export interface ThemeState {
   activeTheme: DokiTheme;
   currentSticker: DokiSticker;
   showSticker: boolean;
   showWallpaper: boolean;
+  systemState: SystemState;
 }
 
 export const THEME_STATE = "dokiThemeState";
@@ -21,6 +27,30 @@ const themeNameToDefinition: StringDictonary<DokiTheme> =
         return accum;
     }, {} as StringDictonary<any>);
 
+
+function applySystemState(state: any) {
+  const hyperConfig = extractHyperConfig();
+  if (hyperConfig.dokiSettings?.systemMatch?.enabled) {
+    const previousState: ThemeState = state[THEME_STATE] || {};
+    const themeKey = previousState.systemState === SystemState.DARK ?
+      hyperConfig.dokiSettings.systemMatch.darkTheme || 'Zero Two Dark' :
+      hyperConfig.dokiSettings.systemMatch.lightTheme || 'Zero Two Light';
+    const activeThemeDef = themeNameToDefinition[themeKey] || themeNameToDefinition[
+      DokiThemeDefinitions[DEFAULT_THEME_ID].information.name
+      ];
+    const themeState: ThemeState = {
+      ...previousState,
+      activeTheme: activeThemeDef
+    };
+    saveConfig({
+      ...extractConfig(),
+      themeId: activeThemeDef.information.id,
+    });
+    return state.set(THEME_STATE, themeState);
+  } else {
+    return state;
+  }
+}
 
 const reducer = (state: any, action: AnyAction) => {
   switch (action.type) {
@@ -55,28 +85,19 @@ const reducer = (state: any, action: AnyAction) => {
       return state.set(THEME_STATE, themeState);
     }
     case SYSTEM_THEME_CHANGED: {
-      const hyperConfig = extractHyperConfig();
-      if (hyperConfig.dokiSettings?.systemMatch?.enabled) {
-        const previousState: ThemeState = state[THEME_STATE] || {};
-        const isWindowDark = action.payload.isDark;
-        const themeKey = isWindowDark ?
-          hyperConfig.dokiSettings.systemMatch.darkTheme || 'Zero Two Dark' :
-          hyperConfig.dokiSettings.systemMatch.lightTheme || 'Zero Two Light';
-        const activeThemeDef = themeNameToDefinition[themeKey] || themeNameToDefinition[
-          DokiThemeDefinitions[DEFAULT_THEME_ID].information.name
-          ];
-        const themeState: ThemeState = {
-          ...previousState,
-          activeTheme: activeThemeDef
-        };
-        saveConfig({
-          ...extractConfig(),
-          themeId: activeThemeDef.information.id,
-        });
-        return state.set(THEME_STATE, themeState);
-      } else {
-        return state;
+      const isWindowDark = action.payload.isDark;
+      const previousThemeState: ThemeState = state[THEME_STATE] || {};
+      const newThemeState: ThemeState = {
+        ...previousThemeState,
+        systemState: isWindowDark ? SystemState.DARK : SystemState.LIGHT,
       }
+      return applySystemState(
+        state.set(THEME_STATE, newThemeState)
+      );
+    }
+    // this forces theme updates on config change.
+    case CONFIG_RELOAD: {
+      return applySystemState(state);
     }
     case TOGGLE_STICKER: {
       const previousState2: ThemeState = state[THEME_STATE] || {};
@@ -102,6 +123,7 @@ const reducer = (state: any, action: AnyAction) => {
         currentSticker: sticker,
         showSticker: dokiThemeConfig.showSticker,
         showWallpaper: dokiThemeConfig.showWallpaper,
+        systemState: SystemState.DARK,
       };
       return state.set(THEME_STATE, themeState);
     }
