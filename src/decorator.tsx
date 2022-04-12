@@ -1,6 +1,14 @@
 import React, {Component} from "react";
 import {THEME_STATE, ThemeState} from "./reducer";
-import {SET_STICKER_TYPE, SET_THEME, STICKER_UPDATED, TOGGLE_FONT, TOGGLE_STICKER, TOGGLE_WALLPAPER,} from "./settings";
+import {
+  SET_STICKER_TYPE,
+  SET_THEME,
+  STICKER_UPDATED,
+  SYSTEM_THEME_CHANGED,
+  TOGGLE_FONT,
+  TOGGLE_STICKER,
+  TOGGLE_WALLPAPER,
+} from "./settings";
 import path from "path";
 import {resolveLocalStickerPath} from "./StickerUpdateService";
 import {ipcRenderer} from "electron";
@@ -67,6 +75,29 @@ const createCacheBuster = () => new Date().valueOf().toString(32);
 
 let initialized = false;
 
+const mediaQuery = "(prefers-color-scheme: dark)";
+
+/**
+ * Just in case you forget, all the terminal ui changes
+ * happen in the Redux Store that only lives inside the
+ * Electron Window app.
+ *
+ * So things outside the decorator don't have access to the Redux Store.
+ * Which is a pain in the ass. So stuff outside of Redux uses config files.
+ *
+ * Things like the settings emit events that this decorator listens to and
+ * emits the corresponding events to create a new state.
+ *
+ * Anytime that those changes happen, I also need to reload the configuration
+ * to force update all the other crap in index.ts, which causes things to
+ * change.
+ *
+ * This code base looks stupid, because it is stupid.
+ *
+ * Love,
+ *
+ * Past Alex
+ */
 export const decorateTerm = (Term: any) => {
   let cacheBuster: string = createCacheBuster();
   return class TerminalDecorator extends Component<any, StickerState> {
@@ -86,6 +117,23 @@ export const decorateTerm = (Term: any) => {
       ).replace(path.sep, "/");
       return `${localStickerPath}?time=${cacheBuster}`;
     }
+
+    private mediaChangeListener = TerminalDecorator.handleMediaChange.bind(this);
+
+    private static handleMediaChange() {
+      window.store.dispatch({
+        type: SYSTEM_THEME_CHANGED,
+        payload: {
+          isDark: TerminalDecorator.isDark(),
+        }
+      });
+      window.store.dispatch(reloadConfig(window.config.getConfig()));
+    }
+
+    public static isDark() {
+      return window.matchMedia(mediaQuery).matches;
+    }
+
 
     componentDidMount() {
       if (!initialized) {
@@ -112,6 +160,11 @@ export const decorateTerm = (Term: any) => {
             type: TOGGLE_WALLPAPER,
           });
         });
+        // dispatch to initialize system state.
+        TerminalDecorator.handleMediaChange();
+        window
+            .matchMedia(mediaQuery)
+            .addEventListener("change", this.mediaChangeListener);
         initialized = true;
       }
     }
