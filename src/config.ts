@@ -6,7 +6,7 @@ import {
 } from "./themeTools";
 import { constructSyntax } from "./syntax";
 import {constructCSS} from "./css";
-import path, {resolve} from "path";
+import path from "path";
 import fs from "fs";
 import os from "os";
 import { createParentDirectories } from "./FileTools";

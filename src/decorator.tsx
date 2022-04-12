@@ -127,6 +127,8 @@ export const decorateTerm = (Term: any) => {
           isDark: TerminalDecorator.isDark(),
         }
       });
+      // this refreshes the entire application so
+      // the new theme gets picked up.
       window.store.dispatch(reloadConfig(window.config.getConfig()));
     }
 
