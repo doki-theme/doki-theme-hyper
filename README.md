@@ -80,6 +80,8 @@ You have the ability to choose a light theme for when your system is in light mo
 The expected value is the `Theme Name` which can be found in the dropdown.
 However, here is a [list of all theme names](./themeList.md)
 
+https://user-images.githubusercontent.com/15972415/163284686-7422488a-2705-4fda-8d0f-dadc6d677186.mp4
+
 **Sample Config (.hyper.js)**
 
 ```javascript

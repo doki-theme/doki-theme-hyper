@@ -4,7 +4,6 @@
 
 - You have the ability to choose a light theme for when your system is in light mode, and a dark theme for when your system is in dark mode. [See Docs for more details](./README.md#system-match)
 
-
 # 78.0-1.0.0 [The Boys]
 
 I'm trying to bring in a bit of inclusion.

@@ -25,7 +25,7 @@ export const configDirectory = path.resolve(
   ".doki-theme-hyper-config"
 );
 const configFile = path.resolve(configDirectory, ".hyper.doki.config.json");
-const hypeConfigFile = path.resolve(applicationDirectory, ".hyper.js");
+const hyperConfigFile = path.resolve(applicationDirectory, ".hyper.js");
 
 export interface BackgroundSettings {
   opacity?: number;
@@ -103,6 +103,10 @@ const _extractDefault = (cfg: string) => {
   return _extract(_syntaxValidation(cfg));
 };
 
+// there isn't a good way to access the application
+// configuration (.hyper.js), so will just be
+// reading the contents of the file and loading the
+// js, and passing the doki confi
 export const extractHyperConfig = (): Config => {
   if (!fs.existsSync(hyperConfigFile)) {
     return defaultConfig;
