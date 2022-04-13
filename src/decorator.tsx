@@ -192,6 +192,19 @@ export const decorateTerm = (Term: any) => {
         this.setState({ imageLoaded: false });
         cacheBuster = createCacheBuster();
       }
+
+      if(themeState.activeTheme.information.id !=
+        nextThemeState.activeTheme.information.id) {
+        // if user updates config, that causes a potential theme change
+        // eg. if system is dark and they change dark theme. The config
+        // change causes the active theme to change. When the theme
+        // changes on config reload, the CSS has already been decorated.
+        // CSS decoration is how the terminal is themed. So the terminal
+        // was decorated with the previous theme (the initial config reload
+        // triggered by the user). So dispatch a config reload again,
+        // to pick up the latest theme changes.
+        window.store.dispatch(reloadConfig(window.config.getConfig()))
+      }
     }
 
     render() {
