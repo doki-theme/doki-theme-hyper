@@ -10,7 +10,7 @@ import {
   TOGGLE_WALLPAPER,
 } from "./settings";
 import path from "path";
-import {resolveLocalStickerPath} from "./StickerUpdateService";
+import {attemptToUpdateSticker, resolveLocalStickerPath} from "./StickerUpdateService";
 import {ipcRenderer} from "electron";
 
 const passProps = (uid: any, parentProps: any, props: any) =>
@@ -203,7 +203,10 @@ export const decorateTerm = (Term: any) => {
         // was decorated with the previous theme (the initial config reload
         // triggered by the user). So dispatch a config reload again,
         // to pick up the latest theme changes.
-        window.store.dispatch(reloadConfig(window.config.getConfig()))
+        window.store.dispatch(reloadConfig(window.config.getConfig()));
+        attemptToUpdateSticker().then(() => {
+          window.store.dispatch(reloadConfig(window.config.getConfig()))
+        });
       }
     }
 
