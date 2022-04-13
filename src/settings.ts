@@ -7,6 +7,7 @@ import {StickerType, StringDictonary} from "./themeTools";
 
 export const SET_THEME = "SET_THEME";
 export const SET_STICKER_TYPE = "SET_STICKER_TYPE";
+export const SYSTEM_THEME_CHANGED = "SYSTEM_THEME_CHANGED";
 export const TOGGLE_STICKER = "TOGGLE_STICKER";
 export const TOGGLE_WALLPAPER = "TOGGLE_WALLPAPER";
 export const TOGGLE_FONT = "TOGGLE_FONT";
@@ -51,17 +52,13 @@ const themes = Object.values(DokiThemeDefinitions)
     return {
       label: dokiDefinition.information.name,
       click: async (_: any, focusedWindow: any) => {
-        saveConfig({
-          ...extractConfig(),
-          themeId: dokiDefinition.information.id,
-        });
         focusedWindow.rpc.emit(SET_THEME, dokiDefinition);
         attemptToDoStickerStuff(focusedWindow);
       },
     };
   });
 
-export const VERSION = "v78.0-1.0.0";
+export const VERSION = "v78.0-1.1.0";
 const icon = path.resolve(__dirname, "..", "assets", "Doki-Theme.png");
 const showAbout = () => {
   const appName = "Doki Theme";

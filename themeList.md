@@ -1,0 +1,85 @@
+All Themes
+---
+
+## Light Themes
+- Asuna Light
+- Beatrice
+- Darkness Light
+- Emilia Light
+- Ishtar Light
+- Mai Light
+- Maple Light
+- Mioda Ibuki Light
+- Monika Light
+- Natsuki Light
+- Ryuko Light
+- Satsuki Light
+- Sayori Light
+- Shigure
+- Tohru
+- Yuri Light
+- Zero Two Light 
+  
+## Dark Themes
+- Aqua
+- Astolfo
+- Asuna Dark
+- Azuki
+- Chocola
+- Christmas Chocola
+- Cinnamon
+- Coconut
+- Darkness Dark
+- Echidna
+- Emilia Dark
+- Essex
+- Gasai Yuno
+- Genos
+- Gray
+- Hanekawa Tsubasa
+- Hatsune Miku
+- Hayase Nagatoro
+- Hinata Shoyo
+- Ishtar Dark
+- Jabami Yumeko
+- Jahy
+- Kanna
+- Katsuragi Misato
+- Kirino
+- Konata
+- Mai Dark
+- Maika
+- Makise Kurisu
+- Maple Dark
+- Megumin
+- Miia
+- Mioda Ibuki Dark
+- Misaka Mikoto
+- Monika Dark
+- Nadeshiko
+- Nakano Miku
+- Nakano Nino
+- Nakano Yotsuba
+- Natsuki Dark
+- Ram
+- Raphtalia
+- Rei
+- Rem
+- Rias: Crimson
+- Rias: Onyx
+- Rimiru Tempest
+- Rory Mercury
+- Ryuko Dark
+- Sagiri
+- Satsuki Dark
+- Sayori Dark
+- Shima Rin
+- Sonoda Umi
+- Takanashi Rikka
+- Tohsaka Rin
+- Vanilla
+- Yukihira Soma
+- Yukinoshita Yukino
+- Yuri Dark
+- Zero Two Dark
+  

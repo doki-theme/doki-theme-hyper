@@ -8,8 +8,14 @@
 
 # [Complete Theme Album.](albums/complete_theme_album.md)
 
-Themes grouped [by anime](./albums/grouping.md)
+## Documentation
 
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Preferences](#preferences)
+  - [Background](#backgrounds) 
+  - [System Match](#system-match)
+- [About](#about)
 
 ## Installation
 
@@ -24,12 +30,14 @@ Be sure to restart hyper afterwards.
 
 ## Configuration
 
+Stuff you can configure using the Hyper.js UI.
+
 ![Theme Usage](./screenshots/gifs/hyper_usage.gif)
 
 In the hamburger menu (Linux/Windows) or settings bar (MacoOS) there is a `Doki-Theme 
 Settings` option with various options:
 
-- **Themes**: Contains all of themes you can decorate your Hyper.js term with.
+- **Themes**: Contains all themes you can decorate your Hyper.js term with.
 - **Sticker Type**: Some themes have more than one sticker associated with the theme. This enables you to switch between the two.
 - **Toggle Sticker**: This shows or hides the theme's sticker. It is defaulted to being on.
 - **Toggle Fonts**: The current font family for the Doki-Theme is `Victor Mono`, this is a convenience option to apply that font family for you.
@@ -54,21 +62,49 @@ Applies for the following content:
 - Rias Onyx: Secondary Content
 
 
-### Configuration
+## Preferences
+
+Stuff you can configure using navigating to `Hyper` -> `Preferences`
 
 If you want to be able to configure the opacity of the wallpaper used by your current theme(s), please add this to your hyper config.
 
-```js
-  dokiSettings: {
-    backgrounds: {
-      dark: {
-        opacity: 0.2 // default is 0.10
-      },
-      light: {
-        opacity: 0.4 // default is 0.15
+### Backgrounds
+
+The Doki Theme provides default opacity settings for each theme, which suites _my_ preferences.
+However, if you want your background lighter or darker, feel free to use this config. 
+
+### System Match
+
+You have the ability to choose a light theme for when your system is in light mode, and a dark theme for when your system is in dark mode.
+
+The expected value is the `Theme Name` which can be found in the dropdown.
+However, here is a [list of all theme names](./themeList.md)
+
+https://user-images.githubusercontent.com/15972415/163284686-7422488a-2705-4fda-8d0f-dadc6d677186.mp4
+
+**Sample Config (.hyper.js)**
+
+```javascript
+module.exports = {
+  config: {
+    dokiSettings: {
+      backgrounds: {
+        dark: {
+          opacity: 0.2 // default is 0.10
+        },
+        light: {
+          opacity: 0.4 // default is 0.15
+        }
       }
+    },
+    systemMatch: {
+      enabled: true,
+      lightTheme: 'Zero Two Light', // Best
+      darkTheme: 'Zero Two Dark', // Girl
     }
-  }
+  },
+  // more stuff....
+}
 ```
 
 **Customizing CSS**
@@ -149,19 +185,7 @@ I think your voice needs to be heard! You probably have good ideas, so feel free
 
 Don't be afraid to reach out and join the [Gitter Community](https://gitter.im/doki-theme-hyper/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link!)
 
-# Even more Doki-Theme!
-
-![Intellij](./readmeStuff/intellij.png)
-## JetBrains IDEs
-
-Do you also develop using JetBrain's products (Intellij, CLion, Pycharm, etc)? 
-Then be sure to install also install [the Doki Theme there as well!](https://github.com/doki-theme/doki-theme-jetbrains)
-
-![VS Code](./readmeStuff/vscode.png)
-## VS Code
-
-The Doki Theme is also [available in VSCode!](https://github.com/doki-theme/doki-theme-vscode)
-Make your VSCode editor more familiar!
+## [Even more Doki-Theme!](https://doki-theme.unthrottled.io/products)
 
 ---
 <div align="center">

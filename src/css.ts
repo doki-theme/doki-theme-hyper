@@ -1,21 +1,6 @@
 import {DokiSticker, DokiTheme} from "./themeTools";
 import {resolveLocalWallpaperPath} from "./StickerUpdateService";
-import {extractConfig} from "./config";
-
-export interface BackgroundSettings {
-  opacity?: number;
-}
-
-export interface Config {
-  dokiSettings: {
-    backgrounds: {
-      dark?: BackgroundSettings;
-      light?: BackgroundSettings;
-    }
-  }
-
-  [key: string]: any
-}
+import {Config, extractConfig} from "./config";
 
 export const constructCSS = (
   dokiTheme: DokiTheme,

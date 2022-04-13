@@ -1,11 +1,11 @@
 import {
   BaseAppDokiThemeDefinition,
+  constructNamedColorTemplate,
   DokiThemeDefinitions,
   evaluateTemplates,
   MasterDokiThemeDefinition,
-  StringDictionary,
-  constructNamedColorTemplate,
-  resolvePaths
+  resolvePaths,
+  StringDictionary
 } from "doki-build-source";
 import path from 'path';
 import fs from "fs";
@@ -93,6 +93,14 @@ const omit = require('lodash/omit');
 
 console.log('Preparing to generate themes.');
 
+function createThemeList(darkThemes: HyperDokiTheme[]) {
+  return darkThemes
+    .map(dokiTheme => dokiTheme.definition.name)
+    .sort()
+    .map(themeName => '- ' + themeName)
+    .join('\n');
+}
+
 evaluateTemplates<HyperDokiThemeDefinition, HyperDokiTheme>(
   {
     appName: 'hyper',
@@ -121,6 +129,23 @@ evaluateTemplates<HyperDokiThemeDefinition, HyperDokiTheme>(
   fs.writeFileSync(
     path.resolve(repoDirectory, 'src', 'DokiThemeDefinitions.ts'),
     `export default ${finalDokiDefinitions};`);
+  const themeListText = `All Themes
+---
+
+## Light Themes
+${
+    (createThemeList(dokiThemes.filter(dokiTheme => !dokiTheme.definition.dark)))
+  } 
+  
+## Dark Themes
+${
+    (createThemeList(dokiThemes.filter(dokiTheme => dokiTheme.definition.dark)))
+  }
+  `
+  fs.writeFileSync(
+    path.resolve(repoDirectory, 'themeList.md'),
+    themeListText);
+
 })
   .then(() => {
     console.log('Theme Generation Complete!');

@@ -5,11 +5,12 @@ import {
   StickerType,
 } from "./themeTools";
 import { constructSyntax } from "./syntax";
-import {Config, constructCSS} from "./css";
+import {constructCSS} from "./css";
 import path from "path";
-import fs from "fs";
+import fs, {readFileSync} from "fs";
 import os from "os";
 import { createParentDirectories } from "./FileTools";
+import vm from "vm";
 
 const applicationDirectory =
   process.env.XDG_CONFIG_HOME !== undefined
@@ -18,11 +19,33 @@ const applicationDirectory =
     ? path.join(process.env.APPDATA || "", "Hyper")
     : os.homedir();
 
+
 export const configDirectory = path.resolve(
   applicationDirectory,
   ".doki-theme-hyper-config"
 );
 const configFile = path.resolve(configDirectory, ".hyper.doki.config.json");
+const hyperConfigFile = path.resolve(applicationDirectory, ".hyper.js");
+
+export interface BackgroundSettings {
+  opacity?: number;
+}
+
+export interface Config {
+  dokiSettings: {
+    backgrounds: {
+      dark?: BackgroundSettings;
+      light?: BackgroundSettings;
+    },
+    systemMatch?: {
+      enabled?: boolean;
+      lightTheme?: string;
+      darkTheme?: string;
+    }
+  }
+  [key: string]: any
+}
+
 
 export interface DokiThemeConfig {
   themeId: string;
@@ -32,8 +55,10 @@ export interface DokiThemeConfig {
   useFonts: boolean;
 }
 
+
+export const DEFAULT_THEME_ID = "5ca2846d-31a9-40b3-8908-965dad3c127d"; // Rimiru
 export const DEFAULT_CONFIGURATION: DokiThemeConfig = {
-  themeId: "420b0ed5-803c-4127-97e3-dae6aa1a5972",
+  themeId: DEFAULT_THEME_ID,
   showSticker: true,
   showWallpaper: true,
   stickerType: StickerType.DEFAULT,
@@ -47,6 +72,49 @@ export const extractConfig = (): DokiThemeConfig => {
     return DEFAULT_CONFIGURATION;
   }
   return JSON.parse(fs.readFileSync(configFile, "utf8"));
+};
+
+const defaultConfig = {
+  dokiSettings: {
+    backgrounds: {}
+  }
+};
+
+const _extract = (script?: vm.Script): Record<string, any> => {
+  const module: Record<string, any> = {};
+  script?.runInNewContext({module});
+  if (!module.exports) {
+    throw new Error('Error reading configuration: `module.exports` not set');
+  }
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  return module.exports;
+};
+
+const _syntaxValidation = (cfg: string) => {
+  try {
+    return new vm.Script(cfg, {filename: '.hyper.js', displayErrors: true});
+  } catch (_err) {
+    const err = _err as {name: string};
+    console.error(`Error loading config: ${err.name}`, `${err}`, {error: err});
+  }
+};
+
+const _extractDefault = (cfg: string) => {
+  return _extract(_syntaxValidation(cfg));
+};
+
+// there isn't a good way to access the application
+// configuration (.hyper.js), so will just be
+// reading the contents of the file and loading the
+// js, and passing the doki confi
+export const extractHyperConfig = (): Config => {
+  if (!fs.existsSync(hyperConfigFile)) {
+    return defaultConfig;
+  }
+  const extractDefault = _extractDefault(
+    readFileSync(hyperConfigFile, 'utf8')
+  );
+  return extractDefault?.config || defaultConfig;
 };
 
 export const saveConfig = (dokiConfig: DokiThemeConfig) => {
