@@ -7,9 +7,10 @@ import {
 import { constructSyntax } from "./syntax";
 import {constructCSS} from "./css";
 import path from "path";
-import fs from "fs";
+import fs, {readFileSync} from "fs";
 import os from "os";
 import { createParentDirectories } from "./FileTools";
+import vm from "vm";
 
 const applicationDirectory =
   process.env.XDG_CONFIG_HOME !== undefined
@@ -42,7 +43,6 @@ export interface Config {
       darkTheme?: string;
     }
   }
-
   [key: string]: any
 }
 
@@ -80,11 +80,37 @@ const defaultConfig = {
   }
 };
 
+const _extract = (script?: vm.Script): Record<string, any> => {
+  const module: Record<string, any> = {};
+  script?.runInNewContext({module});
+  if (!module.exports) {
+    throw new Error('Error reading configuration: `module.exports` not set');
+  }
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  return module.exports;
+};
+
+const _syntaxValidation = (cfg: string) => {
+  try {
+    return new vm.Script(cfg, {filename: '.hyper.js', displayErrors: true});
+  } catch (_err) {
+    const err = _err as {name: string};
+    console.error(`Error loading config: ${err.name}`, `${err}`, {error: err});
+  }
+};
+
+const _extractDefault = (cfg: string) => {
+  return _extract(_syntaxValidation(cfg));
+};
+
 export const extractHyperConfig = (): Config => {
-  if (!fs.existsSync(hypeConfigFile)) {
+  if (!fs.existsSync(hyperConfigFile)) {
     return defaultConfig;
   }
-  return require(hypeConfigFile)?.config || defaultConfig;
+  const extractDefault = _extractDefault(
+    readFileSync(hyperConfigFile, 'utf8')
+  );
+  return extractDefault?.config || defaultConfig;
 };
 
 export const saveConfig = (dokiConfig: DokiThemeConfig) => {
