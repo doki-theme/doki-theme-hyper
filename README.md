@@ -126,7 +126,9 @@ You can choose themes based on characters from these various Anime, Manga, or Vi
 
 - AzurLane
 - Blend S
+- Charlotte
 - Chuunibyou, Love, & Other Delusions
+- Code Geass
 - Daily Life with a Monster Girl
 - DanganRonpa
 - Doki-Doki Literature Club
@@ -134,6 +136,7 @@ You can choose themes based on characters from these various Anime, Manga, or Vi
 - Fate/Type-Moon
 - Future Diary
 - Gate
+- Guilty Crown
 - Haikyu!!
 - High School DxD
 - Jahy-sama Will Not Be Discouraged!
@@ -152,6 +155,7 @@ You can choose themes based on characters from these various Anime, Manga, or Vi
 - Re:Zero
 - Rising of the Shield Hero
 - Shokugeki no Soma
+- Sewayaki Kitsune no Senko-san
 - Steins Gate
 - Sword Art Online
 - That Time I Got Reincarnated as a Slime

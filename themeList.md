@@ -4,6 +4,7 @@ All Themes
 ## Light Themes
 - Asuna Light
 - Beatrice
+- C.C.
 - Darkness Light
 - Emilia Light
 - Ishtar Light
@@ -11,13 +12,18 @@ All Themes
 - Maple Light
 - Mioda Ibuki Light
 - Monika Light
+- Nakano Ichika
+- Nakano Itsuki
 - Natsuki Light
 - Ryuko Light
 - Satsuki Light
 - Sayori Light
+- Senko
 - Shigure
 - Tohru
+- Tomori Nao
 - Yuri Light
+- Yuzuriha Inori
 - Zero Two Light 
   
 ## Dark Themes

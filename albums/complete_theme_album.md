@@ -18,6 +18,11 @@ Chuunibyou Love and Other Delusions
 Quintessential Quintuplets
 ---
 
+### Nakano Ichika
+
+![ichika_light code](../screenshots/quintuplets/ichika_light_code.png)
+
+
 ### Nakano Nino
 
 ![nino_dark code](../screenshots/quintuplets/nino_dark_code.png)
@@ -29,6 +34,10 @@ Quintessential Quintuplets
 ### Nakano Yotsuba
 
 ![yotsuba_dark code](../screenshots/quintuplets/yotsuba_dark_code.png)
+
+### Nakano Itsuki
+
+![itsuki_light code](../screenshots/quintuplets/itsuki_light_code.png)
 
 AzurLane
 ---
@@ -161,9 +170,6 @@ Jahy-sama Will Not Be Discouraged!
 
 ![jahy_dark_smol code](../screenshots/jahySama/jahy_dark_smol_code.png)
 
-Don't Toy With Me, Miss Nagatoro
----
-
 One Punch Man
 ---
 
@@ -184,6 +190,37 @@ Shokugeki no Soma
 ### Yukihira Soma
 
 ![soma_dark code](../screenshots/shokugeki/soma_dark_code.png)
+
+Sewayaki Kitsune no Senko-san
+---
+
+### Senko
+
+![senko_light code](../screenshots/senkoSan/senko_light_code.png)
+
+Charlotte
+---
+
+### Tomori Nao
+
+![nao_light code](../screenshots/charlotte/nao_light_code.png)
+
+Code Geass
+---
+
+### C.C.
+
+![cc_light code](../screenshots/codeGeass/cc_light_code.png)
+
+Guilty Crown
+---
+
+### Yuzuriha Inori
+
+![inori_light code](../screenshots/guiltyCrown/inori_light_code.png)
+
+Don't Toy With Me, Miss Nagatoro
+---
 
 ### Hayase Nagatoro
 
