@@ -24,7 +24,8 @@ All Themes
 - Tomori Nao
 - Yuri Light
 - Yuzuriha Inori
-- Zero Two Light 
+- Zero Two Light Lily
+- Zero Two Light Sakura 
   
 ## Dark Themes
 - Aqua
@@ -46,6 +47,8 @@ All Themes
 - Hatsune Miku
 - Hayase Nagatoro
 - Hinata Shoyo
+- Hiro
+- Hiro x Zero Two
 - Ishtar Dark
 - Jabami Yumeko
 - Jahy
@@ -87,5 +90,6 @@ All Themes
 - Yukihira Soma
 - Yukinoshita Yukino
 - Yuri Dark
-- Zero Two Dark
+- Zero Two Dark Obsidian
+- Zero Two Dark Rose
   
