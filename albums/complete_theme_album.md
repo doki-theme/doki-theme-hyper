@@ -3,8 +3,24 @@ Darling in the Franxx
 
 ### Zero Two
 
+**Obsidian**
+![zero two code](../screenshots/franxx/zero_two_obsidian_code.png)
+
+**Sakura**
+![zero two code](../screenshots/franxx/zero_two_sakura_code.png)
+
+**Rose**
 ![zero two code](../screenshots/franxx/zero_two_dark_code.png)
+
+**Lily**
 ![zero two code](../screenshots/franxx/zero_two_light_code.png)
+
+### Hiro x Zero Two
+
+![hiro x zero two code](../screenshots/franxx/hiro_x_zero_two_dark_code.png)
+
+**Hiro**
+![hiro code](../screenshots/franxx/hiro_dark_code.png)
 
 Chuunibyou Love and Other Delusions
 ---
