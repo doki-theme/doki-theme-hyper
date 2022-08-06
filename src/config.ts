@@ -56,7 +56,7 @@ export interface DokiThemeConfig {
 }
 
 
-export const DEFAULT_THEME_ID = "5ca2846d-31a9-40b3-8908-965dad3c127d"; // Rimiru
+export const DEFAULT_THEME_ID = "5ca2846d-31a9-40b3-8908-965dad3c127d"; // Rimuru
 export const DEFAULT_CONFIGURATION: DokiThemeConfig = {
   themeId: DEFAULT_THEME_ID,
   showSticker: true,

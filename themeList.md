@@ -76,7 +76,7 @@ All Themes
 - Rem
 - Rias: Crimson
 - Rias: Onyx
-- Rimiru Tempest
+- Rimuru Tempest
 - Rory Mercury
 - Ryuko Dark
 - Sagiri

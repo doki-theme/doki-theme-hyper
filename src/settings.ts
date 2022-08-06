@@ -58,7 +58,7 @@ const themes = Object.values(DokiThemeDefinitions)
     };
   });
 
-export const VERSION = "v88.0-1.1.0";
+export const VERSION = "v88.1-1.1.0";
 const icon = path.resolve(__dirname, "..", "assets", "Doki-Theme.png");
 const showAbout = () => {
   const appName = "Doki Theme";
